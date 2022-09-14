@@ -5,7 +5,7 @@ public class HeapSort {
         arr[b] = buff;
     }
 
-    
+
     public static void heap(int arr[], int len, int i) {
         int largest = i;
         int r = i * 2 + 2;
