@@ -1,12 +1,13 @@
 public class HeapSort {
-    public static void swap(int arr[], int a, int b) {
-        int buff = arr[a];
+    public static void swap(int[] arr, int a, int b) {
+        int buff;
+        buff = arr[a];
         arr[a] = arr[b];
         arr[b] = buff;
     }
 
 
-    public static void heap(int arr[], int len, int i) {
+    public static void heap(int[] arr, int len, int i) {
         int largest = i;
         int r = i * 2 + 2;
         int l = i * 2 + 1;
@@ -23,7 +24,7 @@ public class HeapSort {
         }
     }
 
-    public static void heapsort(int arr[]) {
+    public static void heapsort(int[] arr) {
 
         int len = arr.length;
 
@@ -38,11 +39,10 @@ public class HeapSort {
 
     public static void main(String[] args) {
 
-        int arr[] = {3, 5, 1, 10, 12};
+        int[] arr = {3, 5, 1, 10, 12};
         int len = arr.length;
 
-        HeapSort sort = new HeapSort();
-        sort.heapsort(arr);
+        heapsort(arr);
 
         System.out.print("{");
         for (int i = 0; i < len; i++) {
