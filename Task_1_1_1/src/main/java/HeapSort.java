@@ -3,10 +3,10 @@
  */
 public class HeapSort {
     public static void swap(int[] arr, int a, int b) {
-        /**
-         * Making default swap function
-         * a -> b, b -> a
-         */
+    /**
+     * Making default swap function
+     * a -> b, b -> a
+     */
         int buff;
         buff = arr[a];
         arr[a] = arr[b];
