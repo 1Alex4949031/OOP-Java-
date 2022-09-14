@@ -1,7 +1,14 @@
 import java.util.Arrays;
 
+/**
+ * Class with Tests examples.
+ */
 public class Tests {
     public static void main(String[] args) {
+        /**
+         * Using Heapsort class for checking
+         * the correctness of realization
+         */
         HeapSort test = new HeapSort();
 
         int correct[] = {1, 2, 3, 4, 5};
