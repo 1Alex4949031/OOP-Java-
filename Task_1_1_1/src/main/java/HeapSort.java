@@ -1,12 +1,13 @@
 /**
- * HeapSort class.
- *
+ * HeapSort class
  * @author Алексей Селезнев
  */
 public class HeapSort {
   /**
    * Making default swap function
-   * a -> b, b -> a
+   * @param arr array
+   * @param a value need to swap
+   * @param b value need to swap
    */
   public static void swap(int[] arr, int a, int b) {
     /** making buffer for changing the value of array*/
@@ -17,9 +18,12 @@ public class HeapSort {
   }
 
   /**
-   * Finding max-heap.
+   * Finding max-heap;
    * Checking the sons of the current root,
-   * trying to the biggest one.
+   * trying to the biggest one;
+   * @param arr array
+   * @param len the length of array
+   * @param i index
    */
   public static void heap(int[] arr, int len, int i) {
     int largest = i;
@@ -43,7 +47,8 @@ public class HeapSort {
    * 2. Changing the root and the last element of the heap.
    * Then make the heap smaller by decreasing by 1. Getting
    * the max-heap with the new root.
-   * 3. Start with the 1 sentence while size of heap > 1.
+   * 3. Start with the 1 sentence while size of heap more than 1.
+   * @param arr array
    */
   public static void heapsort(int[] arr) {
     /** the length of the array*/
@@ -58,7 +63,9 @@ public class HeapSort {
     }
   }
 
-  /** Main made for first test */
+  /** Main made for the first test
+   * @param args
+   */
   public static void main(String[] args) {
     /** Test array */
     int[] arr = {3, 5, 1, 10, 12};

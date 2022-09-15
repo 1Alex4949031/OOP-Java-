@@ -7,6 +7,7 @@ public class Tests {
   /**
    * Using Heapsort class for checking
    * the correctness of realization
+   * @param args
    */
   public static void main(String[] args) {
 
