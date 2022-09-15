@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,11 +9,13 @@ public class Tests {
   @Test
   public void theFirstTest() {
 
-    HeapSort heapSort = new HeapSort();
     int[] correct = {1, 2, 3, 4, 5};
     int[] test1 = {1, 2, 3, 4, 5};
 
-    heapSort.heapsort(test1);
-    Assertions.assertEquals(test1, correct);
+    Assertions.assertArrayEquals(HeapSort.heapsort(test1), correct);
+  }
+
+  public static void main(String[] args) {
+    new Tests().theFirstTest();
   }
 }

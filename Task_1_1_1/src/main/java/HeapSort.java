@@ -56,7 +56,7 @@ public class HeapSort {
    * @param arr array
    */
 
-  public static void heapsort(int[] arr) {
+  public static int[] heapsort(int[] arr) {
     int len = arr.length;
 
     for (int i = len / 2 - 1; i >= 0; i--) {
@@ -66,5 +66,6 @@ public class HeapSort {
       swap(arr, 0, i);
       heap(arr, i, 0);
     }
+    return arr;
   }
 }
