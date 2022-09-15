@@ -75,10 +75,9 @@ public class HeapSort {
    */
 
   public static void main(String[] args) {
-    int[] arr = {3, 5, 1, 10, 12};
-    int len = arr.length;
-
-    heapsort(arr);
+    //int[] arr = {3, 5, 1, 10, 12};
+    //int len = arr.length;
+    //heapsort(arr);
 
     System.out.print("{");
     for (int i = 0; i < len; i++) {
