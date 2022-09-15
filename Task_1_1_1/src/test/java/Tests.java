@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class Tests {
   /** Test number 1.*/
   @Test
-  public static void theFirstTest() {
+  public void theFirstTest() {
 
     HeapSort heapSort = new HeapSort();
     int[] correct = {1, 2, 3, 4, 5};
