@@ -3,7 +3,7 @@
  *
  * @author Алексей Селезнев
  */
-public class HeapSort {
+public class Heapsort {
   /**
    * Making default swap function.
    *
