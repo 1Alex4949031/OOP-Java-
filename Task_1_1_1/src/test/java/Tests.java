@@ -8,13 +8,14 @@ public class Tests {
    * Using Heapsort class for checking
    * the correctness of realization.
    *
-   * @param args
+   * @param args string arguments
    */
+
   public static void main(String[] args) {
 
     HeapSort test = new HeapSort();
 
-    int[] correct = {1, 2, 3, 4, 5};
+    final int[] correct = {1, 2, 3, 4, 5};
 
     int[] test1 = {1, 2, 3, 4, 5};
     int[] test2 = {5, 4, 3, 2, 1};

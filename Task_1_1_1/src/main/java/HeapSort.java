@@ -11,6 +11,7 @@ public class HeapSort {
    * @param a   value need to swap
    * @param b   value need to swap
    */
+
   public static void swap(int[] arr, int a, int b) {
     int buff;
     buff = arr[a];
@@ -27,6 +28,7 @@ public class HeapSort {
    * @param len the length of array
    * @param i   index
    */
+
   public static void heap(int[] arr, int len, int i) {
     int largest = i;
     int r = i * 2 + 2;
@@ -53,8 +55,8 @@ public class HeapSort {
    *
    * @param arr array
    */
+
   public static void heapsort(int[] arr) {
-    /** the length of the array*/
     int len = arr.length;
 
     for (int i = len / 2 - 1; i >= 0; i--) {
@@ -71,8 +73,8 @@ public class HeapSort {
    *
    * @param args string arguments
    */
+
   public static void main(String[] args) {
-    /** Test array */
     int[] arr = {3, 5, 1, 10, 12};
     int len = arr.length;
 
@@ -88,5 +90,4 @@ public class HeapSort {
     }
     System.out.print("}");
   }
-
 }
