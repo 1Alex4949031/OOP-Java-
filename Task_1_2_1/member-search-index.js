@@ -1,1 +1,1 @@
-memberSearchIndex = [{"p":"<Unnamed>","c":"Stack","l":"count()"},{"p":"<Unnamed>","c":"Stack","l":"pop()"},{"p":"<Unnamed>","c":"Stack","l":"push(Custom)"},{"p":"<Unnamed>","c":"Stack","l":"toArray()"},{"p":"<Unnamed>","c":"Stack","l":"toString()"}]
+memberSearchIndex = [{"p":"<Unnamed>","c":"Stack","l":"count()"},{"p":"<Unnamed>","c":"Stack","l":"pop()"},{"p":"<Unnamed>","c":"Stack","l":"push(custom)"},{"p":"<Unnamed>","c":"Stack","l":"toArray()"},{"p":"<Unnamed>","c":"Stack","l":"toString()"}]
