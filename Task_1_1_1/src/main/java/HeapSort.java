@@ -68,4 +68,19 @@ public class HeapSort {
     }
     return arr;
   }
+  /**
+   * Test for java compiler.
+   *
+   * @param args for command line
+   */
+  public static void main(String[] args) {
+    int[] arr = {4, 3, 2, 1, 5};
+    int len = arr.length;
+    int[] sorted = heapsort(arr);
+    System.out.print("{");
+    for (int i = 0; i < len - 1; i++) {
+      System.out.print(sorted[i] + ", ");
+    }
+    System.out.print(sorted[len - 1] + "}");
+  }
 }
