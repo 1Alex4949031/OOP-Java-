@@ -70,4 +70,13 @@ public class HeapSort {
     }
     return arr;
   }
+
+  /**
+   * Test for java compiler.
+   *
+   * @param args for command line
+   */
+  public static void main(String[] args) {
+    System.out.println("Successfully!!!");
+  }
 }
