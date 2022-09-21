@@ -56,6 +56,7 @@ public class HeapSort {
    * 3. Start with the 1 sentence while size of heap more than 1.
    *
    * @param arr array
+   * @return sorted array
    */
 
   public static int[] heapsort(int[] arr) {

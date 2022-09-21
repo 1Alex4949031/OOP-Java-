@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
  */
 public class Tests {
   /**
-   * Test number 1.
+   * Test number 1 for sorted array.
    */
   @Test
   public void theFirstTest() {
@@ -20,7 +20,7 @@ public class Tests {
   }
 
   /**
-   * Test number 2.
+   * Test number 2 for inverse array.
    */
   @Test
   public void theSecondOne() {
@@ -32,7 +32,7 @@ public class Tests {
   }
 
   /**
-   * Test number 3.
+   * Test number 3 for fully equal arrays.
    */
   @Test
   public void theThirdTest() {
@@ -44,7 +44,7 @@ public class Tests {
   }
 
   /**
-   * Test number 4.
+   * Test number 4 for empty arrays.
    */
   @Test
   public void theFourthTest() {
@@ -56,7 +56,7 @@ public class Tests {
   }
 
   /**
-   * Test number 5.
+   * Test number 5 for random array 1.
    */
   @Test
   public void theFifthTest() {
@@ -68,7 +68,7 @@ public class Tests {
   }
 
   /**
-   * Test number 6.
+   * Test number 6 for random array 2.
    */
   @Test
   public void theSixthTest() {
@@ -80,7 +80,7 @@ public class Tests {
   }
 
   /**
-   * Test number 7.
+   * Test number 7 fot array with equal elements.
    */
   @Test
   public void theSeventhTest() {
@@ -92,7 +92,7 @@ public class Tests {
   }
 
   /**
-   * Test number 8.
+   * Test number 8 for random array 3.
    */
   @Test
   public void theEighthTest() {
