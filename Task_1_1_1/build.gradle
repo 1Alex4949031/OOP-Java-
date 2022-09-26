@@ -11,6 +11,10 @@ repositories {
 }
 
 dependencies {
+<<<<<<< HEAD
+=======
+    implementation 'org.testng:testng:7.1.0'
+>>>>>>> 213b3299f5ea564482a33a43c9fd6e4b2a38bfaa
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
