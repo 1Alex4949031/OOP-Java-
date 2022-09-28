@@ -8,8 +8,9 @@ import java.util.Objects;
  * Making own stack implementation with generics.
  * With different data types. (LIFO)
  */
-public class Stack<custom> {
-    private custom[] array;
+public class Stack<T> {
+    private T[] array;
+
     private int size;
     private int top;
 
@@ -19,7 +20,7 @@ public class Stack<custom> {
     Stack(int size) {
         this.top = -1;
         this.size = size;
-        this.array = (custom[]) new Object[size];
+        this.array = (T[]) new Object[size];
     }
 
     /**
@@ -27,9 +28,8 @@ public class Stack<custom> {
      *
      * @param x item we need to put
      */
-    public void push(custom x) {
+    public void push(T x) {
         if (top == (size - 1)) {
-            System.out.println("Stack Overflow");
             this.increaseCapacity();
         }
         top += 1;
@@ -41,12 +41,12 @@ public class Stack<custom> {
      *
      * @return the element we need to pop
      */
-    public custom pop() {
+    public T pop() {
         if (top < 0) {
             System.out.println("Stack is Empty");
             return null;
         } else {
-            custom buff = array[top];
+            T buff = array[top];
             array[top] = null;
             top -= 1;
             return buff;
@@ -67,7 +67,7 @@ public class Stack<custom> {
      *
      * @param st object of type Stack
      */
-    void pushStack(Stack<custom> st) {
+    void pushStack(Stack<T> st) {
         for (int i = 0; i < st.array.length; i++) {
             push(st.array[i]);
         }
@@ -78,8 +78,8 @@ public class Stack<custom> {
      *
      * @param num count of elements need to remove
      */
-    custom[] popStack(int num) {
-        custom[] buff = (custom[]) new Object[top + 1];
+    T[] popStack(int num) {
+        T[] buff = (T[]) new Object[top + 1];
         while (num != 0) {
             buff[num - 1] = pop();
             num -= 1;
@@ -91,7 +91,7 @@ public class Stack<custom> {
      * Method that increases the capacity of the Stack.
      */
     private void increaseCapacity() {
-        custom[] newStack = (custom[]) new Object[size * 2];
+        T[] newStack = (T[]) new Object[size * 2];
         for (int i = 0; i < this.size; i++) {
             newStack[i] = this.array[i];
         }
@@ -104,8 +104,8 @@ public class Stack<custom> {
      *
      * @return array
      */
-    public custom[] toArray() {
-        custom[] buff = (custom[]) new Object[top + 1];
+    public T[] toArray() {
+        T[] buff = (T[]) new Object[top + 1];
         for (int i = 0; i < top + 1; i++) {
             buff[i] = array[i];
         }

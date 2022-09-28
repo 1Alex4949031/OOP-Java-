@@ -11,7 +11,7 @@ class Tests {
      * Test number 1 for Integer type.
      */
     @Test
-    public void theFirstTest() {
+    public void integerTest() {
         Stack<Integer> t1 = new Stack<>(2);
         t1.push(10);
         t1.push(20);
@@ -40,7 +40,7 @@ class Tests {
      * Test number 2 for String type.
      */
     @Test
-    public void theSecondTest() {
+    public void stringTest() {
         Stack<String> t2 = new Stack<>(3);
         t2.push("Hello");
         t2.push("How are you?");
@@ -63,7 +63,7 @@ class Tests {
      * Test number 3 for Double type.
      */
     @Test
-    public void theThirdTest() {
+    public void doubleTest() {
         Stack<Double> t3 = new Stack<>(10);
         t3.push(1.03);
 
