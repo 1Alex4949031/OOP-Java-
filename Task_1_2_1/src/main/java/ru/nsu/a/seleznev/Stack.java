@@ -17,7 +17,7 @@ public class Stack<T> {
   /**
    * Object Stack.
    */
-  Stack(int size) {
+  public Stack(int size) {
     this.top = -1;
     this.size = size;
     this.array = (T[]) new Object[size];
@@ -30,7 +30,7 @@ public class Stack<T> {
    */
   public void push(T x) {
     if (top == (size - 1)) {
-      this.increaseCapacity();
+      increaseCapacity();
     }
     top += 1;
     array[top] = x;
@@ -77,39 +77,23 @@ public class Stack<T> {
    * Function that removes amount of elements from the end of the stack.
    *
    * @param num count of elements need to remove
+   * @return stack with the elements removed
    */
-  T[] popStack(int num) {
-    T[] buff = (T[]) new Object[top + 1];
-    while (num != 0) {
-      buff[num - 1] = pop();
-      num -= 1;
+  Stack<T> popStack(int num) {
+    Stack<T> res = new Stack<>(num);
+    for (int i = 0; i < num; i++) {
+      T buff = this.pop();
+      res.push(buff);
     }
-    return buff;
+    return res;
   }
 
   /**
    * Method that increases the capacity of the Stack.
    */
   private void increaseCapacity() {
-    T[] newStack = (T[]) new Object[size * 2];
-    for (int i = 0; i < this.size; i++) {
-      newStack[i] = this.array[i];
-    }
-    this.array = newStack;
-    this.size = this.size * 2;
-  }
-
-  /**
-   * Function that helps to male correct Assertion.
-   *
-   * @return array
-   */
-  public T[] toArray() {
-    T[] buff = (T[]) new Object[top + 1];
-    for (int i = 0; i < top + 1; i++) {
-      buff[i] = array[i];
-    }
-    return buff;
+    array = Arrays.copyOf(array, size * 2);
+    size *= 2;
   }
 
   /**

@@ -32,7 +32,6 @@ class Tests {
 
 
     Assertions.assertEquals(t1.count(), act.count());
-    Assertions.assertArrayEquals(t1.toArray(), act.toArray());
     Assertions.assertEquals(t1, act);
   }
 
@@ -55,7 +54,6 @@ class Tests {
     t2.push("Friend");
 
     Assertions.assertEquals(t2.count(), pu.count());
-    Assertions.assertArrayEquals(t2.toArray(), pu.toArray());
     Assertions.assertEquals(t2, pu);
   }
 
@@ -85,7 +83,6 @@ class Tests {
     act.push(1.06);
 
     Assertions.assertEquals(t3.count(), act.count());
-    Assertions.assertArrayEquals(t3.toArray(), act.toArray());
     Assertions.assertEquals(t3, act);
   }
 }
