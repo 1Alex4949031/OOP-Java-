@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
  */
 class Tests {
   /**
-   * Test number 1 for Integer type.
+   * Test for Integer type.
    */
   @Test
   public void integerTest() {
@@ -36,7 +36,7 @@ class Tests {
   }
 
   /**
-   * Test number 2 for String type.
+   * Test for String type.
    */
   @Test
   public void stringTest() {
@@ -58,7 +58,7 @@ class Tests {
   }
 
   /**
-   * Test number 3 for Double type.
+   * Test for Double type.
    */
   @Test
   public void doubleTest() {
@@ -76,7 +76,7 @@ class Tests {
     t3.pushStack(st);
     t3.popStack(3);
 
-    Stack<Double> act = new Stack<>(10);
+    Stack<Double> act = new Stack<>(12);
     act.push(1.03);
     act.push(1.04);
     act.push(1.05);
@@ -84,5 +84,25 @@ class Tests {
 
     Assertions.assertEquals(t3.count(), act.count());
     Assertions.assertEquals(t3, act);
+  }
+
+  /**
+   * Test for PopStack.
+   */
+  @Test
+  public void popTest() {
+    Stack<Integer> t1 = new Stack<>(2);
+    t1.push(10);
+    t1.push(20);
+    t1.push(30);
+    t1.push(40);
+    Stack<Integer> act = t1.popStack(3);
+
+    Stack<Integer> exp = new Stack<>(3);
+    exp.push(40);
+    exp.push(30);
+    exp.push(20);
+    Assertions.assertEquals(act.count(), exp.count());
+    Assertions.assertEquals(act, exp);
   }
 }

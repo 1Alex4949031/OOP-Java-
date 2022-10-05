@@ -67,7 +67,7 @@ public class Stack<T> {
    *
    * @param st object of type Stack
    */
-  void pushStack(Stack<T> st) {
+  public void pushStack(Stack<T> st) {
     for (int i = 0; i < st.array.length; i++) {
       push(st.array[i]);
     }
@@ -79,21 +79,13 @@ public class Stack<T> {
    * @param num count of elements need to remove
    * @return stack with the elements removed
    */
-  Stack<T> popStack(int num) {
+  public Stack<T> popStack(int num) {
     Stack<T> res = new Stack<>(num);
     for (int i = 0; i < num; i++) {
       T buff = this.pop();
       res.push(buff);
     }
     return res;
-  }
-
-  /**
-   * Method that increases the capacity of the Stack.
-   */
-  private void increaseCapacity() {
-    array = Arrays.copyOf(array, size * 2);
-    size *= 2;
   }
 
   /**
@@ -109,7 +101,15 @@ public class Stack<T> {
       return false;
     }
     Stack<?> act = (Stack<?>) o;
-    return top == act.top && Arrays.equals(array, act.array);
+    if(top != act.top){
+      return false;
+    }
+    for (int i = 0; i < top; i++) {
+      if (!(act.array[i].equals(array[i]))) {
+        return false;
+      }
+    }
+    return true;
   }
 
 
@@ -122,6 +122,14 @@ public class Stack<T> {
     int result = Objects.hash(top);
     result = 31 * result + Arrays.hashCode(array);
     return result;
+  }
+
+  /**
+   * Method that increases the capacity of the Stack.
+   */
+  private void increaseCapacity() {
+    array = Arrays.copyOf(array, size * 2);
+    size *= 2;
   }
 
   /**
