@@ -8,7 +8,7 @@ import java.util.Objects;
  * Making own stack implementation with generics.
  * With different data types. (LIFO)
  *
- * @author  Алексей Селезнев
+ * @author Алексей Селезнев
  */
 public class Stack<T> {
   private T[] array;
@@ -96,17 +96,17 @@ public class Stack<T> {
 
   @Override
   public boolean equals(Object o) {
-    if(this == o) {
+    if (this == o) {
       return true;
     }
-    if(!(o instanceof Stack)) {
+    if (!(o instanceof Stack)) {
       return false;
     }
     Stack<?> act = (Stack<?>) o;
-    if(top != act.top){
+    if (top != act.top) {
       return false;
     }
-    for (int i = 0; i < top; i++){
+    for (int i = 0; i < top; i++) {
       if (!(act.array[i].equals(array[i]))) {
         return false;
       }
