@@ -96,12 +96,12 @@ class Tests {
     t1.push(20);
     t1.push(30);
     t1.push(40);
-    Stack<Integer> act = t1.popStack(3);
 
     Stack<Integer> exp = new Stack<>(3);
     exp.push(40);
     exp.push(30);
     exp.push(20);
+    Stack<Integer> act = t1.popStack(3);
     Assertions.assertEquals(act.count(), exp.count());
     Assertions.assertEquals(act, exp);
   }
