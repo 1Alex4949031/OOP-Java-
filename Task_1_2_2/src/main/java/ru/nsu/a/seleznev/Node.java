@@ -101,7 +101,8 @@ public class Node<T> implements Iterable<T> {
   /**
    * Function that removes the child from current node.
    * Set all children from the removed node to the parent of this node.
-   * When current node doesn't have child we need to remove, the function throws the message of exception.
+   * When current node doesn't have child we need to remove,
+   * the function throws the message of exception.
    *
    * @param child node we need to remove
    */
@@ -114,7 +115,7 @@ public class Node<T> implements Iterable<T> {
       }
     }
     if (!c) {
-      throw new UnsupportedOperationException("UnsupportedOperation: Parent doesn't contain this child");
+      throw new UnsupportedOperationException("Failed to remove. Parent doesn't contain this child");
     }
     for (Node<T> i : child.getChildren()) {
       this.setChild(i);

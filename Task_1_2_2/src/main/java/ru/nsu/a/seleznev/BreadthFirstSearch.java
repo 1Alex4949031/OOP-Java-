@@ -1,15 +1,19 @@
 package ru.nsu.a.seleznev;
 
 import java.util.ArrayDeque;
-import java.util.Iterator;
 import java.util.Deque;
+import java.util.Iterator;
 
 /**
  * Breadth-First-Search iterator.
  */
 public class BreadthFirstSearch<T> implements Iterator<T> {
+
   private final Deque<Node<T>> queue = new ArrayDeque<>();
 
+  /**
+   * Breadth-First-Search implemented with queue.
+   */
   public BreadthFirstSearch(Node<T> root) {
     queue.add(root);
   }
