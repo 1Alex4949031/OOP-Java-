@@ -115,7 +115,7 @@ public class Node<T> implements Iterable<T> {
       }
     }
     if (!c) {
-      throw new UnsupportedOperationException("Failed to remove. Parent doesn't contain this child");
+      throw new UnsupportedOperationException("Failed to remove.Parent doesn't contain this child");
     }
     for (Node<T> i : child.getChildren()) {
       this.setChild(i);

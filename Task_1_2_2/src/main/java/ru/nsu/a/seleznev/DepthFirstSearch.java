@@ -1,7 +1,7 @@
 package ru.nsu.a.seleznev;
 
-import java.util.Deque;
 import java.util.ArrayDeque;
+import java.util.Deque;
 import java.util.Iterator;
 
 /**
