@@ -2,6 +2,7 @@ package ru.nsu.a.seleznev;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -181,5 +182,81 @@ public class TreeTests {
     }
     List<String> exp = Arrays.asList("A", "C", "F", "B", "E", "D");
     Assertions.assertEquals(act, exp);
+  }
+
+  /**
+   * GetCountMod test.
+   */
+  @Test
+  public void getCountMod() {
+    Node<String> root = new Node<>("A");
+    Node<String> nodeA = new Node<>("B");
+    root.add(nodeA);
+    Node<String> nodeB = new Node<>("C");
+    nodeA.add(nodeB);
+    Node<String> nodeC = new Node<>("D");
+    nodeB.add(nodeC);
+    int act = root.getCountMod();
+    int exp = 3;
+    Assertions.assertEquals(exp, act);
+    act = nodeC.getCountMod(nodeB);
+    exp = 1;
+    Assertions.assertEquals(exp, act);
+  }
+
+
+  /**
+   * GetRoot function test.
+   */
+  @Test
+  public void getRootTest() {
+    Node<Double> exp = new Node<>(1.1);
+    Node<Double> nodeA = new Node<>(2.2);
+    exp.add(nodeA);
+    Node<Double> nodeB = new Node<>(3.3);
+    nodeA.add(nodeB);
+    Node<Double> nodeC = new Node<>(4.4);
+    nodeB.add(nodeC);
+
+    Node<Double> act = nodeC.getRoot();
+    Assertions.assertEquals(exp, act);
+  }
+
+  /**
+   * Test on ConcurrentModificationException.
+   */
+  @Test
+  public void dfsTreeExceptionTest() {
+    Node<String> root = new Node<>("A");
+    Node<String> nodeB = new Node<>("B");
+    root.add(nodeB);
+    Node<String> nodeC = new Node<>("C");
+    nodeB.add(nodeC);
+    Node<String> nodeD = new Node<>("D");
+    nodeC.add(nodeD);
+    DepthFirstSearch<String> dfs = new DepthFirstSearch<>(root);
+
+    Node<String> nodeF = new Node<>("F");
+    nodeC.add(nodeF);
+    Assertions.assertThrows(ConcurrentModificationException.class, dfs::next);
+  }
+
+  /**
+   * Test on ConcurrentModificationException.
+   */
+  @Test
+  public void bfsTreeExceptionTest() {
+    Node<String> root = new Node<>("A");
+    Node<String> nodeB = new Node<>("B");
+    root.add(nodeB);
+    Node<String> nodeC = new Node<>("C");
+    nodeB.add(nodeC);
+    Node<String> nodeD = new Node<>("D");
+    nodeC.add(nodeD);
+    DepthFirstSearch<String> bfs = new DepthFirstSearch<>(root);
+
+    Node<String> nodeF = new Node<>("F");
+    nodeC.add(nodeF);
+    Assertions.assertThrows(ConcurrentModificationException.class, bfs::next);
   }
 }

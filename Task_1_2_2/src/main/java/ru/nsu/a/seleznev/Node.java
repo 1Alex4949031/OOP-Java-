@@ -12,6 +12,7 @@ public class Node<T> implements Iterable<T> {
   private T value;
   private Node<T> parent;
   private final List<Node<T>> children;
+  private int countMod;
 
   /**
    * Constructor for tree node with parent link, value and array of children of this node.
@@ -19,16 +20,50 @@ public class Node<T> implements Iterable<T> {
    * @param value the value of current node
    */
   public Node(T value) {
+    this.countMod = 0;
     this.parent = null;
     this.value = value;
     this.children = new ArrayList<>();
   }
 
   /**
+   * Function that returns the root of current tree.
+   *
+   * @return the root of current tree.
+   */
+  public Node<T> getRoot() {
+    Node<T> root = this;
+    while (root.parent != null) {
+      root = root.getParent();
+    }
+    return root;
+  }
+
+  /**
+   * Function that returns the number of modifications of current tree with given root.
+   *
+   * @param root of the current tree
+   * @return the number of modifications for the current root
+   */
+  public int getCountMod(Node<T> root) {
+    return root.countMod;
+  }
+
+  /**
+   * Function that returns the number of modifications of current node.
+   *
+   * @return the number of modifications for the current node
+   */
+  public int getCountMod() {
+    return this.countMod;
+  }
+
+
+  /**
    * Function that returns the parent of current node.
    * If function returns null, it means that you are searching the parent of root.
    *
-   * @return the parent of current node.
+   * @return the parent of current node
    */
   public Node<T> getParent() {
     return parent;
@@ -37,7 +72,7 @@ public class Node<T> implements Iterable<T> {
   /**
    * Function that changes the parent of current node.
    *
-   * @param parent parent we want to put.
+   * @param parent parent we want to put
    */
   public void setParent(Node<T> parent) {
     this.parent = parent;
@@ -90,12 +125,19 @@ public class Node<T> implements Iterable<T> {
 
   /**
    * Function that adds the child to current node.
+   * Also counts the number of modifications for each node.
    *
    * @param child child we need to add
    */
   public void add(Node<T> child) {
     child.parent = this;
     children.add(child);
+
+    Node<T> buff = child;
+    while (buff.getParent() != null) {
+      buff = buff.parent;
+      buff.countMod += 1;
+    }
   }
 
   /**
@@ -103,6 +145,7 @@ public class Node<T> implements Iterable<T> {
    * Set all children from the removed node to the parent of this node.
    * When current node doesn't have child we need to remove,
    * the function throws the message of exception.
+   * Also counts the number of modifications for each node.
    *
    * @param child node we need to remove
    */
@@ -122,6 +165,13 @@ public class Node<T> implements Iterable<T> {
       i.setParent(this);
     }
     this.removeChild(child);
+
+    Node<T> buff = child;
+    while (buff.getParent() != null) {
+      buff = buff.parent;
+      buff.countMod += 1;
+    }
+
   }
 
   /**
