@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -202,62 +202,83 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 </td>
 </tr>
 <tr id="i3" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCountMod()">getCountMod</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Function that returns the number of modifications of current node.</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCountMod(ru.nsu.a.seleznev.Node)">getCountMod</a></span>&#8203;(<a href="Node.html" title="class in ru.nsu.a.seleznev">Node</a>&lt;<a href="Node.html" title="type parameter in Node">T</a>&gt;&nbsp;root)</code></th>
+<td class="colLast">
+<div class="block">Function that returns the number of modifications of current tree with given root.</div>
+</td>
+</tr>
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code><a href="Node.html" title="class in ru.nsu.a.seleznev">Node</a>&lt;<a href="Node.html" title="type parameter in Node">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getParent()">getParent</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Function that returns the parent of current node.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
+<td class="colFirst"><code><a href="Node.html" title="class in ru.nsu.a.seleznev">Node</a>&lt;<a href="Node.html" title="type parameter in Node">T</a>&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRoot()">getRoot</a></span>()</code></th>
+<td class="colLast">
+<div class="block">Function that returns the root of current tree.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code><a href="Node.html" title="type parameter in Node">T</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getValue()">getValue</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Function that returns the value of current node.</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#hashCode()">hashCode</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Overriding the hashCode for correct comparison.</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code>java.util.Iterator&lt;<a href="Node.html" title="type parameter in Node">T</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#iterator()">iterator</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Overriding the iterator.</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#remove(ru.nsu.a.seleznev.Node)">remove</a></span>&#8203;(<a href="Node.html" title="class in ru.nsu.a.seleznev">Node</a>&lt;<a href="Node.html" title="type parameter in Node">T</a>&gt;&nbsp;child)</code></th>
 <td class="colLast">
 <div class="block">Function that removes the child from current node.</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#removeChild(ru.nsu.a.seleznev.Node)">removeChild</a></span>&#8203;(<a href="Node.html" title="class in ru.nsu.a.seleznev">Node</a>&lt;<a href="Node.html" title="type parameter in Node">T</a>&gt;&nbsp;child)</code></th>
 <td class="colLast">
 <div class="block">Function that removes child from the children array of the current node.</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setChild(ru.nsu.a.seleznev.Node)">setChild</a></span>&#8203;(<a href="Node.html" title="class in ru.nsu.a.seleznev">Node</a>&lt;<a href="Node.html" title="type parameter in Node">T</a>&gt;&nbsp;child)</code></th>
 <td class="colLast">
 <div class="block">Function that adds the child of current node to the array of children.</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setParent(ru.nsu.a.seleznev.Node)">setParent</a></span>&#8203;(<a href="Node.html" title="class in ru.nsu.a.seleznev">Node</a>&lt;<a href="Node.html" title="type parameter in Node">T</a>&gt;&nbsp;parent)</code></th>
 <td class="colLast">
 <div class="block">Function that changes the parent of current node.</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setValue(T)">setValue</a></span>&#8203;(<a href="Node.html" title="type parameter in Node">T</a>&nbsp;val)</code></th>
 <td class="colLast">
@@ -321,6 +342,50 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <!--   -->
 </a>
 <h3>Method Detail</h3>
+<a id="getRoot()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getRoot</h4>
+<pre class="methodSignature">public&nbsp;<a href="Node.html" title="class in ru.nsu.a.seleznev">Node</a>&lt;<a href="Node.html" title="type parameter in Node">T</a>&gt;&nbsp;getRoot()</pre>
+<div class="block">Function that returns the root of current tree.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the root of current tree.</dd>
+</dl>
+</li>
+</ul>
+<a id="getCountMod(ru.nsu.a.seleznev.Node)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getCountMod</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getCountMod&#8203;(<a href="Node.html" title="class in ru.nsu.a.seleznev">Node</a>&lt;<a href="Node.html" title="type parameter in Node">T</a>&gt;&nbsp;root)</pre>
+<div class="block">Function that returns the number of modifications of current tree with given root.</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>root</code> - of the current tree</dd>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the number of modifications for the current root</dd>
+</dl>
+</li>
+</ul>
+<a id="getCountMod()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getCountMod</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getCountMod()</pre>
+<div class="block">Function that returns the number of modifications of current node.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the number of modifications for the current node</dd>
+</dl>
+</li>
+</ul>
 <a id="getParent()">
 <!--   -->
 </a>
@@ -332,7 +397,7 @@ implements java.lang.Iterable&lt;T&gt;</pre>
  If function returns null, it means that you are searching the parent of root.</div>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>the parent of current node.</dd>
+<dd>the parent of current node</dd>
 </dl>
 </li>
 </ul>
@@ -346,7 +411,7 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <div class="block">Function that changes the parent of current node.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
-<dd><code>parent</code> - parent we want to put.</dd>
+<dd><code>parent</code> - parent we want to put</dd>
 </dl>
 </li>
 </ul>
@@ -429,7 +494,8 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <li class="blockList">
 <h4>add</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;add&#8203;(<a href="Node.html" title="class in ru.nsu.a.seleznev">Node</a>&lt;<a href="Node.html" title="type parameter in Node">T</a>&gt;&nbsp;child)</pre>
-<div class="block">Function that adds the child to current node.</div>
+<div class="block">Function that adds the child to current node.
+ Also counts the number of modifications for each node.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>child</code> - child we need to add</dd>
@@ -446,7 +512,8 @@ implements java.lang.Iterable&lt;T&gt;</pre>
 <div class="block">Function that removes the child from current node.
  Set all children from the removed node to the parent of this node.
  When current node doesn't have child we need to remove,
- the function throws the message of exception.</div>
+ the function throws the message of exception.
+ Also counts the number of modifications for each node.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>child</code> - node we need to remove</dd>
