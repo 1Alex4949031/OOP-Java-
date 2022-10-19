@@ -13,9 +13,6 @@ import org.junit.jupiter.api.Test;
  */
 public class TreeTests {
 
-  /**
-   * Add function test.
-   */
   @Test
   public void addTest() {
     Node<Integer> root = new Node<>(1);
@@ -26,9 +23,7 @@ public class TreeTests {
     Assertions.assertEquals(exp, act);
   }
 
-  /**
-   * GetChildren function test.
-   */
+
   @Test
   public void getChildrenTest() {
     Node<Integer> root = new Node<>(1);
@@ -49,9 +44,7 @@ public class TreeTests {
     Assertions.assertEquals(exp, act);
   }
 
-  /**
-   * GetValue function test.
-   */
+
   @Test
   public void getValueTest() {
     Node<String> root = new Node<>("Hello. I'm fine!");
@@ -60,9 +53,7 @@ public class TreeTests {
     Assertions.assertEquals(exp, act);
   }
 
-  /**
-   * SetValue function test.
-   */
+
   @Test
   public void setValueTest() {
     Node<String> root = new Node<>("Hello.");
@@ -73,9 +64,7 @@ public class TreeTests {
     Assertions.assertEquals(act, exp);
   }
 
-  /**
-   * Remove function test.
-   */
+
   @Test
   public void removeTest() {
     Node<Integer> act = new Node<>(1);
@@ -92,9 +81,7 @@ public class TreeTests {
     Assertions.assertEquals(exp, act);
   }
 
-  /**
-   * GetParent function test.
-   */
+
   @Test
   public void getParentTest() {
     Node<Double> root = new Node<>(21.215);
@@ -106,9 +93,7 @@ public class TreeTests {
     Assertions.assertEquals(act, exp);
   }
 
-  /**
-   * Example test implementation.
-   */
+
   @Test
   public void exampleTest() {
     Node<String> act = new Node<>("A");
@@ -133,9 +118,7 @@ public class TreeTests {
     Assertions.assertNotEquals(act, exp);
   }
 
-  /**
-   * Breadth-First-Search test.
-   */
+
   @Test
   public void bfsTreeTest() {
     Node<String> root = new Node<>("A");
@@ -159,9 +142,7 @@ public class TreeTests {
     Assertions.assertEquals(act, exp);
   }
 
-  /**
-   * Depth-First-Search test.
-   */
+
   @Test
   public void dfsTreeTest() {
     Node<String> root = new Node<>("A");
@@ -184,9 +165,7 @@ public class TreeTests {
     Assertions.assertEquals(act, exp);
   }
 
-  /**
-   * GetCountMod test.
-   */
+
   @Test
   public void getCountMod() {
     Node<String> root = new Node<>("A");
@@ -205,9 +184,6 @@ public class TreeTests {
   }
 
 
-  /**
-   * GetRoot function test.
-   */
   @Test
   public void getRootTest() {
     Node<Double> exp = new Node<>(1.1);
@@ -222,9 +198,7 @@ public class TreeTests {
     Assertions.assertEquals(exp, act);
   }
 
-  /**
-   * Test on ConcurrentModificationException.
-   */
+
   @Test
   public void dfsTreeExceptionTest() {
     Node<String> root = new Node<>("A");
@@ -241,9 +215,7 @@ public class TreeTests {
     Assertions.assertThrows(ConcurrentModificationException.class, dfs::next);
   }
 
-  /**
-   * Test on ConcurrentModificationException.
-   */
+
   @Test
   public void bfsTreeExceptionTest() {
     Node<String> root = new Node<>("A");

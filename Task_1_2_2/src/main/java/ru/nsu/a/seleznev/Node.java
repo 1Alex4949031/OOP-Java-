@@ -150,13 +150,7 @@ public class Node<T> implements Iterable<T> {
    * @param child node we need to remove
    */
   public void remove(Node<T> child) {
-    boolean c = false;
-    for (Node<T> i : children) {
-      if (i == child) {
-        c = true;
-        break;
-      }
-    }
+    boolean c = children.stream().filter((i) -> (i == child)).findAny().orElse(null) != null;
     if (!c) {
       throw new UnsupportedOperationException("Failed to remove.Parent doesn't contain this child");
     }
