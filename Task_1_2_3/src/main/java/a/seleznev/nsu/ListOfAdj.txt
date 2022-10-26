@@ -1,0 +1,6 @@
+a b c d e
+a c 10
+b a 11 c 12
+c e 13
+d a 14 b 15
+e a 16 b 17

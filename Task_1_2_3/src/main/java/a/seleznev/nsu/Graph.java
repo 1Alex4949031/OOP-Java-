@@ -1,10 +1,7 @@
 package a.seleznev.nsu;
 
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class Graph<T> {
 
@@ -14,31 +11,6 @@ public class Graph<T> {
   public Graph() {
     vertexes = new HashMap<>();
     edges = new HashMap<>();
-  }
-
-  public void addVertex(T name) {
-    Vertex<T> n = new Vertex<>(name);
-    vertexes.put(name, n);
-    edges.put(n.getName(), new ArrayList<>());
-  }
-
-  public void removeVertex(T name) {
-    vertexes.remove(name);
-    edges.remove(name);
-  }
-
-  public void addEdge(T name1, T name2, int weight) {
-    // проверки на наличие name1, name2
-    Vertex<T> v1 = vertexes.get(name1);
-    Vertex<T> v2 = vertexes.get(name2);
-
-    Edge<T> ne = new Edge<>(v1, v2, weight);
-    edges.get(v1.getName()).add(ne);
-  }
-
-  public void removeEdge(T name1, T name2) {
-    List<Edge<T>> ne = edges.get(name1);
-    ne.removeIf(i -> i.getEnd().getName() == name2);
   }
 
   //Adj Matrix
@@ -57,6 +29,7 @@ public class Graph<T> {
     }
   }
 
+  //Inc Matrix
   public Graph(int[][] matrix, T[] vertexArr, int edgesCount) {
     vertexes = new HashMap<>();
     edges = new HashMap<>();
@@ -84,6 +57,64 @@ public class Graph<T> {
     }
   }
 
+  //List of Adj
+  //public Graph(T[] vertexArr,,List<Integer>[] weights){
+  //  vertexes = new HashMap<>();
+  //  edges = new HashMap<>();
+
+  // Arrays.stream(vertexArr).forEach(this::addVertex);
+
+  //  for(int i = 0;)
+  //}
+
+  public void addVertex(T name) {
+    Vertex<T> n = new Vertex<>(name);
+    vertexes.put(name, n);
+    edges.put(n.getName(), new ArrayList<>());
+  }
+
+  public void removeVertex(T name) {
+    vertexes.remove(name);
+    edges.remove(name);
+  }
+
+  public void addEdge(T name1, T name2, int weight) {
+    // проверки на наличие name1, name2
+    Vertex<T> v1 = vertexes.get(name1);
+    Vertex<T> v2 = vertexes.get(name2);
+
+    Edge<T> ne = new Edge<>(v1, v2, weight);
+    edges.get(v1.getName()).add(ne);
+  }
+
+  public void removeEdge(T name1, T name2) {
+    List<Edge<T>> ne = edges.get(name1);
+    ne.removeIf(i -> i.getEnd().getName() == name2);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Graph<?> obj = (Graph<?>) o;
+    return Objects.equals(edges, obj.edges)
+        && Objects.equals(vertexes, obj.vertexes);
+  }
+
+  /**
+   * Overriding the hashCode for correct comparison.
+   *
+   * @return hash of node
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(edges, vertexes);
+  }
+
   public static void main(String[] args) {
     //Graph<String> graph = new Graph<>();
     //Vertex<String> a = new Vertex<>("A");
@@ -108,12 +139,16 @@ public class Graph<T> {
     //Graph<String> graph1 = new Graph<>(mat, mas);
 
     //Inc matrix
-    int[][] mat2 = {{1, 1, 0, 0, 0},
-        {-1, 0, -1, 1, 0},
-        {0, 0, 0, -1, -1},
-        {0, -1, 1, 0, 1},
-        {10, 20, 30, 40, 50}};
-    Integer[] mas2 = {1,2,3,4};
-    Graph<Integer> graph2 = new Graph<>(mat2,mas2, 5);
+    //int[][] mat2 = {{1, 1, 0, 0, 0},
+    //    {-1, 0, -1, 1, 0},
+    //    {0, 0, 0, -1, -1},
+    //    {0, -1, 1, 0, 1},
+    //    {10, 20, 30, 40, 50}};
+    //Integer[] mas2 = {1,2,3,4};
+    //Graph<Integer> graph2 = new Graph<>(mat2,mas2, 5);
+
+    //List of adj
+    String[] mas3 = {"a","b","c","d","e"};
+    Object[][]
   }
 }
