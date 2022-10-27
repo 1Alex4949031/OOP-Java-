@@ -38,7 +38,7 @@ public class Graph<T> {
     for (int i = 0; i < edgesCount; i++) {
       T start = null;
       T end = null;
-      int weight = -1;
+      int weight;
       for (int j = 0; j < vertexArr.length + 1; j++) {
         if (matrix[j][i] == 1) {
           start = vertexArr[j];
@@ -48,7 +48,7 @@ public class Graph<T> {
         }
         if (j == vertexArr.length) {
           weight = matrix[j][i];
-          if(start == null || end == null || weight < 0){
+          if (start == null || end == null || weight < 0) {
             throw new Error("Wrong matrix initialization!");
           }
           addEdge(start, end, weight);
@@ -58,14 +58,22 @@ public class Graph<T> {
   }
 
   //List of Adj
-  //public Graph(T[] vertexArr,,List<Integer>[] weights){
-  //  vertexes = new HashMap<>();
-  //  edges = new HashMap<>();
+  public Graph(T[] vertexArr, T[] adjList, int[] weights, int[] edgesCount) {
+    vertexes = new HashMap<>();
+    edges = new HashMap<>();
 
-  // Arrays.stream(vertexArr).forEach(this::addVertex);
+    Arrays.stream(vertexArr).forEach(this::addVertex);
 
-  //  for(int i = 0;)
-  //}
+    int start = 0, pos;
+    for (int i = 0; i < vertexArr.length; i++) {
+      int count = edgesCount[i];
+      pos = start;
+      for (int j = start; j < count + pos; j++) {
+        addEdge(vertexArr[i], adjList[j], weights[j]);
+        start++;
+      }
+    }
+  }
 
   public void addVertex(T name) {
     Vertex<T> n = new Vertex<>(name);
@@ -147,8 +155,11 @@ public class Graph<T> {
     //Integer[] mas2 = {1,2,3,4};
     //Graph<Integer> graph2 = new Graph<>(mat2,mas2, 5);
 
-    //List of adj
-    String[] mas3 = {"a","b","c","d","e"};
-    Object[][]
+    //ListOfAdj
+    String[] ver = {"a", "b", "c", "d", "e"};
+    String[] list = {"c", "a", "c", "e", "a", "b", "a", "b"};
+    int[] weights = {10, 11, 12, 13, 14, 15, 16, 17};
+    int[] edgesCount = {1, 2, 1, 2, 2};
+    Graph<String> graph = new Graph<>(ver, list, weights, edgesCount);
   }
 }
