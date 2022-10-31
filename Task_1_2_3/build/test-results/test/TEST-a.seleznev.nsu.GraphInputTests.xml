@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="a.seleznev.nsu.GraphInputTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2022-10-31T14:55:02" hostname="LAPTOP-BVLM46TG" time="0.076">
+  <properties/>
+  <testcase name="incidenceMatrixTest()" classname="a.seleznev.nsu.GraphInputTests" time="0.061"/>
+  <testcase name="listOfAdjacencyTest()" classname="a.seleznev.nsu.GraphInputTests" time="0.007"/>
+  <testcase name="adjacencyMatrixTest()" classname="a.seleznev.nsu.GraphInputTests" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

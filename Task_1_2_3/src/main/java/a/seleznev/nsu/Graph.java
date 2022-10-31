@@ -3,25 +3,36 @@ package a.seleznev.nsu;
 
 import java.util.*;
 
-public class Graph<T> {
+/**
+ * Own Graph class implementation.
+ *
+ * @author Алексей Селезнев
+ */
+public class Graph<T extends Comparable<T>> {
 
   private final HashMap<T, Vertex<T>> vertexes;
   private final HashMap<T, List<Edge<T>>> edges;
 
+  /**
+   * Empty graph constructor presentation.
+   */
   public Graph() {
     vertexes = new HashMap<>();
     edges = new HashMap<>();
   }
 
-  //Adj Matrix
+  /**
+   * Graph constructor for Adjacency Matrix presentation.
+   *
+   * @param matrix    current matrix with information
+   * @param vertexArr array of vertexes
+   */
   public Graph(int[][] matrix, T[] vertexArr) {
     vertexes = new HashMap<>();
     edges = new HashMap<>();
 
     Arrays.stream(vertexArr).forEach(this::addVertex);
-    //for(T i : vertexArr){
-    //  addVertex(i);
-    //}
+
     for (int i = 0; i < vertexArr.length; i++) {
       for (int j = 0; j < vertexArr.length; j++) {
         addEdge(vertexArr[i], vertexArr[j], matrix[i][j]);
@@ -29,7 +40,13 @@ public class Graph<T> {
     }
   }
 
-  //Inc Matrix
+  /**
+   * Graph constructor for Incidence Matrix presentation.
+   *
+   * @param matrix     current matrix
+   * @param vertexArr  array of vertexes
+   * @param edgesCount number of edges
+   */
   public Graph(int[][] matrix, T[] vertexArr, int edgesCount) {
     vertexes = new HashMap<>();
     edges = new HashMap<>();
@@ -40,10 +57,10 @@ public class Graph<T> {
       T end = null;
       int weight;
       for (int j = 0; j < vertexArr.length + 1; j++) {
-        if (matrix[j][i] == 1) {
+        if (matrix[j][i] == 1 && j != vertexArr.length) {
           start = vertexArr[j];
         }
-        if (matrix[j][i] == -1) {
+        if (matrix[j][i] == -1 && j != vertexArr.length) {
           end = vertexArr[j];
         }
         if (j == vertexArr.length) {
@@ -57,7 +74,14 @@ public class Graph<T> {
     }
   }
 
-  //List of Adj
+  /**
+   * Graph constructor for List of Adjacency presentation.
+   *
+   * @param vertexArr  array of vertexes
+   * @param adjList    list of all edges
+   * @param weights    array of weights
+   * @param edgesCount array of number of edges for each vertex
+   */
   public Graph(T[] vertexArr, T[] adjList, int[] weights, int[] edgesCount) {
     vertexes = new HashMap<>();
     edges = new HashMap<>();
@@ -75,19 +99,43 @@ public class Graph<T> {
     }
   }
 
+  /**
+   * Function that adds Vertex to the graph.
+   *
+   * @param name name of the current vertex need to added
+   */
   public void addVertex(T name) {
-    Vertex<T> n = new Vertex<>(name);
-    vertexes.put(name, n);
-    edges.put(n.getName(), new ArrayList<>());
+    if (!vertexes.containsKey(name)) {
+      Vertex<T> n = new Vertex<>(name);
+      vertexes.put(name, n);
+      edges.put(n.getName(), new ArrayList<>());
+    }
   }
 
+  /**
+   * Function that removes Vertex from the graph.
+   *
+   * @param name name of the current vertex need to be removed
+   */
   public void removeVertex(T name) {
-    vertexes.remove(name);
-    edges.remove(name);
+    if (vertexes.containsKey(name)) {
+      vertexes.remove(name);
+      edges.remove(name);
+    }
   }
 
+  /**
+   * Function that adds Edge to the graph.
+   * (S(vertex1) ->(edge)-> E(vertex2) with weight).
+   *
+   * @param name1  the start of the Edge
+   * @param name2  the end of the Edge
+   * @param weight the weight of the Edge
+   */
   public void addEdge(T name1, T name2, int weight) {
-    // проверки на наличие name1, name2
+    if (!vertexes.containsKey(name1) || !vertexes.containsKey(name2)) {
+      throw new UnsupportedOperationException("Error with adding!");
+    }
     Vertex<T> v1 = vertexes.get(name1);
     Vertex<T> v2 = vertexes.get(name2);
 
@@ -95,11 +143,66 @@ public class Graph<T> {
     edges.get(v1.getName()).add(ne);
   }
 
+  /**
+   * Function that adds Edge to the graph.
+   * (S(vertex1) ->(edge)-> E(vertex2) with weight).
+   *
+   * @param name1 the start of the Edge
+   * @param name2 the end of the Edge
+   */
   public void removeEdge(T name1, T name2) {
     List<Edge<T>> ne = edges.get(name1);
     ne.removeIf(i -> i.getEnd().getName() == name2);
   }
 
+  /**
+   * Dijkstra's algorithm for current graph.
+   * For each vertex counts the minimal distance from start vertex.
+   * The value of each vertex is the minimal distance.
+   *
+   * @param name        start vertex
+   * @param vertexCount number of vertexes
+   */
+  public HashMap<T, Integer> dijkstra(T name, int vertexCount) {
+    Vertex<T> start = vertexes.get(name);
+
+    HashSet<Vertex<T>> settled = new HashSet<>();
+    HashMap<T, Integer> dist = new HashMap<>();
+
+    vertexes.forEach((n, v) -> v.setValue(Integer.MAX_VALUE));
+
+    PriorityQueue<Vertex<T>> pq = new PriorityQueue<>(Comparator.comparingInt(Vertex::getValue));
+    pq.add(start);
+    start.setValue(0);
+    //
+    dist.put(name, 0);
+    while ((settled.size() != vertexCount) || !pq.isEmpty()) {
+      Vertex<T> u = pq.remove();
+      settled.add(u);
+      int newDist;
+      List<Edge<T>> edgesList = edges.get(u.getName());
+      for (Edge<T> i : edgesList) {
+        Vertex<T> st = i.getStart();
+        Vertex<T> ed = i.getEnd();
+        if (!settled.contains(ed) && i.getWeight() >= 0) {
+          newDist = st.getValue() + i.getWeight();
+          if (newDist < ed.getValue()) {
+            ed.setValue(newDist);
+            dist.put(ed.getName(), newDist);
+          }
+          pq.add(ed);
+        }
+      }
+    }
+    return dist;
+  }
+
+  /**
+   * Overriding the equals of graphs for correct comparison.
+   *
+   * @param o object we need to compare with
+   * @return true if the objects are equals, false otherwise
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -116,7 +219,7 @@ public class Graph<T> {
   /**
    * Overriding the hashCode for correct comparison.
    *
-   * @return hash of node
+   * @return hash of graph
    */
   @Override
   public int hashCode() {
@@ -156,10 +259,26 @@ public class Graph<T> {
     //Graph<Integer> graph2 = new Graph<>(mat2,mas2, 5);
 
     //ListOfAdj
+    //String[] ver = {"a", "b", "c", "d", "e"};
+    //String[] list = {"c", "a", "c", "e", "a", "b", "a", "b"};
+    //int[] weights = {10, 11, 12, 13, 14, 15, 16, 17};
+    //int[] edgesCount = {1, 2, 1, 2, 2};
+    //Graph<String> graph = new Graph<>(ver, list, weights, edgesCount);
+    //graph.dijkstra("a", 5);
+    //Dijekstra
+    //Adj matrix
+    //int[][] mat = {{0, 1, 10, -1}, {1, 0, 2, 10}, {10, 2, 0, 3}, {-1, 10, 3, 0}};
+    //String[] mas = {"a", "b", "c", "d"};
+    //Graph<String> graph1 = new Graph<>(mat, mas);
+    //graph1.dijkstra("a", 4);
+    //int a = 0;
+
+    //ListofAdj
     String[] ver = {"a", "b", "c", "d", "e"};
     String[] list = {"c", "a", "c", "e", "a", "b", "a", "b"};
-    int[] weights = {10, 11, 12, 13, 14, 15, 16, 17};
+    int[] weights = {1, 11, 12, 13, 14, 15, 16, 17};
     int[] edgesCount = {1, 2, 1, 2, 2};
     Graph<String> graph = new Graph<>(ver, list, weights, edgesCount);
+    graph.dijkstra("a", 5);
   }
 }
