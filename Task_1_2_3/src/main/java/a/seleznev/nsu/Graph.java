@@ -1,7 +1,13 @@
 package a.seleznev.nsu;
 
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.PriorityQueue;
 
 /**
  * Own Graph class implementation.
@@ -88,7 +94,8 @@ public class Graph<T extends Comparable<T>> {
 
     Arrays.stream(vertexArr).forEach(this::addVertex);
 
-    int start = 0, pos;
+    int start = 0;
+    int pos;
     for (int i = 0; i < vertexArr.length; i++) {
       int count = edgesCount[i];
       pos = start;
@@ -126,7 +133,7 @@ public class Graph<T extends Comparable<T>> {
 
   /**
    * Function that adds Edge to the graph.
-   * (S(vertex1) ->(edge)-> E(vertex2) with weight).
+   * (S(vertex1) -(edge)- E(vertex2) with weight).
    *
    * @param name1  the start of the Edge
    * @param name2  the end of the Edge
@@ -145,7 +152,7 @@ public class Graph<T extends Comparable<T>> {
 
   /**
    * Function that adds Edge to the graph.
-   * (S(vertex1) ->(edge)-> E(vertex2) with weight).
+   * (S(vertex1) -(edge)- E(vertex2) with weight).
    *
    * @param name1 the start of the Edge
    * @param name2 the end of the Edge
@@ -162,20 +169,22 @@ public class Graph<T extends Comparable<T>> {
    *
    * @param name        start vertex
    * @param vertexCount number of vertexes
+   * @return HashMap that presents the minimal distances from fixed vertex
    */
   public HashMap<T, Integer> dijkstra(T name, int vertexCount) {
     Vertex<T> start = vertexes.get(name);
-
-    HashSet<Vertex<T>> settled = new HashSet<>();
-    HashMap<T, Integer> dist = new HashMap<>();
 
     vertexes.forEach((n, v) -> v.setValue(Integer.MAX_VALUE));
 
     PriorityQueue<Vertex<T>> pq = new PriorityQueue<>(Comparator.comparingInt(Vertex::getValue));
     pq.add(start);
+
     start.setValue(0);
-    //
+
+    HashMap<T, Integer> dist = new HashMap<>();
     dist.put(name, 0);
+
+    HashSet<Vertex<T>> settled = new HashSet<>();
     while ((settled.size() != vertexCount) || !pq.isEmpty()) {
       Vertex<T> u = pq.remove();
       settled.add(u);
@@ -224,61 +233,5 @@ public class Graph<T extends Comparable<T>> {
   @Override
   public int hashCode() {
     return Objects.hash(edges, vertexes);
-  }
-
-  public static void main(String[] args) {
-    //Graph<String> graph = new Graph<>();
-    //Vertex<String> a = new Vertex<>("A");
-    //Vertex<String> b = new Vertex<>("B");
-    //Vertex<String> c = new Vertex<>("C");
-    //Vertex<String> d = new Vertex<>("D");
-    //graph.addVertex("A");
-    //graph.removeVertex("A");
-    //graph.addVertex("B");
-    //graph.addVertex("C");
-    //graph.addVertex("D");
-    //graph.addEdge("A", "B", 10);
-    //graph.addEdge("B", "C", 10);
-    //graph.addEdge("B", "A", 10);
-    //graph.addEdge("B", "D", 10);
-    //graph.removeEdge("A", "B");
-    //graph.removeEdge("B", "C");
-
-    //Adj matrix
-    //int[][] mat = {{0, 1, 10, 0}, {1, 0, 2, 10}, {10, 2, 0, 3}, {0, 10, 3, 0}};
-    //String[] mas = {"a", "b", "c", "d"};
-    //Graph<String> graph1 = new Graph<>(mat, mas);
-
-    //Inc matrix
-    //int[][] mat2 = {{1, 1, 0, 0, 0},
-    //    {-1, 0, -1, 1, 0},
-    //    {0, 0, 0, -1, -1},
-    //    {0, -1, 1, 0, 1},
-    //    {10, 20, 30, 40, 50}};
-    //Integer[] mas2 = {1,2,3,4};
-    //Graph<Integer> graph2 = new Graph<>(mat2,mas2, 5);
-
-    //ListOfAdj
-    //String[] ver = {"a", "b", "c", "d", "e"};
-    //String[] list = {"c", "a", "c", "e", "a", "b", "a", "b"};
-    //int[] weights = {10, 11, 12, 13, 14, 15, 16, 17};
-    //int[] edgesCount = {1, 2, 1, 2, 2};
-    //Graph<String> graph = new Graph<>(ver, list, weights, edgesCount);
-    //graph.dijkstra("a", 5);
-    //Dijekstra
-    //Adj matrix
-    //int[][] mat = {{0, 1, 10, -1}, {1, 0, 2, 10}, {10, 2, 0, 3}, {-1, 10, 3, 0}};
-    //String[] mas = {"a", "b", "c", "d"};
-    //Graph<String> graph1 = new Graph<>(mat, mas);
-    //graph1.dijkstra("a", 4);
-    //int a = 0;
-
-    //ListofAdj
-    String[] ver = {"a", "b", "c", "d", "e"};
-    String[] list = {"c", "a", "c", "e", "a", "b", "a", "b"};
-    int[] weights = {1, 11, 12, 13, 14, 15, 16, 17};
-    int[] edgesCount = {1, 2, 1, 2, 2};
-    Graph<String> graph = new Graph<>(ver, list, weights, edgesCount);
-    graph.dijkstra("a", 5);
   }
 }

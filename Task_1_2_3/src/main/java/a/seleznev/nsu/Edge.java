@@ -6,11 +6,12 @@ import java.util.Objects;
  * Edge class implementation.
  */
 public class Edge<T extends Comparable<T>> {
-  private final Vertex<T> start, end;
+  private final Vertex<T> start;
+  private final Vertex<T> end;
   private final int weight;
 
   /**
-   * Edge constructor. Edge: Start -> End.
+   * Edge constructor. Edge: Start - End.
    *
    * @param start  the start of the edge
    * @param end    the end of the edge

@@ -21,6 +21,8 @@ public class Vertex<T extends Comparable<T>> {
 
   /**
    * Function that returns the name of the current vertex.
+   *
+   * @return the name of the current vertex
    */
   public T getName() {
     return name;

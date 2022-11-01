@@ -18,7 +18,7 @@ public class VertexTest {
   }
 
   @Test
-  public void ValueTest() {
+  public void valueTest() {
     Vertex<String> vertex = new Vertex<>("Hello world!");
     int act = vertex.getValue();
     int exp = -1;
@@ -34,11 +34,11 @@ public class VertexTest {
 
   @Test
   public void vertexEqualsTest() {
-    Vertex<String> act_1 = new Vertex<>("Hello");
-    Vertex<String> act_2 = new Vertex<>("How are you?");
+    Vertex<String> act1 = new Vertex<>("Hello");
+    Vertex<String> act2 = new Vertex<>("How are you?");
     Vertex<String> exp = new Vertex<>("How are you?");
 
-    Assertions.assertNotEquals(exp, act_1);
-    Assertions.assertEquals(exp, act_2);
+    Assertions.assertNotEquals(exp, act1);
+    Assertions.assertEquals(exp, act2);
   }
 }

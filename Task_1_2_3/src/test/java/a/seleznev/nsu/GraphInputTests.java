@@ -1,12 +1,15 @@
 package a.seleznev.nsu;
 
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.HashMap;
 import java.util.Scanner;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for Graph class with input files.
@@ -17,22 +20,22 @@ public class GraphInputTests {
     File file = new File("src/test/resources/ListOfAdj.txt");
     Scanner scan = new Scanner(file);
 
-    int N = scan.nextInt();
-    int K = scan.nextInt();
+    int verCount = scan.nextInt();
+    int edgesCount = scan.nextInt();
 
-    String[] vertexes = new String[N];
-    String[] list = new String[K];
-    int[] weights = new int[K];
-    int[] edgesCount = new int[N];
+    String[] vertexes = new String[verCount];
+    String[] list = new String[edgesCount];
+    int[] weights = new int[edgesCount];
+    int[] edgesArr = new int[verCount];
 
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < verCount; i++) {
       vertexes[i] = scan.next();
     }
     int pos = 0;
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < verCount; i++) {
       scan.next();
       int count = scan.nextInt();
-      edgesCount[i] = count;
+      edgesArr[i] = count;
       for (int j = 0; j < count; j++) {
         list[pos] = scan.next();
         weights[pos] = scan.nextInt();
@@ -41,8 +44,8 @@ public class GraphInputTests {
     }
 
     HashMap<String, Integer> act;
-    Graph<String> graph = new Graph<>(vertexes, list, weights, edgesCount);
-    act = graph.dijkstra("d", N);
+    Graph<String> graph = new Graph<>(vertexes, list, weights, edgesArr);
+    act = graph.dijkstra("d", verCount);
 
     Writer wr = new FileWriter("src/test/resources/ListOfAdjOutput.txt");
     wr.write("Minimal distances:\n");
@@ -64,23 +67,23 @@ public class GraphInputTests {
     File file = new File("src/test/resources/AdjacencyMatrix.txt");
     Scanner scan = new Scanner(file);
 
-    int N = scan.nextInt();
-    String[] vertexes = new String[N];
-    int[][] matrix = new int[N][N];
+    int verCount = scan.nextInt();
+    String[] vertexes = new String[verCount];
+    int[][] matrix = new int[verCount][verCount];
 
-    for (int i = 0; i < N; i++) {
+    for (int i = 0; i < verCount; i++) {
       vertexes[i] = scan.next();
     }
 
-    for (int i = 0; i < N; i++) {
-      for (int j = 0; j < N; j++) {
+    for (int i = 0; i < verCount; i++) {
+      for (int j = 0; j < verCount; j++) {
         matrix[i][j] = scan.nextInt();
       }
     }
 
     Graph<String> graph = new Graph<>(matrix, vertexes);
     HashMap<String, Integer> act;
-    act = graph.dijkstra("a", N);
+    act = graph.dijkstra("a", verCount);
 
     Writer wr = new FileWriter("src/test/resources/AdjacencyMatrixOutput.txt");
     wr.write("Minimal distances:\n");
@@ -101,28 +104,28 @@ public class GraphInputTests {
     File file = new File("src/test/resources/IncidenceMatrix.txt");
     Scanner scan = new Scanner(file);
 
-    int N = scan.nextInt();
-    int K = scan.nextInt();
+    int verCount = scan.nextInt();
+    int edgesCount = scan.nextInt();
 
-    Integer[] vertexes = new Integer[N];
-    int[][] matrix = new int[N + 1][K];
-    for (int i = 0; i < N; i++) {
+    Integer[] vertexes = new Integer[verCount];
+    int[][] matrix = new int[verCount + 1][edgesCount];
+    for (int i = 0; i < verCount; i++) {
       vertexes[i] = scan.nextInt();
     }
 
-    for (int i = 0; i < N; i++) {
-      for (int j = 0; j < K; j++) {
+    for (int i = 0; i < verCount; i++) {
+      for (int j = 0; j < edgesCount; j++) {
         matrix[i][j] = scan.nextInt();
       }
     }
 
-    for(int i = 0; i < K;i++){
-      matrix[N][i] = scan.nextInt();
+    for (int i = 0; i < edgesCount; i++) {
+      matrix[verCount][i] = scan.nextInt();
     }
 
-    Graph<Integer> graph = new Graph<>(matrix, vertexes, K);
+    Graph<Integer> graph = new Graph<>(matrix, vertexes, edgesCount);
     HashMap<Integer, Integer> act;
-    act = graph.dijkstra(1, N);
+    act = graph.dijkstra(1, verCount);
 
     Writer wr = new FileWriter("src/test/resources/IncidenceMatrixOutput.txt");
     wr.write("Minimal distances:\n");
