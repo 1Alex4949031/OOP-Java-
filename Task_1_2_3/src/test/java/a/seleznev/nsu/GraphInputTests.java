@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.Writer;
 import java.util.HashMap;
 import java.util.Scanner;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
