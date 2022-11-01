@@ -95,7 +95,6 @@ public class GraphTests {
         {-1, 3, 12, 0}};
     Integer[] vertexArr = {1, 2, 3, 4};
     Graph<Integer> graph = new Graph<>(matrix, vertexArr);
-    HashMap<Integer, Integer> act = graph.dijkstra(1, vertexArr.length);
 
     HashMap<Integer, Integer> exp = new HashMap<>();
     exp.put(1, 0);
@@ -103,6 +102,7 @@ public class GraphTests {
     exp.put(3, 10);
     exp.put(4, 2);
 
+    HashMap<Integer, Integer> act = graph.dijkstra(1, vertexArr.length);
     Assertions.assertEquals(exp, act);
   }
 
@@ -113,7 +113,6 @@ public class GraphTests {
     int[] weights = {2, 4, 6, 1, 7, 1, 2};
     int[] edgesCount = {2, 2, 1, 2};
     Graph<Integer> graph = new Graph<>(ver, list, weights, edgesCount);
-    HashMap<Integer, Integer> act = graph.dijkstra(1, ver.length);
 
     HashMap<Integer, Integer> exp = new HashMap<>();
     exp.put(1, 0);
@@ -121,6 +120,7 @@ public class GraphTests {
     exp.put(3, 5);
     exp.put(4, 3);
 
+    HashMap<Integer, Integer> act = graph.dijkstra(1, ver.length);
     Assertions.assertEquals(exp, act);
   }
 
@@ -135,14 +135,14 @@ public class GraphTests {
         {10, 1, 5, 6}};
     Integer[] vertexArr = {1, 2, 3, 4};
     Graph<Integer> graph = new Graph<>(matrix, vertexArr, edgesCount);
-    HashMap<Integer, Integer> act = graph.dijkstra(1, vertexArr.length);
 
     HashMap<Integer, Integer> exp = new HashMap<>();
     exp.put(1, 0);
     exp.put(2, 10);
     exp.put(3, 1);
     exp.put(4, 6);
-
+    
+    HashMap<Integer, Integer> act = graph.dijkstra(1, vertexArr.length);
     Assertions.assertEquals(exp, act);
   }
 }
