@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="a.seleznev.nsu.GraphTests" tests="8" skipped="0" failures="0" errors="0" timestamp="2022-11-01T08:32:20" hostname="LAPTOP-BVLM46TG" time="0.07">
+  <properties/>
+  <testcase name="removeEdgeTest()" classname="a.seleznev.nsu.GraphTests" time="0.05"/>
+  <testcase name="complexVertexTest()" classname="a.seleznev.nsu.GraphTests" time="0.001"/>
+  <testcase name="addVertexTest()" classname="a.seleznev.nsu.GraphTests" time="0.001"/>
+  <testcase name="dijkstraIncidenceMatrixTest()" classname="a.seleznev.nsu.GraphTests" time="0.004"/>
+  <testcase name="addEdgeTest()" classname="a.seleznev.nsu.GraphTests" time="0.002"/>
+  <testcase name="dijkstraListOfAdjacencyTest()" classname="a.seleznev.nsu.GraphTests" time="0.001"/>
+  <testcase name="removeVertexTest()" classname="a.seleznev.nsu.GraphTests" time="0.001"/>
+  <testcase name="dijkstraAdjacencyMatrixTest()" classname="a.seleznev.nsu.GraphTests" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

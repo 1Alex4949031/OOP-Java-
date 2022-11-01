@@ -85,4 +85,21 @@ public class EdgeTest {
     Vertex<Integer> exp3 = new Vertex<>(1001);
     Assertions.assertEquals(exp3, act3);
   }
+
+  @Test
+  public void hashCodeTest() {
+    Vertex<String> a = new Vertex<>("Hello");
+    Vertex<String> b = new Vertex<>("World!");
+    int weight1 = 11001001;
+    Edge<String> edge1 = new Edge<>(a, b, weight1);
+
+    Vertex<String> c = new Vertex<>("Hello");
+    Vertex<String> d = new Vertex<>("World!");
+    int weight2 = 11001001;
+    Edge<String> edge2 = new Edge<>(a, b, weight2);
+
+    int act = edge1.hashCode();
+    int exp = edge2.hashCode();
+    Assertions.assertEquals(exp, act);
+  }
 }

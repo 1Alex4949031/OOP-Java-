@@ -1,5 +1,6 @@
 package a.seleznev.nsu;
 
+import java.util.HashMap;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -81,6 +82,66 @@ public class GraphTests {
     exp.addVertex("B");
     exp.addVertex("C");
     exp.addEdge("B", "C", 10);
+
+    Assertions.assertEquals(exp, act);
+  }
+
+  @Test
+  public void dijkstraAdjacencyMatrixTest() {
+    int[][] matrix = {
+        {0, 10, 10, 2},
+        {-1, 0, -1, -1},
+        {-1, -1, 0, -1},
+        {-1, 3, 12, 0}};
+    Integer[] vertexArr = {1, 2, 3, 4};
+    Graph<Integer> graph = new Graph<>(matrix, vertexArr);
+    HashMap<Integer, Integer> act = graph.dijkstra(1, vertexArr.length);
+
+    HashMap<Integer, Integer> exp = new HashMap<>();
+    exp.put(1, 0);
+    exp.put(2, 5);
+    exp.put(3, 10);
+    exp.put(4, 2);
+
+    Assertions.assertEquals(exp, act);
+  }
+
+  @Test
+  public void dijkstraListOfAdjacencyTest() {
+    Integer[] ver = {1, 2, 3, 4};
+    Integer[] list = {2, 4, 3, 4, 2, 1, 3};
+    int[] weights = {2, 4, 6, 1, 7, 1, 2};
+    int[] edgesCount = {2, 2, 1, 2};
+    Graph<Integer> graph = new Graph<>(ver, list, weights, edgesCount);
+    HashMap<Integer, Integer> act = graph.dijkstra(1, ver.length);
+
+    HashMap<Integer, Integer> exp = new HashMap<>();
+    exp.put(1, 0);
+    exp.put(2, 2);
+    exp.put(3, 5);
+    exp.put(4, 3);
+
+    Assertions.assertEquals(exp, act);
+  }
+
+  @Test
+  public void dijkstraIncidenceMatrixTest() {
+    int edgesCount = 4;
+    int[][] matrix = {
+        {1, 1, 0, 0},
+        {-1, 0, 0, 1},
+        {0, -1, 1, 0},
+        {0, 0, -1, -1},
+        {10, 1, 5, 6}};
+    Integer[] vertexArr = {1, 2, 3, 4};
+    Graph<Integer> graph = new Graph<>(matrix, vertexArr, edgesCount);
+    HashMap<Integer, Integer> act = graph.dijkstra(1, vertexArr.length);
+
+    HashMap<Integer, Integer> exp = new HashMap<>();
+    exp.put(1, 0);
+    exp.put(2, 10);
+    exp.put(3, 1);
+    exp.put(4, 6);
 
     Assertions.assertEquals(exp, act);
   }

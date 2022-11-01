@@ -41,4 +41,32 @@ public class VertexTest {
     Assertions.assertNotEquals(exp, act1);
     Assertions.assertEquals(exp, act2);
   }
+
+  @Test
+  public void getValueTest() {
+    Vertex<Integer> vertex = new Vertex<>(101);
+    vertex.setValue(101);
+    int act = vertex.getValue();
+    int exp = 101;
+
+    Assertions.assertEquals(exp, act);
+
+    vertex.setValue(10);
+    act = vertex.getValue();
+
+    Assertions.assertNotEquals(exp, act);
+  }
+
+  @Test
+  public void hashCodeTest() {
+    Vertex<String> v1 = new Vertex<>("Hello!");
+    v1.setValue(101);
+    int act = v1.hashCode();
+
+    Vertex<String> v2 = new Vertex<>("Hello!");
+    v2.setValue(101);
+    int exp = v1.hashCode();
+
+    Assertions.assertEquals(exp, act);
+  }
 }
