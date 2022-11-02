@@ -1,4 +1,4 @@
-package a.seleznev.nsu;
+package ru.nsu.seleznev.a;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -6,8 +6,10 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.PriorityQueue;
+import java.util.Set;
 
 /**
  * Own Graph class implementation.
@@ -16,8 +18,8 @@ import java.util.PriorityQueue;
  */
 public class Graph<T extends Comparable<T>> {
 
-  private final HashMap<T, Vertex<T>> vertexes;
-  private final HashMap<T, List<Edge<T>>> edges;
+  private final Map<T, Vertex<T>> vertexes;
+  private final Map<T, List<Edge<T>>> edges;
 
   /**
    * Empty graph constructor presentation.
@@ -72,7 +74,7 @@ public class Graph<T extends Comparable<T>> {
         if (j == vertexArr.length) {
           weight = matrix[j][i];
           if (start == null || end == null || weight < 0) {
-            throw new Error("Wrong matrix initialization!");
+            throw new IllegalArgumentException("Wrong matrix initialization!");
           }
           addEdge(start, end, weight);
         }
@@ -141,7 +143,7 @@ public class Graph<T extends Comparable<T>> {
    */
   public void addEdge(T name1, T name2, int weight) {
     if (!vertexes.containsKey(name1) || !vertexes.containsKey(name2)) {
-      throw new UnsupportedOperationException("Error with adding!");
+      throw new IllegalArgumentException("Error with adding!");
     }
     Vertex<T> v1 = vertexes.get(name1);
     Vertex<T> v2 = vertexes.get(name2);
@@ -171,7 +173,7 @@ public class Graph<T extends Comparable<T>> {
    * @param vertexCount number of vertexes
    * @return HashMap that presents the minimal distances from fixed vertex
    */
-  public HashMap<T, Integer> dijkstra(T name, int vertexCount) {
+  public Map<T, Integer> dijkstra(T name, int vertexCount) {
     Vertex<T> start = vertexes.get(name);
 
     vertexes.forEach((n, v) -> v.setValue(Integer.MAX_VALUE));
@@ -181,10 +183,10 @@ public class Graph<T extends Comparable<T>> {
 
     start.setValue(0);
 
-    HashMap<T, Integer> dist = new HashMap<>();
+    Map<T, Integer> dist = new HashMap<>();
     dist.put(name, 0);
 
-    HashSet<Vertex<T>> settled = new HashSet<>();
+    Set<Vertex<T>> settled = new HashSet<>();
     while ((settled.size() != vertexCount) || !pq.isEmpty()) {
       Vertex<T> u = pq.remove();
       settled.add(u);

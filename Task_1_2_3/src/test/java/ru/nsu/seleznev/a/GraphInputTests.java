@@ -1,11 +1,11 @@
-package a.seleznev.nsu;
+package ru.nsu.seleznev.a;
 
-
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Writer;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,8 @@ import org.junit.jupiter.api.Test;
 public class GraphInputTests {
   @Test
   public void listOfAdjacencyTest() throws IOException {
-    File file = new File("src/test/resources/ListOfAdj.txt");
+    InputStream file = getClass().getClassLoader().getResourceAsStream("ListOfAdj.txt");
+    assert file != null;
     Scanner scan = new Scanner(file);
 
     int verCount = scan.nextInt();
@@ -42,14 +43,14 @@ public class GraphInputTests {
       }
     }
 
-    HashMap<String, Integer> act;
+    Map<String, Integer> act;
     Graph<String> graph = new Graph<>(vertexes, list, weights, edgesArr);
     act = graph.dijkstra("d", verCount);
 
-    Writer wr = new FileWriter("src/test/resources/ListOfAdjOutput.txt");
-    wr.write("Minimal distances:\n");
-    wr.write(act.toString());
-    wr.close();
+    try (Writer wr = new FileWriter("src/test/resources/ListOfAdjOutput.txt")) {
+      wr.write("Minimal distances:\n");
+      wr.write(act.toString());
+    }
 
     HashMap<String, Integer> exp = new HashMap<>();
     exp.put("a", 5);
@@ -63,7 +64,8 @@ public class GraphInputTests {
 
   @Test
   public void adjacencyMatrixTest() throws IOException {
-    File file = new File("src/test/resources/AdjacencyMatrix.txt");
+    InputStream file = getClass().getClassLoader().getResourceAsStream("AdjacencyMatrix.txt");
+    assert file != null;
     Scanner scan = new Scanner(file);
 
     int verCount = scan.nextInt();
@@ -81,13 +83,13 @@ public class GraphInputTests {
     }
 
     Graph<String> graph = new Graph<>(matrix, vertexes);
-    HashMap<String, Integer> act;
+    Map<String, Integer> act;
     act = graph.dijkstra("a", verCount);
 
-    Writer wr = new FileWriter("src/test/resources/AdjacencyMatrixOutput.txt");
-    wr.write("Minimal distances:\n");
-    wr.write(act.toString());
-    wr.close();
+    try (Writer wr = new FileWriter("src/test/resources/AdjacencyMatrixOutput.txt")) {
+      wr.write("Minimal distances:\n");
+      wr.write(act.toString());
+    }
 
     HashMap<String, Integer> exp = new HashMap<>();
     exp.put("a", 0);
@@ -100,7 +102,8 @@ public class GraphInputTests {
 
   @Test
   public void incidenceMatrixTest() throws IOException {
-    File file = new File("src/test/resources/IncidenceMatrix.txt");
+    InputStream file = getClass().getClassLoader().getResourceAsStream("IncidenceMatrix.txt");
+    assert file != null;
     Scanner scan = new Scanner(file);
 
     int verCount = scan.nextInt();
@@ -123,13 +126,13 @@ public class GraphInputTests {
     }
 
     Graph<Integer> graph = new Graph<>(matrix, vertexes, edgesCount);
-    HashMap<Integer, Integer> act;
+    Map<Integer, Integer> act;
     act = graph.dijkstra(1, verCount);
 
-    Writer wr = new FileWriter("src/test/resources/IncidenceMatrixOutput.txt");
-    wr.write("Minimal distances:\n");
-    wr.write(act.toString());
-    wr.close();
+    try (Writer wr = new FileWriter("src/test/resources/IncidenceMatrixOutput.txt")) {
+      wr.write("Minimal distances:\n");
+      wr.write(act.toString());
+    }
 
     HashMap<Integer, Integer> exp = new HashMap<>();
     exp.put(1, 0);

@@ -1,4 +1,4 @@
-package a.seleznev.nsu;
+package ru.nsu.seleznev.a;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

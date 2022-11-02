@@ -1,4 +1,4 @@
-package a.seleznev.nsu;
+package ru.nsu.seleznev.a;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -96,7 +96,7 @@ public class EdgeTest {
     Vertex<String> c = new Vertex<>("Hello");
     Vertex<String> d = new Vertex<>("World!");
     int weight2 = 11001001;
-    Edge<String> edge2 = new Edge<>(a, b, weight2);
+    Edge<String> edge2 = new Edge<>(c, d, weight2);
 
     int act = edge1.hashCode();
     int exp = edge2.hashCode();

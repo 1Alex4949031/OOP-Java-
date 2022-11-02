@@ -1,4 +1,4 @@
-package a.seleznev.nsu;
+package ru.nsu.seleznev.a;
 
 import java.util.Objects;
 

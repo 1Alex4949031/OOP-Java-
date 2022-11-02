@@ -1,6 +1,7 @@
-package a.seleznev.nsu;
+package ru.nsu.seleznev.a;
 
 import java.util.HashMap;
+import java.util.Map;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -102,7 +103,7 @@ public class GraphTests {
     exp.put(3, 10);
     exp.put(4, 2);
 
-    HashMap<Integer, Integer> act = graph.dijkstra(1, vertexArr.length);
+    Map<Integer, Integer> act = graph.dijkstra(1, vertexArr.length);
     Assertions.assertEquals(exp, act);
   }
 
@@ -120,7 +121,7 @@ public class GraphTests {
     exp.put(3, 5);
     exp.put(4, 3);
 
-    HashMap<Integer, Integer> act = graph.dijkstra(1, ver.length);
+    Map<Integer, Integer> act = graph.dijkstra(1, ver.length);
     Assertions.assertEquals(exp, act);
   }
 
@@ -141,8 +142,8 @@ public class GraphTests {
     exp.put(2, 10);
     exp.put(3, 1);
     exp.put(4, 6);
-    
-    HashMap<Integer, Integer> act = graph.dijkstra(1, vertexArr.length);
+
+    Map<Integer, Integer> act = graph.dijkstra(1, vertexArr.length);
     Assertions.assertEquals(exp, act);
   }
 }
