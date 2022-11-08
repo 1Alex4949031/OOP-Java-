@@ -7,7 +7,6 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +16,8 @@ import org.junit.jupiter.api.Test;
 public class GraphInputTests {
   @Test
   public void listOfAdjacencyTest() throws IOException {
-    try (InputStream file = getClass().getClassLoader().getResourceAsStream("ListOfAdj.txt")) {
+    try (InputStream file =
+             getClass().getClassLoader().getResourceAsStream("ListOfAdj.txt")) {
       assert file != null;
       Scanner scan = new Scanner(file);
 
@@ -69,7 +69,8 @@ public class GraphInputTests {
 
   @Test
   public void adjacencyMatrixTest() throws IOException {
-    try (InputStream file = getClass().getClassLoader().getResourceAsStream("AdjacencyMatrix.txt")) {
+    try (InputStream file =
+             getClass().getClassLoader().getResourceAsStream("AdjacencyMatrix.txt")) {
       assert file != null;
       Scanner scan = new Scanner(file);
 
@@ -110,7 +111,8 @@ public class GraphInputTests {
 
   @Test
   public void incidenceMatrixTest() throws IOException {
-    try (InputStream file = getClass().getClassLoader().getResourceAsStream("IncidenceMatrix.txt")) {
+    try (InputStream file =
+             getClass().getClassLoader().getResourceAsStream("IncidenceMatrix.txt")) {
 
       assert file != null;
       Scanner scan = new Scanner(file);
