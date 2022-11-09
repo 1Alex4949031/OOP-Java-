@@ -44,8 +44,6 @@ public class GraphInputTests {
         }
       }
 
-      file.close();
-
       Map<String, Integer> act;
       Graph<String> graph = new Graph<>(vertexes, list, weights, edgesArr);
       act = graph.dijkstra("d", verCount);
@@ -87,8 +85,6 @@ public class GraphInputTests {
           matrix[i][j] = scan.nextInt();
         }
       }
-
-      file.close();
 
       Graph<String> graph = new Graph<>(matrix, vertexes);
       Map<String, Integer> act;
@@ -135,8 +131,6 @@ public class GraphInputTests {
       for (int i = 0; i < edgesCount; i++) {
         matrix[verCount][i] = scan.nextInt();
       }
-
-      file.close();
 
       Graph<Integer> graph = new Graph<>(matrix, vertexes, edgesCount);
       Map<Integer, Integer> act;
