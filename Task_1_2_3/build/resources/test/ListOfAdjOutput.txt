@@ -1,2 +1,0 @@
-Minimal distances:
-{a=5, b=9, c=6, d=0, e=8}
