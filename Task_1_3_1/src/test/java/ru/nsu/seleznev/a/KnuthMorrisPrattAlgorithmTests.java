@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
  * 1) Jorj Oruyell - 1984
  * 2) Mihail Bulgakov - Master and Margarita
  */
-public class KMPAlgorithmTests {
+public class KnuthMorrisPrattAlgorithmTests {
 
   @Test
   public void correctPrefixTest() throws IOException {
@@ -29,7 +29,7 @@ public class KMPAlgorithmTests {
 
       try (InputStream stream =
                getClass().getClassLoader().getResourceAsStream(inputFile)) {
-        KMPAlgorithm alg = new KMPAlgorithm(stream);
+        KnuthMorrisPrattAlgorithm alg = new KnuthMorrisPrattAlgorithm(stream);
         List<Integer> act = alg.algorithmKnuthMorrisPratt(subline);
         List<Integer> exp = Arrays.asList(0, 5, 7);
 
@@ -51,7 +51,7 @@ public class KMPAlgorithmTests {
 
       try (InputStream stream =
                getClass().getClassLoader().getResourceAsStream(inputFile)) {
-        KMPAlgorithm alg = new KMPAlgorithm(stream);
+        KnuthMorrisPrattAlgorithm alg = new KnuthMorrisPrattAlgorithm(stream);
         List<Integer> act = alg.algorithmKnuthMorrisPratt(subline);
         List<Integer> exp = List.of(7);
 
@@ -73,7 +73,7 @@ public class KMPAlgorithmTests {
 
       try (InputStream stream =
                getClass().getClassLoader().getResourceAsStream(inputFile)) {
-        KMPAlgorithm alg = new KMPAlgorithm(stream);
+        KnuthMorrisPrattAlgorithm alg = new KnuthMorrisPrattAlgorithm(stream);
         List<Integer> act = alg.algorithmKnuthMorrisPratt(subline);
         List<Integer> exp = Arrays.asList(
             454912, 460804, 462765, 474058, 478030,
@@ -100,7 +100,7 @@ public class KMPAlgorithmTests {
       String subline = scan.nextLine();
 
       try (InputStream stream = getClass().getClassLoader().getResourceAsStream(inputFile)) {
-        KMPAlgorithm alg = new KMPAlgorithm(stream);
+        KnuthMorrisPrattAlgorithm alg = new KnuthMorrisPrattAlgorithm(stream);
         List<Integer> act = alg.algorithmKnuthMorrisPratt(subline);
         List<Integer> exp = Arrays.asList(221810, 233286, 280963, 717464, 719785, 720064);
 
@@ -122,7 +122,7 @@ public class KMPAlgorithmTests {
 
       try (InputStream stream =
                getClass().getClassLoader().getResourceAsStream(inputFile)) {
-        KMPAlgorithm alg = new KMPAlgorithm(stream);
+        KnuthMorrisPrattAlgorithm alg = new KnuthMorrisPrattAlgorithm(stream);
         List<Integer> act = alg.algorithmKnuthMorrisPratt(subline);
         List<Integer> exp = Arrays.asList(88271, 295686, 295734, 296223, 303146);
 

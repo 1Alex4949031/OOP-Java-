@@ -25,9 +25,8 @@ import java.util.ArrayList;
  * -----------------------------------------------------------------------------------
  *
  * @author Алексей Селезнев
- * -----------------------------------------------------------------------------------
  */
-public class KMPAlgorithm {
+public class KnuthMorrisPrattAlgorithm {
   private final InputStream stream;
 
   /**
@@ -35,7 +34,7 @@ public class KMPAlgorithm {
    *
    * @param stream current input stream
    */
-  public KMPAlgorithm(InputStream stream) {
+  public KnuthMorrisPrattAlgorithm(InputStream stream) {
     this.stream = stream;
   }
 
@@ -62,8 +61,8 @@ public class KMPAlgorithm {
    * The implementation of Knuth–Morris–Pratt algorithm.
    *
    * @param subline current subline
-   * @return array of indexes(type of int) of occurrences
-   * of a current substring in the text
+   * @return array of indexes(type of int) of occurrences of
+   *     a current substring in the text
    * @throws IOException if there are some troubles with the stream.
    */
   public ArrayList<Integer> algorithmKnuthMorrisPratt(String subline)

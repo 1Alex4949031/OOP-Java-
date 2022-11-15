@@ -1,13 +1,13 @@
 package ru.nsu.seleznev.a;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * The implementation of the huge file ~10gb. Made in 1m 44sec.
@@ -25,7 +25,7 @@ public class HugeTest {
       String subline = scan.nextLine();
 
       try (InputStream stream = getClass().getClassLoader().getResourceAsStream(inputFile)) {
-        KMPAlgorithm alg = new KMPAlgorithm(stream);
+        KnuthMorrisPrattAlgorithm alg = new KnuthMorrisPrattAlgorithm(stream);
         List<Integer> act = alg.algorithmKnuthMorrisPratt(subline);
         List<Integer> exp = new ArrayList<>();
 
