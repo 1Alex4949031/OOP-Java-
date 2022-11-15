@@ -1,0 +1,3 @@
+This file is needed for HUGE Test
+Use command:
+ * fsutil file createnew C:\...\HugeFileTest.txt 10000000000
