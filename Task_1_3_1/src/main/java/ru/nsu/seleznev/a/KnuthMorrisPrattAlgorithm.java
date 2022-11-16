@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * -----------------------------------------------------------------------------------
@@ -62,41 +63,40 @@ public class KnuthMorrisPrattAlgorithm {
    *
    * @param subline current subline
    * @return array of indexes(type of int) of occurrences of
-   *     a current substring in the text
+   * a current substring in the text
    * @throws IOException if there are some troubles with the stream.
    */
-  public ArrayList<Integer> algorithmKnuthMorrisPratt(String subline)
+  public List<Integer> algorithmKnuthMorrisPratt(String subline)
       throws IOException {
 
-    Reader reader = new BufferedReader(
-        new InputStreamReader(stream, StandardCharsets.UTF_8)
-    );
+    try (Reader reader = new BufferedReader(
+        new InputStreamReader(stream, StandardCharsets.UTF_8))) {
+      List<Integer> result = new ArrayList<>();
+      int[] prefixFunction = prefixFunction(subline);
+      int sublineLen = subline.length();
+      int i = 0;
+      int j = 0;
 
-    ArrayList<Integer> result = new ArrayList<>();
-    int[] prefixFunction = prefixFunction(subline);
-    int sublineLen = subline.length();
-    int i = 0;
-    int j = 0;
-
-    int newChar = reader.read();
-    while (newChar != -1) {
-      if ((char) newChar == subline.charAt(j)) {
-        newChar = reader.read();
-        i++;
-        j++;
-      }
-      if (j == sublineLen) {
-        result.add(i - j);
-        j = prefixFunction[j - 1];
-      } else if (newChar != -1 && subline.charAt(j) != (char) newChar) {
-        if (j == 0) {
+      int newChar = reader.read();
+      while (newChar != -1) {
+        if ((char) newChar == subline.charAt(j)) {
           newChar = reader.read();
           i++;
-        } else {
+          j++;
+        }
+        if (j == sublineLen) {
+          result.add(i - j);
           j = prefixFunction[j - 1];
+        } else if (newChar != -1 && subline.charAt(j) != (char) newChar) {
+          if (j == 0) {
+            newChar = reader.read();
+            i++;
+          } else {
+            j = prefixFunction[j - 1];
+          }
         }
       }
+      return result;
     }
-    return result;
   }
 }
