@@ -1,12 +1,11 @@
 package ru.nsu.seleznev.a;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.RandomAccessFile;
-import java.nio.charset.StandardCharsets;
+import java.nio.channels.Channels;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -19,32 +18,26 @@ import org.junit.jupiter.api.Test;
 public class HugeTest {
   @Test
   public void hugeTest() throws IOException {
-    try (InputStream file = getClass().getClassLoader().getResourceAsStream("HugeTest.txt")) {
+    try (RandomAccessFile f =
+             new RandomAccessFile("./src/test/resources/HugeFileTest.txt", "rw")) {
+      f.setLength(20000000L);
+      f.seek(2341);
+      f.writeBytes("test");
+      f.seek(12312);
+      f.writeBytes("test");
+      f.seek(1558188);
+      f.writeBytes("test");
+      f.seek(0);
 
-      assert file != null;
-      Scanner scan = new Scanner(file, StandardCharsets.UTF_8);
+      KnuthMorrisPrattAlgorithm alg = new KnuthMorrisPrattAlgorithm(
+          Channels.newInputStream(f.getChannel()));
+      String subline = "test";
 
-      String inputFile = scan.nextLine();
-      String subline = scan.nextLine();
+      List<Integer> act = alg.algorithmKnuthMorrisPratt(subline);
+      List<Integer> exp = Arrays.asList(2341, 12312, 1558188);
 
-      try (RandomAccessFile f = new RandomAccessFile("./src/test/resources/HugeFileTest.txt", "rw")) {
-        f.setLength(20000000L);
-        f.seek(2341);
-        f.writeBytes("test");
-        f.seek(12312);
-        f.writeBytes("test");
-        f.seek(1558188);
-        f.writeBytes("test");
-        f.seek(0);
-        try (InputStream stream = getClass().getClassLoader().getResourceAsStream(inputFile)) {
-          KnuthMorrisPrattAlgorithm alg = new KnuthMorrisPrattAlgorithm(stream);
-          List<Integer> act = alg.algorithmKnuthMorrisPratt(subline);
-          List<Integer> exp = Arrays.asList(2341, 12312, 1558188);
-
-          Assertions.assertEquals(exp, act);
-          System.out.println("Test1: " + act);
-        }
-      }
+      Assertions.assertEquals(exp, act);
+      System.out.println("Test1: " + act);
     }
   }
 }
