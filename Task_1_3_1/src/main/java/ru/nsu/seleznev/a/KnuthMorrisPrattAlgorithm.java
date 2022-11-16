@@ -63,7 +63,7 @@ public class KnuthMorrisPrattAlgorithm {
    *
    * @param subline current subline
    * @return array of indexes(type of int) of occurrences of
-   * a current substring in the text
+   *     a current substring in the text
    * @throws IOException if there are some troubles with the stream.
    */
   public List<Integer> algorithmKnuthMorrisPratt(String subline)
