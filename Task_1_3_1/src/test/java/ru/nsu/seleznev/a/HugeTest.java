@@ -7,7 +7,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -37,15 +36,14 @@ public class HugeTest {
         f.seek(1558188);
         f.writeBytes("test");
         f.seek(0);
-      }
+        try (InputStream stream = getClass().getClassLoader().getResourceAsStream(inputFile)) {
+          KnuthMorrisPrattAlgorithm alg = new KnuthMorrisPrattAlgorithm(stream);
+          List<Integer> act = alg.algorithmKnuthMorrisPratt(subline);
+          List<Integer> exp = Arrays.asList(2341, 12312, 1558188);
 
-      try (InputStream stream = getClass().getClassLoader().getResourceAsStream(inputFile)) {
-        KnuthMorrisPrattAlgorithm alg = new KnuthMorrisPrattAlgorithm(stream);
-        List<Integer> act = alg.algorithmKnuthMorrisPratt(subline);
-        List<Integer> exp = Arrays.asList(2341, 12312, 1558188);
-
-        Assertions.assertEquals(exp, act);
-        System.out.println("Test1: " + act);
+          Assertions.assertEquals(exp, act);
+          System.out.println("Test1: " + act);
+        }
       }
     }
   }
