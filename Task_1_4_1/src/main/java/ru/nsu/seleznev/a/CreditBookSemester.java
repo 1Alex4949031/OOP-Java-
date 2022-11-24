@@ -72,6 +72,8 @@ public class CreditBookSemester {
         case ("Удовлетворительно") -> sumMarks += 3;
         case ("Неудовлетворительно") -> sumMarks += 2;
         case ("Зачет"), ("Незачет") -> credits += 1;
+        default -> {
+        }
       }
     }
     return sumMarks / (marks.size() - credits);
@@ -84,9 +86,9 @@ public class CreditBookSemester {
    */
   public boolean getScholarship() {
     return marks.values().stream()
-        .filter(i -> (i.getMark().equals("Хорошо") ||
-            i.getMark().equals("Отлично") ||
-            i.getMark().equals("Зачет"))).count() == marks.size();
+        .filter(i -> (i.getMark().equals("Хорошо")
+            || i.getMark().equals("Отлично")
+            || i.getMark().equals("Зачет"))).count() == marks.size();
   }
 
   /**
@@ -107,7 +109,8 @@ public class CreditBookSemester {
    */
   public boolean consistsOfFail() {
     return marks.values().stream().anyMatch(i -> i.getMark().equals("Удовлетворительно")
-        || i.getMark().equals("Неудовлетворительно") || i.getMark().equals("Незачет"));
+        || i.getMark().equals("Неудовлетворительно")
+        || i.getMark().equals("Незачет"));
   }
 
   /**
