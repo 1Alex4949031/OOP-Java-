@@ -67,11 +67,22 @@ public class CreditBookSemester {
     int credits = 0;
     for (Marks i : marks.values()) {
       switch (i.getMark()) {
-        case ("Отлично") -> sumMarks += 5;
-        case ("Хорошо") -> sumMarks += 4;
-        case ("Удовлетворительно") -> sumMarks += 3;
-        case ("Неудовлетворительно") -> sumMarks += 2;
-        case ("Зачет"), ("Незачет") -> credits += 1;
+        case ("Отлично"):
+          sumMarks += 5;
+          break;
+        case ("Хорошо"):
+          sumMarks += 4;
+          break;
+        case ("Удовлетворительно"):
+          sumMarks += 3;
+          break;
+        case ("Неудовлетворительно"):
+          sumMarks += 2;
+          break;
+        case ("Зачет"):
+        case ("Незачет"):
+          credits += 1;
+          break;
       }
     }
     return sumMarks / (marks.size() - credits);
