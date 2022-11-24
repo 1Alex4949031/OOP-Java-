@@ -67,22 +67,11 @@ public class CreditBookSemester {
     int credits = 0;
     for (Marks i : marks.values()) {
       switch (i.getMark()) {
-        case ("Отлично"):
-          sumMarks += 5;
-          break;
-        case ("Хорошо"):
-          sumMarks += 4;
-          break;
-        case ("Удовлетворительно"):
-          sumMarks += 3;
-          break;
-        case ("Неудовлетворительно"):
-          sumMarks += 2;
-          break;
-        case ("Зачет"):
-        case ("Незачет"):
-          credits += 1;
-          break;
+        case ("Отлично") -> sumMarks += 5;
+        case ("Хорошо") -> sumMarks += 4;
+        case ("Удовлетворительно") -> sumMarks += 3;
+        case ("Неудовлетворительно") -> sumMarks += 2;
+        case ("Зачет"), ("Незачет") -> credits += 1;
       }
     }
     return sumMarks / (marks.size() - credits);
@@ -107,8 +96,8 @@ public class CreditBookSemester {
    */
   public boolean getHighScholarship() {
     return marks.values().stream()
-        .filter(i -> (i.getMark().equals("Отлично") ||
-            i.getMark().equals("Зачет"))).count() == marks.size();
+        .filter(i -> (i.getMark().equals("Отлично")
+            || i.getMark().equals("Зачет"))).count() == marks.size();
   }
 
   /**
@@ -117,8 +106,8 @@ public class CreditBookSemester {
    * @return true is student has bad marks, false otherwise
    */
   public boolean consistsOfFail() {
-    return marks.values().stream().anyMatch(i -> i.getMark().equals("Удовлетворительно") ||
-        i.getMark().equals("Неудовлетворительно") || i.getMark().equals("Незачет"));
+    return marks.values().stream().anyMatch(i -> i.getMark().equals("Удовлетворительно")
+        || i.getMark().equals("Неудовлетворительно") || i.getMark().equals("Незачет"));
   }
 
   /**
@@ -129,8 +118,12 @@ public class CreditBookSemester {
    */
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     CreditBookSemester that = (CreditBookSemester) o;
     return marks.equals(that.marks);
   }

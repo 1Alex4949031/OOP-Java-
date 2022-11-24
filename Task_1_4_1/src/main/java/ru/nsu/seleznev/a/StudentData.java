@@ -34,7 +34,8 @@ public class StudentData {
    * @param semesterMarks semester marks
    * @param diplomaMarks  diploma subjects
    */
-  public StudentData(Map<Integer, CreditBookSemester> semesterMarks, Map<String, Marks> diplomaMarks) {
+  public StudentData(Map<Integer, CreditBookSemester> semesterMarks,
+                     Map<String, Marks> diplomaMarks) {
     this.semesterMarks = semesterMarks;
     this.diplomaMarks = diplomaMarks;
   }
@@ -176,7 +177,7 @@ public class StudentData {
    * Function that checks the red diploma of the student.
    *
    * @return true if student will have red scholarship,
-   * false otherwise
+   *     false otherwise
    */
   public boolean getRedDiploma() {
     if (diplomaMarks.size() == 0) {
@@ -268,10 +269,15 @@ public class StudentData {
    */
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     StudentData that = (StudentData) o;
-    return Objects.equals(semesterMarks, that.semesterMarks) && Objects.equals(diplomaMarks, that.diplomaMarks);
+    return Objects.equals(semesterMarks, that.semesterMarks)
+        && Objects.equals(diplomaMarks, that.diplomaMarks);
   }
 
   /**

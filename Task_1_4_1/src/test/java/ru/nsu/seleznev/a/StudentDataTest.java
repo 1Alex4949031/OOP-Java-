@@ -56,15 +56,13 @@ public class StudentDataTest {
     CreditBookSemester credit = new CreditBookSemester(creditMarks);
     semesterMarks.put(1, credit);
 
-    StudentData data = new StudentData(semesterMarks, diplomaMarks);
-
-    Map<String, String> actDipMarks = data.getDiplomaMarks();
-
     Map<String, String> expDipMarks = new HashMap<>();
     expDipMarks.put("OSY", Marks.GOOD.getMark());
     expDipMarks.put("Английский", Marks.EXCELLENT.getMark());
     expDipMarks.put("Введение в ИИ", Marks.GOOD.getMark());
 
+    StudentData data = new StudentData(semesterMarks, diplomaMarks);
+    Map<String, String> actDipMarks = data.getDiplomaMarks();
     Assertions.assertEquals(expDipMarks, actDipMarks);
   }
 
@@ -80,11 +78,6 @@ public class StudentDataTest {
     CreditBookSemester credit = new CreditBookSemester(allMarks);
     semesterMarks.put(1, credit);
 
-    StudentData data = new StudentData(semesterMarks, allMarks);
-
-    data.addDiplomaSubject("Немецкий", Marks.SATISFACTORY);
-    Map<String, String> act = data.getDiplomaMarks();
-
     Map<String, String> exp = new HashMap<>();
     exp.put("OSY", Marks.EXCELLENT.getMark());
     exp.put("Английский", Marks.EXCELLENT.getMark());
@@ -92,6 +85,9 @@ public class StudentDataTest {
     exp.put("Квалификационная работа", Marks.EXCELLENT.getMark());
     exp.put("Немецкий", Marks.SATISFACTORY.getMark());
 
+    StudentData data = new StudentData(semesterMarks, allMarks);
+    data.addDiplomaSubject("Немецкий", Marks.SATISFACTORY);
+    Map<String, String> act = data.getDiplomaMarks();
     Assertions.assertEquals(exp, act);
   }
 
@@ -107,16 +103,14 @@ public class StudentDataTest {
     CreditBookSemester credit = new CreditBookSemester(allMarks);
     semesterMarks.put(1, credit);
 
-    StudentData data = new StudentData(semesterMarks, allMarks);
-
-    data.removeDiplomaSubject("OSY");
-    Map<String, String> act = data.getDiplomaMarks();
-
     Map<String, String> exp = new HashMap<>();
     exp.put("Английский", Marks.EXCELLENT.getMark());
     exp.put("Введение в ИИ", Marks.EXCELLENT.getMark());
     exp.put("Квалификационная работа", Marks.EXCELLENT.getMark());
 
+    StudentData data = new StudentData(semesterMarks, allMarks);
+    data.removeDiplomaSubject("OSY");
+    Map<String, String> act = data.getDiplomaMarks();
     Assertions.assertEquals(exp, act);
   }
 

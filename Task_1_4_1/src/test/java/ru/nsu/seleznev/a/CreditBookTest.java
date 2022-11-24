@@ -83,7 +83,6 @@ public class CreditBookTest {
     semesterMarks1.put("Введение в ИИ", Marks.EXCELLENT);
     semesterMarks1.put("Квалификационная работа", Marks.EXCELLENT);
     CreditBookSemester marks = new CreditBookSemester(semesterMarks1);
-    Map<String, Marks> act = marks.getMarks();
 
     Map<String, Marks> exp = new HashMap<>();
     exp.put("OSY", Marks.EXCELLENT);
@@ -91,6 +90,7 @@ public class CreditBookTest {
     exp.put("Введение в ИИ", Marks.EXCELLENT);
     exp.put("Квалификационная работа", Marks.EXCELLENT);
 
+    Map<String, Marks> act = marks.getMarks();
     Assertions.assertEquals(exp, act);
   }
 
@@ -101,7 +101,6 @@ public class CreditBookTest {
     semesterMarks1.put("Английский", Marks.EXCELLENT);
     semesterMarks1.put("Введение в ИИ", Marks.EXCELLENT);
     semesterMarks1.put("Квалификационная работа", Marks.EXCELLENT);
-    CreditBookSemester act = new CreditBookSemester(semesterMarks1);
 
     Map<String, Marks> semesterMarks2 = new HashMap<>();
     semesterMarks2.put("OSY", Marks.EXCELLENT);
@@ -110,6 +109,7 @@ public class CreditBookTest {
     semesterMarks2.put("Квалификационная работа", Marks.EXCELLENT);
     CreditBookSemester exp = new CreditBookSemester(semesterMarks2);
 
+    CreditBookSemester act = new CreditBookSemester(semesterMarks1);
     Assertions.assertEquals(exp, act);
   }
 

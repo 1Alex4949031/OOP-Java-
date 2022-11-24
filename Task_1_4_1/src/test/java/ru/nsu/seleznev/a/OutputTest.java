@@ -1,8 +1,8 @@
 package ru.nsu.seleznev.a;
 
-import org.junit.jupiter.api.Test;
 import java.util.HashMap;
 import java.util.Map;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test with output for checking the student information.

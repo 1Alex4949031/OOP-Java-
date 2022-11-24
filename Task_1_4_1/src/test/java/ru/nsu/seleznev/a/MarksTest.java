@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
  */
 public class MarksTest {
   @Test
-  public  void allUnitsTest(){
+  public void allUnitsTest() {
     Marks markExc = Marks.EXCELLENT;
     String actExc = markExc.getMark();
     String expExc = "Отлично";
