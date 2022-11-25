@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"ru.nsu.seleznev.a","l":"CreditBookSemester"},{"p":"ru.nsu.seleznev.a","l":"Marks"},{"p":"ru.nsu.seleznev.a","l":"StudentData"}]
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"ru.nsu.seleznev.a","l":"CreditBookSemester"},{"p":"ru.nsu.seleznev.a","l":"Marks"},{"p":"ru.nsu.seleznev.a","l":"StudentData"}];updateSearchResults();
