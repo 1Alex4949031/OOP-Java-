@@ -84,13 +84,13 @@ public class CreditBookTest {
     semesterMarks1.put("Квалификационная работа", Marks.EXCELLENT);
     CreditBookSemester marks = new CreditBookSemester(semesterMarks1);
 
-    Map<String, Marks> exp = new HashMap<>();
-    exp.put("OSY", Marks.EXCELLENT);
-    exp.put("Английский", Marks.EXCELLENT);
-    exp.put("Введение в ИИ", Marks.EXCELLENT);
-    exp.put("Квалификационная работа", Marks.EXCELLENT);
+    Map<String, String> exp = new HashMap<>();
+    exp.put("OSY", Marks.EXCELLENT.getMark());
+    exp.put("Английский", Marks.EXCELLENT.getMark());
+    exp.put("Введение в ИИ", Marks.EXCELLENT.getMark());
+    exp.put("Квалификационная работа", Marks.EXCELLENT.getMark());
 
-    Map<String, Marks> act = marks.getMarks();
+    Map<String, String> act = marks.getMarks();
     Assertions.assertEquals(exp, act);
   }
 

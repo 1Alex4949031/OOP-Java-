@@ -38,23 +38,7 @@ public class StudentData {
                      Map<String, Marks> diplomaMarks) {
     this.semesterMarks = semesterMarks;
     this.diplomaMarks = diplomaMarks;
-  }
-
-  /**
-   * Function that returns marks of semester user interested in.
-   *
-   * @param semester semester
-   * @return Map String - String with name of the subject and its mark
-   * @throws IllegalAccessException if user asks incorrect information
-   */
-  public Map<String, String> getSemesterMarks(int semester) throws IllegalAccessException {
-    if (!semesterMarks.containsKey(semester)) {
-      throw new IllegalAccessException("Нет такого семестра!");
-    }
-    Map<String, String> res = new HashMap<>();
-    Map<String, Marks> data = semesterMarks.get(semester).getMarks();
-    data.forEach((k, v) -> res.put(k, v.getMark()));
-    return res;
+    semesterMarks.forEach((k, v) -> v.setSemesterNumber(k));
   }
 
   /**
@@ -66,7 +50,7 @@ public class StudentData {
     Map<String, String> allMarks = new HashMap<>();
     Collection<CreditBookSemester> data = semesterMarks.values();
     for (CreditBookSemester sem : data) {
-      sem.getMarks().forEach((k, v) -> allMarks.put(k, v.getMark()));
+      allMarks.putAll(sem.getMarks());
     }
     return allMarks;
   }
@@ -184,7 +168,7 @@ public class StudentData {
       throw new IllegalStateException("Нет дипломных предметов!");
     }
     if (!diplomaMarks.containsKey("Квалификационная работа")
-        || !diplomaMarks.get("Квалификационная работа").getMark().equals("Отлично")) {
+        || !diplomaMarks.get("Квалификационная работа").equals(Marks.EXCELLENT)) {
       return false;
     }
     Collection<CreditBookSemester> dataList = semesterMarks.values();
@@ -194,7 +178,7 @@ public class StudentData {
       }
     }
     double percentages = (double) ((diplomaMarks.values().stream()
-        .filter(i -> (i.getMark().equals("Отлично"))).count())) / diplomaMarks.size();
+        .filter(i -> (i.equals(Marks.EXCELLENT))).count())) / diplomaMarks.size();
     return percentages > 0.75;
   }
 
@@ -205,66 +189,27 @@ public class StudentData {
    */
   @Override
   public String toString() {
-    try {
-      String table = "---------------------------------------\n"
-          + "Текущий Студент\n"
-          + "---------------------------------------\n"
-          + "Оценки: " + this.getAllMarks() + "\n"
-          + "---------------------------------------\n"
-          + "Средняя оценкa за все предметы: " + this.getAverageMark() + "\n"
-          + "---------------------------------------" + "\n"
-          + "Оценки за 1 семестр:" + this.getSemesterMarks(1) + "\n"
-          + "Средний балл: " + this.getAverageSemesterMark(1) + "\n";
-      if (this.getSemesterHighScholarship(1)) {
-        table += "С повышенной стипендией в 1 семестре\n";
-      } else if (this.getSemesterScholarship(1)) {
-        table += "С обычной стипендией в 1 семестре\n";
-      } else {
-        table += "Без стипендии в 1 семестре\n";
-      }
-      table += "---------------------------------------\n"
-          + "Оценки за 2 семестр:" + this.getSemesterMarks(2) + "\n"
-          + "Средний балл: " + this.getAverageSemesterMark(2) + "\n";
-      if (this.getSemesterHighScholarship(2)) {
-        table += "С повышенной стипендией во 2 семестре\n";
-      } else if (this.getSemesterScholarship(2)) {
-        table += "С обычной стипендией во 2 семестре\n";
-      } else {
-        table += "Без стипендии во 2 семестре\n";
-      }
-      table += "---------------------------------------\n"
-          + "Оценки за 3 семестр:" + this.getSemesterMarks(3) + "\n"
-          + "Средний балл: " + this.getAverageSemesterMark(3) + "\n";
-      if (this.getSemesterHighScholarship(3)) {
-        table += "С повышенной стипендией в 3 семестре\n";
-      } else if (this.getSemesterScholarship(3)) {
-        table += "С обычной стипендией в 3 семестре\n";
-      } else {
-        table += "Без стипендии в 3 семестре\n";
-      }
-      table += "---------------------------------------\n"
-          + "Оценки за 4 семестр:" + this.getSemesterMarks(4) + "\n"
-          + "Средний балл: " + this.getAverageSemesterMark(4) + "\n";
-      if (this.getSemesterHighScholarship(4)) {
-        table += "С повышенной стипендией в 4 семестре\n";
-      } else if (this.getSemesterScholarship(4)) {
-        table += "С обычной стипендией в 4 семестре\n";
-      } else {
-        table += "Без стипендии в 4 семестре\n";
-      }
-      table += "---------------------------------------\n"
-          + "Дипломные оценки: " + this.getDiplomaMarks() + "\n"
-          + "---------------------------------------\n";
-      if (this.getRedDiploma()) {
-        table += "Идет на красный диплом!\n";
-      } else {
-        table += "До красного диплома еще далеко!\n";
-      }
-      table += "---------------------------------------\n";
-      return table;
-    } catch (IllegalAccessException e) {
-      throw new RuntimeException(e);
+    StringBuilder table = new StringBuilder
+        ("---------------------------------------\n"
+        + "Текущий Студент\n"
+        + "---------------------------------------\n"
+        + "Оценки: " + getAllMarks() + "\n"
+        + "---------------------------------------\n"
+        + "Средняя оценкa за все предметы: " + getAverageMark() + "\n"
+        + "---------------------------------------" + "\n");
+    for(var value : semesterMarks.values()){
+      table.append(value.toString());
     }
+    table.append("---------------------------------------\n" + "Дипломные оценки: ")
+        .append(getDiplomaMarks()).append("\n")
+        .append("---------------------------------------\n");
+    if (getRedDiploma()) {
+      table.append("Идет на красный диплом!\n");
+    } else {
+      table.append("До красного диплома еще далеко!\n");
+    }
+    table.append("---------------------------------------\n");
+    return table.toString();
   }
 
   /**

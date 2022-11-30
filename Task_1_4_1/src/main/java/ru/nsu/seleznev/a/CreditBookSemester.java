@@ -9,6 +9,7 @@ import java.util.Objects;
  */
 public class CreditBookSemester {
   private Map<String, Marks> marks = new HashMap<>();
+  private int semesterNumber;
 
   /**
    * Empty constructor made for tests
@@ -24,6 +25,15 @@ public class CreditBookSemester {
    */
   public CreditBookSemester(Map<String, Marks> marks) {
     this.marks = marks;
+  }
+
+  /**
+   * Function that add semester number used for output.
+   *
+   * @param semesterNumber the number of the semester
+   */
+  public void setSemesterNumber(int semesterNumber) {
+    this.semesterNumber = semesterNumber;
   }
 
   /**
@@ -50,8 +60,12 @@ public class CreditBookSemester {
    *
    * @return Map String - Marks(enum) of marks
    */
-  public Map<String, Marks> getMarks() {
-    return this.marks;
+  public Map<String, String> getMarks() {
+    Map<String, String> allMarks = new HashMap<>();
+    for(Map.Entry<String, Marks> entry : marks.entrySet()){
+      allMarks.put(entry.getKey(),entry.getValue().getMark());
+    }
+    return allMarks;
   }
 
   /**
@@ -66,12 +80,12 @@ public class CreditBookSemester {
     double sumMarks = 0;
     int credits = 0;
     for (Marks i : marks.values()) {
-      switch (i.getMark()) {
-        case ("Отлично") -> sumMarks += 5;
-        case ("Хорошо") -> sumMarks += 4;
-        case ("Удовлетворительно") -> sumMarks += 3;
-        case ("Неудовлетворительно") -> sumMarks += 2;
-        case ("Зачет"), ("Незачет") -> credits += 1;
+      switch (i) {
+        case EXCELLENT -> sumMarks += 5;
+        case GOOD -> sumMarks += 4;
+        case SATISFACTORY -> sumMarks += 3;
+        case BAD -> sumMarks += 2;
+        case GOODCREDIT, BADCREDIT -> credits += 1;
         default -> throw new IllegalStateException("Некорректная оценка");
       }
     }
@@ -116,18 +130,18 @@ public class CreditBookSemester {
   public String toString() {
     String table =
         "---------------------------------------\n"
-            + "Книжка семестра:\n"
+            + "Семестр: " + semesterNumber + "\n"
             + "---------------------------------------\n"
-            + "Оценки: " + this.getMarks() + "\n"
+            + "Оценки: " + getMarks() + "\n"
             + "---------------------------------------\n"
-            + "Средняя оценкa за все предметы: " + this.getAverageMark() + "\n"
+            + "Средняя оценкa за все предметы: " + getAverageMark() + "\n"
             + "---------------------------------------" + "\n";
-    if (this.getHighScholarship()) {
-      table += "С повышенной стипендией в 1 семестре\n";
-    } else if (this.getScholarship()) {
-      table += "С обычной стипендией в 1 семестре\n";
+    if (getHighScholarship()) {
+      table += "С повышенной стипендией в семестре\n";
+    } else if (getScholarship()) {
+      table += "С обычной стипендией в семестре\n";
     } else {
-      table += "Без стипендии в 1 семестре\n";
+      table += "Без стипендии в семестре\n";
     }
     table += "---------------------------------------" + "\n";
     return table;
