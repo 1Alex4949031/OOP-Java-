@@ -232,8 +232,8 @@ public class StudentData {
       } else {
         table += "Без стипендии во 2 семестре\n";
       }
-      table += "---------------------------------------\n" +
-          "Оценки за 3 семестр:" + this.getSemesterMarks(3) + "\n"
+      table += "---------------------------------------\n"
+          + "Оценки за 3 семестр:" + this.getSemesterMarks(3) + "\n"
           + "Средний балл: " + this.getAverageSemesterMark(3) + "\n";
       if (this.getSemesterHighScholarship(3)) {
         table += "С повышенной стипендией в 3 семестре\n";

@@ -73,8 +73,8 @@ public class CreditBookSemester {
         case ("Неудовлетворительно") -> sumMarks += 2;
         case ("Зачет"), ("Незачет") -> credits += 1;
         default -> throw new IllegalStateException("Некорректная оценка");
-        }
       }
+    }
     return sumMarks / (marks.size() - credits);
   }
 

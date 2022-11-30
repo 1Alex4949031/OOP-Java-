@@ -2,7 +2,6 @@ package ru.nsu.seleznev.a;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.junit.jupiter.api.Test;
 
 /**
