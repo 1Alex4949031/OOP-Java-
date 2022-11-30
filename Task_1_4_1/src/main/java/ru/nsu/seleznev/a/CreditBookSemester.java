@@ -62,8 +62,8 @@ public class CreditBookSemester {
    */
   public Map<String, String> getMarks() {
     Map<String, String> allMarks = new HashMap<>();
-    for(Map.Entry<String, Marks> entry : marks.entrySet()){
-      allMarks.put(entry.getKey(),entry.getValue().getMark());
+    for (Map.Entry<String, Marks> entry : marks.entrySet()) {
+      allMarks.put(entry.getKey(), entry.getValue().getMark());
     }
     return allMarks;
   }

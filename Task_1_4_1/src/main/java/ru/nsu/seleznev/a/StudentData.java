@@ -161,7 +161,7 @@ public class StudentData {
    * Function that checks the red diploma of the student.
    *
    * @return true if student will have red scholarship,
-   *     false otherwise
+   * false otherwise
    */
   public boolean getRedDiploma() {
     if (diplomaMarks.size() == 0) {
@@ -189,15 +189,14 @@ public class StudentData {
    */
   @Override
   public String toString() {
-    StringBuilder table = new StringBuilder
-        ("---------------------------------------\n"
-        + "Текущий Студент\n"
-        + "---------------------------------------\n"
-        + "Оценки: " + getAllMarks() + "\n"
-        + "---------------------------------------\n"
-        + "Средняя оценкa за все предметы: " + getAverageMark() + "\n"
-        + "---------------------------------------" + "\n");
-    for(var value : semesterMarks.values()){
+    StringBuilder table = new StringBuilder("---------------------------------------\n"
+            + "Текущий Студент\n"
+            + "---------------------------------------\n"
+            + "Оценки: " + getAllMarks() + "\n"
+            + "---------------------------------------\n"
+            + "Средняя оценкa за все предметы: " + getAverageMark() + "\n"
+            + "---------------------------------------" + "\n");
+    for (var value : semesterMarks.values()) {
       table.append(value.toString());
     }
     table.append("---------------------------------------\n" + "Дипломные оценки: ")
