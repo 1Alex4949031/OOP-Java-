@@ -201,64 +201,70 @@ public class StudentData {
   /**
    * Function that prints information of the student.
    *
-   * @throws IllegalAccessException if user asks incorrect information
+   * @return string that will be printed
    */
-  public void getInformation() throws IllegalAccessException {
-    System.out.println("---------------------------------------");
-    System.out.println("Текущий Студент");
-    System.out.println("---------------------------------------");
-    System.out.println("Оценки: " + this.getAllMarks());
-    System.out.println("---------------------------------------");
-    System.out.println("Средняя оценкa за все предметы: " + this.getAverageMark());
-    System.out.println("---------------------------------------");
-    System.out.println("Оценки за 1 семестр:" + this.getSemesterMarks(1));
-    System.out.println("Средний балл: " + this.getAverageSemesterMark(1));
-    if (this.getSemesterHighScholarship(1)) {
-      System.out.println("С повышенной стипендией в 1 семестре");
-    } else if (this.getSemesterScholarship(1)) {
-      System.out.println("С обычной стипендией в 1 семестре");
-    } else {
-      System.out.println("Без стипендии в 1 семестре");
+  @Override
+  public String toString() {
+    try {
+      String table = "---------------------------------------\n" +
+          "Текущий Студент\n" +
+          "---------------------------------------\n" +
+          "Оценки: " + this.getAllMarks() + "\n" +
+          "---------------------------------------\n" +
+          "Средняя оценкa за все предметы: " + this.getAverageMark() + "\n" +
+          "---------------------------------------" + "\n" +
+          "Оценки за 1 семестр:" + this.getSemesterMarks(1) + "\n" +
+          "Средний балл: " + this.getAverageSemesterMark(1) + "\n";
+      if (this.getSemesterHighScholarship(1)) {
+        table += "С повышенной стипендией в 1 семестре\n";
+      } else if (this.getSemesterScholarship(1)) {
+        table += "С обычной стипендией в 1 семестре\n";
+      } else {
+        table += "Без стипендии в 1 семестре\n";
+      }
+      table += "---------------------------------------\n" +
+          "Оценки за 2 семестр:" + this.getSemesterMarks(2) + "\n" +
+          "Средний балл: " + this.getAverageSemesterMark(2) + "\n";
+      if (this.getSemesterHighScholarship(2)) {
+        table += "С повышенной стипендией во 2 семестре\n";
+      } else if (this.getSemesterScholarship(2)) {
+        table += "С обычной стипендией во 2 семестре\n";
+      } else {
+        table += "Без стипендии во 2 семестре\n";
+      }
+      table += "---------------------------------------\n" +
+          "Оценки за 3 семестр:" + this.getSemesterMarks(3) + "\n" +
+          "Средний балл: " + this.getAverageSemesterMark(3) + "\n";
+      if (this.getSemesterHighScholarship(3)) {
+        table += "С повышенной стипендией в 3 семестре\n";
+      } else if (this.getSemesterScholarship(3)) {
+        table += "С обычной стипендией в 3 семестре\n";
+      } else {
+        table += "Без стипендии в 3 семестре\n";
+      }
+      table += "---------------------------------------\n" +
+          "Оценки за 4 семестр:" + this.getSemesterMarks(4) + "\n" +
+          "Средний балл: " + this.getAverageSemesterMark(4) + "\n";
+      if (this.getSemesterHighScholarship(4)) {
+        table += "С повышенной стипендией в 4 семестре\n";
+      } else if (this.getSemesterScholarship(4)) {
+        table += "С обычной стипендией в 4 семестре\n";
+      } else {
+        table += "Без стипендии в 4 семестре\n";
+      }
+      table += "---------------------------------------\n" +
+          "Дипломные оценки: " + this.getDiplomaMarks() + "\n" +
+          "---------------------------------------\n";
+      if (this.getRedDiploma()) {
+        table += "Идет на красный диплом!\n";
+      } else {
+        table += "До красного диплома еще далеко!\n";
+      }
+      table += "---------------------------------------\n";
+      return table;
+    } catch (IllegalAccessException e) {
+      throw new RuntimeException(e);
     }
-    System.out.println("---------------------------------------");
-    System.out.println("Оценки за 2 семестр:" + this.getSemesterMarks(2));
-    System.out.println("Средний балл: " + this.getAverageSemesterMark(2));
-    if (this.getSemesterHighScholarship(2)) {
-      System.out.println("С повышенной стипендией во 2 семестре");
-    } else if (this.getSemesterScholarship(2)) {
-      System.out.println("С обычной стипендией во 2 семестре");
-    } else {
-      System.out.println("Без стипендии во 2 семестре");
-    }
-    System.out.println("---------------------------------------");
-    System.out.println("Оценки за 3 семестр:" + this.getSemesterMarks(3));
-    System.out.println("Средний балл: " + this.getAverageSemesterMark(3));
-    if (this.getSemesterHighScholarship(3)) {
-      System.out.println("С повышенной стипендией в 3 семестре");
-    } else if (this.getSemesterScholarship(3)) {
-      System.out.println("С обычной стипендией в 3 семестре");
-    } else {
-      System.out.println("Без стипендии в 3 семестре");
-    }
-    System.out.println("---------------------------------------");
-    System.out.println("Оценки за 4 семестр:" + this.getSemesterMarks(4));
-    System.out.println("Средний балл: " + this.getAverageSemesterMark(4));
-    if (this.getSemesterHighScholarship(4)) {
-      System.out.println("С повышенной стипендией в 4 семестре");
-    } else if (this.getSemesterScholarship(4)) {
-      System.out.println("С обычной стипендией в 4 семестре");
-    } else {
-      System.out.println("Без стипендии в 4 семестре");
-    }
-    System.out.println("---------------------------------------");
-    System.out.println("Дипломные оценки: " + this.getDiplomaMarks());
-    System.out.println("---------------------------------------");
-    if (this.getRedDiploma()) {
-      System.out.println("Идет на красный диплом!");
-    } else {
-      System.out.println("До красного диплома еще далеко!");
-    }
-    System.out.println("---------------------------------------");
   }
 
   /**

@@ -72,10 +72,9 @@ public class CreditBookSemester {
         case ("Удовлетворительно") -> sumMarks += 3;
         case ("Неудовлетворительно") -> sumMarks += 2;
         case ("Зачет"), ("Незачет") -> credits += 1;
-        default -> {
+        default -> throw new IllegalStateException("Некорректная оценка");
         }
       }
-    }
     return sumMarks / (marks.size() - credits);
   }
 
@@ -86,9 +85,9 @@ public class CreditBookSemester {
    */
   public boolean getScholarship() {
     return marks.values().stream()
-        .filter(i -> (i.getMark().equals("Хорошо")
-            || i.getMark().equals("Отлично")
-            || i.getMark().equals("Зачет"))).count() == marks.size();
+        .filter(i -> (i.equals(Marks.GOOD)
+            || i.equals(Marks.EXCELLENT)
+            || i.equals(Marks.GOODCREDIT))).count() == marks.size();
   }
 
   /**
@@ -98,8 +97,8 @@ public class CreditBookSemester {
    */
   public boolean getHighScholarship() {
     return marks.values().stream()
-        .filter(i -> (i.getMark().equals("Отлично")
-            || i.getMark().equals("Зачет"))).count() == marks.size();
+        .filter(i -> (i.equals(Marks.EXCELLENT)
+            || i.equals(Marks.GOODCREDIT))).count() == marks.size();
   }
 
   /**
@@ -108,9 +107,30 @@ public class CreditBookSemester {
    * @return true is student has bad marks, false otherwise
    */
   public boolean consistsOfFail() {
-    return marks.values().stream().anyMatch(i -> i.getMark().equals("Удовлетворительно")
-        || i.getMark().equals("Неудовлетворительно")
-        || i.getMark().equals("Незачет"));
+    return marks.values().stream().anyMatch(i -> i.equals(Marks.SATISFACTORY)
+        || i.equals(Marks.BAD)
+        || i.equals(Marks.BADCREDIT));
+  }
+
+  @Override
+  public String toString() {
+    String table =
+        "---------------------------------------\n" +
+        "Книжка семестра:\n" +
+        "---------------------------------------\n" +
+        "Оценки: " + this.getMarks() + "\n" +
+        "---------------------------------------\n" +
+        "Средняя оценкa за все предметы: " + this.getAverageMark() + "\n" +
+        "---------------------------------------" + "\n";
+    if (this.getHighScholarship()) {
+      table += "С повышенной стипендией в 1 семестре\n";
+    } else if (this.getScholarship()) {
+      table += "С обычной стипендией в 1 семестре\n";
+    } else {
+      table += "Без стипендии в 1 семестре\n";
+    }
+    table += "---------------------------------------" + "\n";
+    return table;
   }
 
   /**

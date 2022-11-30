@@ -2,6 +2,7 @@ package ru.nsu.seleznev.a;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.junit.jupiter.api.Test;
 
 /**
@@ -9,7 +10,7 @@ import org.junit.jupiter.api.Test;
  */
 public class OutputTest {
   @Test
-  public void getInformationTest() throws IllegalAccessException {
+  public void getInformationTest() {
     Map<String, Marks> marks1 = new HashMap<>();
     marks1.put("Английский", Marks.EXCELLENT);
     marks1.put("ОСИ", Marks.GOOD);
@@ -46,6 +47,9 @@ public class OutputTest {
     studentMarks.put(4, sem4Marks);
     StudentData data = new StudentData(studentMarks, marks4);
 
-    data.getInformation();
+    System.out.print(data);
+    System.out.println();
+    System.out.println("Оценки за 1 семестр (Тест CreditBook)");
+    System.out.print(sem1Marks);
   }
 }
