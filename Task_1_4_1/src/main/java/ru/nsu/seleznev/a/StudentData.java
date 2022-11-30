@@ -206,15 +206,15 @@ public class StudentData {
   @Override
   public String toString() {
     try {
-      String table = "---------------------------------------\n" +
-          "Текущий Студент\n" +
-          "---------------------------------------\n" +
-          "Оценки: " + this.getAllMarks() + "\n" +
-          "---------------------------------------\n" +
-          "Средняя оценкa за все предметы: " + this.getAverageMark() + "\n" +
-          "---------------------------------------" + "\n" +
-          "Оценки за 1 семестр:" + this.getSemesterMarks(1) + "\n" +
-          "Средний балл: " + this.getAverageSemesterMark(1) + "\n";
+      String table = "---------------------------------------\n"
+          + "Текущий Студент\n"
+          + "---------------------------------------\n"
+          + "Оценки: " + this.getAllMarks() + "\n"
+          + "---------------------------------------\n"
+          + "Средняя оценкa за все предметы: " + this.getAverageMark() + "\n"
+          + "---------------------------------------" + "\n"
+          + "Оценки за 1 семестр:" + this.getSemesterMarks(1) + "\n"
+          + "Средний балл: " + this.getAverageSemesterMark(1) + "\n";
       if (this.getSemesterHighScholarship(1)) {
         table += "С повышенной стипендией в 1 семестре\n";
       } else if (this.getSemesterScholarship(1)) {
@@ -222,9 +222,9 @@ public class StudentData {
       } else {
         table += "Без стипендии в 1 семестре\n";
       }
-      table += "---------------------------------------\n" +
-          "Оценки за 2 семестр:" + this.getSemesterMarks(2) + "\n" +
-          "Средний балл: " + this.getAverageSemesterMark(2) + "\n";
+      table += "---------------------------------------\n"
+          + "Оценки за 2 семестр:" + this.getSemesterMarks(2) + "\n"
+          + "Средний балл: " + this.getAverageSemesterMark(2) + "\n";
       if (this.getSemesterHighScholarship(2)) {
         table += "С повышенной стипендией во 2 семестре\n";
       } else if (this.getSemesterScholarship(2)) {
@@ -233,8 +233,8 @@ public class StudentData {
         table += "Без стипендии во 2 семестре\n";
       }
       table += "---------------------------------------\n" +
-          "Оценки за 3 семестр:" + this.getSemesterMarks(3) + "\n" +
-          "Средний балл: " + this.getAverageSemesterMark(3) + "\n";
+          "Оценки за 3 семестр:" + this.getSemesterMarks(3) + "\n"
+          + "Средний балл: " + this.getAverageSemesterMark(3) + "\n";
       if (this.getSemesterHighScholarship(3)) {
         table += "С повышенной стипендией в 3 семестре\n";
       } else if (this.getSemesterScholarship(3)) {
@@ -242,9 +242,9 @@ public class StudentData {
       } else {
         table += "Без стипендии в 3 семестре\n";
       }
-      table += "---------------------------------------\n" +
-          "Оценки за 4 семестр:" + this.getSemesterMarks(4) + "\n" +
-          "Средний балл: " + this.getAverageSemesterMark(4) + "\n";
+      table += "---------------------------------------\n"
+          + "Оценки за 4 семестр:" + this.getSemesterMarks(4) + "\n"
+          + "Средний балл: " + this.getAverageSemesterMark(4) + "\n";
       if (this.getSemesterHighScholarship(4)) {
         table += "С повышенной стипендией в 4 семестре\n";
       } else if (this.getSemesterScholarship(4)) {
@@ -252,9 +252,9 @@ public class StudentData {
       } else {
         table += "Без стипендии в 4 семестре\n";
       }
-      table += "---------------------------------------\n" +
-          "Дипломные оценки: " + this.getDiplomaMarks() + "\n" +
-          "---------------------------------------\n";
+      table += "---------------------------------------\n"
+          + "Дипломные оценки: " + this.getDiplomaMarks() + "\n"
+          + "---------------------------------------\n";
       if (this.getRedDiploma()) {
         table += "Идет на красный диплом!\n";
       } else {
