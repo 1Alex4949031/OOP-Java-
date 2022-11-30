@@ -161,7 +161,7 @@ public class StudentData {
    * Function that checks the red diploma of the student.
    *
    * @return true if student will have red scholarship,
-   * false otherwise
+   *     false otherwise
    */
   public boolean getRedDiploma() {
     if (diplomaMarks.size() == 0) {
