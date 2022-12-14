@@ -3,6 +3,9 @@ package ru.nsu.seleznev.a;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests for Calculator class.
+ */
 public class SimpleTests {
   @Test
   public void plusTest() {
@@ -156,48 +159,61 @@ public class SimpleTests {
   @Test
   public void exceptionDivisionTest() {
     String expression = "/ 10 0";
-    IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class,
-        () -> Calculator.calculate(expression));
-    Assertions.assertEquals("Деление на 0 запрещено законом!", exception.getMessage());
+    IllegalArgumentException exception =
+        Assertions.assertThrows(IllegalArgumentException.class,
+            () -> Calculator.calculate(expression));
+    Assertions.assertEquals("Деление на 0 запрещено законом!",
+        exception.getMessage());
   }
 
   @Test
   public void exceptionLogBasementTest() {
     String expression = "log 8 -10";
-    IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class,
-        () -> Calculator.calculate(expression));
-    Assertions.assertEquals("Неверное условие на логарифм!", exception.getMessage());
+    IllegalArgumentException exception =
+        Assertions.assertThrows(IllegalArgumentException.class,
+            () -> Calculator.calculate(expression));
+    Assertions.assertEquals("Неверное условие на логарифм!",
+        exception.getMessage());
   }
 
   @Test
   public void exceptionLogArgumentTest() {
     String expression = "log -10 100";
-    IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class,
-        () -> Calculator.calculate(expression));
-    Assertions.assertEquals("Неверное условие на логарифм!", exception.getMessage());
+    IllegalArgumentException exception =
+        Assertions.assertThrows(IllegalArgumentException.class,
+            () -> Calculator.calculate(expression));
+    Assertions.assertEquals("Неверное условие на логарифм!",
+        exception.getMessage());
   }
 
   @Test
   public void exceptionSqrtTest() {
     String expression = "sqrt -10";
-    IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class,
-        () -> Calculator.calculate(expression));
-    Assertions.assertEquals("Брать корень из отрицательного числа запрещено законом!", exception.getMessage());
+    IllegalArgumentException exception =
+        Assertions.assertThrows(IllegalArgumentException.class,
+            () -> Calculator.calculate(expression));
+    Assertions.assertEquals(
+        "Брать корень из отрицательного числа запрещено законом!",
+        exception.getMessage());
   }
 
   @Test
-  public void incorrectExpressionTest1(){
+  public void incorrectExpressionTest1() {
     String expression = "+ + +";
-    IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class,
-        () -> Calculator.calculate(expression));
-    Assertions.assertEquals("Неверно введена строка!", exception.getMessage());
+    IllegalArgumentException exception =
+        Assertions.assertThrows(IllegalArgumentException.class,
+            () -> Calculator.calculate(expression));
+    Assertions.assertEquals("Неверно введена строка!",
+        exception.getMessage());
   }
 
   @Test
-  public void incorrectExpressionTest2(){
+  public void incorrectExpressionTest2() {
     String expression = "1 10 100";
-    IllegalArgumentException exception = Assertions.assertThrows(IllegalArgumentException.class,
-        () -> Calculator.calculate(expression));
-    Assertions.assertEquals("Неверно введена строка!", exception.getMessage());
+    IllegalArgumentException exception =
+        Assertions.assertThrows(IllegalArgumentException.class,
+            () -> Calculator.calculate(expression));
+    Assertions.assertEquals("Неверно введена строка!",
+        exception.getMessage());
   }
 }

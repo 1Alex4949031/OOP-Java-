@@ -3,7 +3,7 @@ package ru.nsu.seleznev.a;
 import java.util.Stack;
 
 /**
- * Calculator class implements Prefix Calculator
+ * Calculator class implements Prefix Calculator.
  */
 public class Calculator {
 
