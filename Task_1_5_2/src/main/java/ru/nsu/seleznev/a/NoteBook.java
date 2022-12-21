@@ -174,13 +174,13 @@ public class NoteBook {
             This operation has 2 variants of usage.
             1) -show
             Usage: Shows all records in the Notebook.
-            2) -show "dd.MM.yyyy HH:mm" "dd.MM.yyyy HH:mm" plus unlimited amount of arguments:
+            2) -show "dd.MM.yyyy HH:mm" "dd.MM.yyyy HH:mm" + unlimited amount of arguments:
             substrings of the title of any note in the Notebook!
             Usage: Shows all records in the Notebook in current period with substrings included.""",
         Option.UNLIMITED_VALUES));
     options.addOption(createOption("help",
-        "Usage: Shows all commands for the Notebook.\n" +
-            "Try it!", 0));
+        "Usage: Shows all commands for the Notebook.\n"
+            + "Try it!", 0));
     return options;
   }
 
