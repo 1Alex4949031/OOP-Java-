@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
@@ -93,18 +94,22 @@ public class NoteBook {
     } else {
       String[] subStrings = Arrays.copyOfRange(args, 2, args.length);
       DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
-      LocalDateTime start = LocalDateTime.parse(args[0], formatter);
-      LocalDateTime end = LocalDateTime.parse(args[1], formatter);
-      TreeMap<LocalDateTime, Note> notesToWrite = new TreeMap<>();
-      for (Map.Entry<LocalDateTime, Note> entry : noteBook.entrySet()) {
-        if (entry.getKey().isAfter(start)
-            && entry.getKey().isBefore(end)
-            && Arrays.stream(subStrings)
-            .filter(i -> entry.getValue().title().contains(i)).count() == subStrings.length) {
-          notesToWrite.put(entry.getKey(), entry.getValue());
+      try {
+        LocalDateTime start = LocalDateTime.parse(args[0], formatter);
+        LocalDateTime end = LocalDateTime.parse(args[1], formatter);
+        Map<LocalDateTime, Note> notesToWrite = new TreeMap<>();
+        for (Map.Entry<LocalDateTime, Note> entry : noteBook.entrySet()) {
+          if (entry.getKey().isAfter(start)
+              && entry.getKey().isBefore(end)
+              && Arrays.stream(subStrings)
+              .filter(i -> entry.getValue().title().contains(i)).count() == subStrings.length) {
+            notesToWrite.put(entry.getKey(), entry.getValue());
+          }
         }
+        System.out.print(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(notesToWrite));
+      } catch (DateTimeParseException e) {
+        throw new IllegalArgumentException("Time is incorrect!");
       }
-      System.out.print(mapper.writerWithDefaultPrettyPrinter().writeValueAsString(notesToWrite));
     }
   }
 
