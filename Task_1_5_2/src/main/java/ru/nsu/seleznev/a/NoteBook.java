@@ -4,14 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import org.apache.commons.cli.CommandLine;
-import org.apache.commons.cli.CommandLineParser;
-import org.apache.commons.cli.DefaultParser;
-import org.apache.commons.cli.HelpFormatter;
-import org.apache.commons.cli.Option;
-import org.apache.commons.cli.Options;
-import org.apache.commons.cli.ParseException;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,25 +12,32 @@ import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.TreeMap;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.HelpFormatter;
+import org.apache.commons.cli.Option;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 
 /**
  * NoteBook class implementation.
  * Console application that creates
  * JSON file with notes.
  * User can use this commands:
- *  1) -add nodeTitle nodeDescription
- *  For example: -add "Train" "I want to train more!"
- *  Usage: Adds the note to the NoteBook
- *  2) -remove nodeTitle
- *  For example: -remove "Illness" "I'm ill!"
- *  Usage: Removes the note from the NoteBook
- *  3) -show
- *  Usage: Shows all notes in the NoteBook
- *  4) -show TimeA TimeB subStr1,...,subStrN
- *  Usage: Shows all notes in the NoteBook with
- *  parameters: note created in a period (TimeA, TimeB)
- *  with substrings in title subStr1,...,subStrN. N is a Natural.
- *  Make Jar and try it!
+ * 1) -add nodeTitle nodeDescription
+ * For example: -add "Train" "I want to train more!"
+ * Usage: Adds the note to the NoteBook
+ * 2) -remove nodeTitle
+ * For example: -remove "Illness" "I'm ill!"
+ * Usage: Removes the note from the NoteBook
+ * 3) -show
+ * Usage: Shows all notes in the NoteBook
+ * 4) -show TimeA TimeB subStr1,...,subStrN
+ * Usage: Shows all notes in the NoteBook with
+ * parameters: note created in a period (TimeA, TimeB)
+ * with substrings in title subStr1,...,subStrN. N is a Natural.
+ * Make Jar and try it!
  */
 public class NoteBook {
 
@@ -83,7 +82,8 @@ public class NoteBook {
    * -show TimeA TimeB subStr1,...,subStrN (check description).
    *
    * @param commandLine command line with arguments and options
-   * @throws JsonProcessingException exception for all problems encountered when processing (parsing, generating) JSON
+   * @throws JsonProcessingException exception for all problems encounter
+   *                                 when processing (parsing, generating) JSON
    */
   private static void showNote(CommandLine commandLine) throws JsonProcessingException {
     String[] args = commandLine.getOptionValues("show");
@@ -115,7 +115,7 @@ public class NoteBook {
    */
   private static void checkFile() throws IOException {
     if (!baseFile.exists()) {
-      if(!baseFile.createNewFile()){
+      if (!baseFile.createNewFile()) {
         throw new RuntimeException("Unable to create file");
       }
       PrintWriter writer = new PrintWriter(baseFile);
@@ -174,7 +174,7 @@ public class NoteBook {
             This operation has 2 variants of usage.
             1) -show
             Usage: Shows all records in the Notebook.
-            2) -show "dd.MM.yyyy HH:mm" "dd.MM.yyyy HH:mm" + unlimited amount of arguments:
+            2) -show "dd.MM.yyyy HH:mm" "dd.MM.yyyy HH:mm" plus unlimited amount of arguments:
             substrings of the title of any note in the Notebook!
             Usage: Shows all records in the Notebook in current period with substrings included.""",
         Option.UNLIMITED_VALUES));
@@ -187,9 +187,9 @@ public class NoteBook {
   /**
    * Function that creates and returns each option for console application.
    *
-   * @param name name of option
+   * @param name        name of option
    * @param description description of option
-   * @param argsCount number of arguments in the option
+   * @param argsCount   number of arguments in the option
    * @return option
    */
   private static Option createOption(String name, String description, int argsCount) {

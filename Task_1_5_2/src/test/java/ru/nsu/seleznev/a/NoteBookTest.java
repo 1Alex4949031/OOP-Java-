@@ -1,11 +1,10 @@
 package ru.nsu.seleznev.a;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.Map;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test for NoteBook class implementation.
