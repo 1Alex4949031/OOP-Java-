@@ -46,7 +46,7 @@ public class ComplexTimeTest {
   public void sequentialPrimeTest() {
     SequentialFinder test = new SequentialFinder();
     long time = System.currentTimeMillis();
-    boolean act = test.Finder(numbersOnlyPrime);
+    boolean act = test.finder(numbersOnlyPrime);
     System.out.println("Sequential test with prime numbers: "
         + (System.currentTimeMillis() - time));
     boolean exp = false;
@@ -57,7 +57,7 @@ public class ComplexTimeTest {
   public void sequentialNonPrimeTest() {
     SequentialFinder test = new SequentialFinder();
     long time = System.currentTimeMillis();
-    boolean act = test.Finder(numbersOnlyNonPrime);
+    boolean act = test.finder(numbersOnlyNonPrime);
     System.out.println("Sequential test without prime numbers: "
         + (System.currentTimeMillis() - time));
     boolean exp = true;

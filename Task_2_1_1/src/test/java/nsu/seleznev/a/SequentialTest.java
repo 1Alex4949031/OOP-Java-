@@ -13,7 +13,7 @@ public class SequentialTest {
   public void simpleTest() {
     List<Long> list = Arrays.asList(4L, 4L, 4L, 4L);
     SequentialFinder test = new SequentialFinder();
-    boolean act = test.Finder(list);
+    boolean act = test.finder(list);
     boolean exp = true;
     Assertions.assertEquals(exp, act);
   }
@@ -22,7 +22,7 @@ public class SequentialTest {
   public void simpleTestTrue1() {
     List<Long> list = Arrays.asList(4L, 17L, 1L, 1L);
     SequentialFinder test = new SequentialFinder();
-    boolean act = test.Finder(list);
+    boolean act = test.finder(list);
     boolean exp = true;
     Assertions.assertEquals(exp, act);
   }
@@ -31,7 +31,7 @@ public class SequentialTest {
   public void simpleTestTrue2() {
     List<Long> list = Arrays.asList(1L, 4L, 19L, 3L);
     SequentialFinder test = new SequentialFinder();
-    boolean act = test.Finder(list);
+    boolean act = test.finder(list);
     boolean exp = true;
     Assertions.assertEquals(exp, act);
   }
@@ -40,7 +40,7 @@ public class SequentialTest {
   public void simpleTestTrue3() {
     List<Long> list = Arrays.asList(3L, 11L, 4L, 29L);
     SequentialFinder test = new SequentialFinder();
-    boolean act = test.Finder(list);
+    boolean act = test.finder(list);
     boolean exp = true;
     Assertions.assertEquals(exp, act);
   }
@@ -49,7 +49,7 @@ public class SequentialTest {
   public void simpleTestTrue4() {
     List<Long> list = Arrays.asList(11L, 3L, 3L, 4L);
     SequentialFinder test = new SequentialFinder();
-    boolean act = test.Finder(list);
+    boolean act = test.finder(list);
     boolean exp = true;
     Assertions.assertEquals(exp, act);
   }
@@ -58,7 +58,7 @@ public class SequentialTest {
   public void simpleTestFalse() {
     List<Long> list = Arrays.asList(17L, 17L, 17L, 17L);
     SequentialFinder test = new SequentialFinder();
-    boolean act = test.Finder(list);
+    boolean act = test.finder(list);
     boolean exp = false;
     Assertions.assertEquals(exp, act);
   }
@@ -67,7 +67,7 @@ public class SequentialTest {
   public void simpleTestFalse2() {
     List<Long> list = Arrays.asList(11L, 11L, 1L, 11L);
     SequentialFinder test = new SequentialFinder();
-    boolean act = test.Finder(list);
+    boolean act = test.finder(list);
     boolean exp = false;
     Assertions.assertEquals(exp, act);
   }

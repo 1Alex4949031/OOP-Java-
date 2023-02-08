@@ -16,7 +16,7 @@ public class SequentialFinder {
    * @param numbers list of number need to check
    * @return true if list includes not prime number, false otherwise
    */
-  public boolean Finder(List<Long> numbers) {
+  public boolean finder(List<Long> numbers) {
     for (Long i : numbers) {
       if (NotPrimeNumber.isNotPrimeNumber(i)) {
         return true;
