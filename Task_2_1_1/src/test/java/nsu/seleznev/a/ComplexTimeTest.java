@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 public class ComplexTimeTest {
-  private final long size = 1000;
+  private final long size = 1000000;
   private final List<Long> numbersOnlyPrime = initPrimeList();
   private final List<Long> numbersOnlyNonPrime = initNonPrimeList();
 
@@ -26,7 +26,7 @@ public class ComplexTimeTest {
   private List<Long> initPrimeList() {
     List<Long> result = new ArrayList<>();
     for (long i = 0; i < size; i++) {
-      result.add(3L);
+      result.add(1000003L);
     }
     return result;
   }
@@ -39,7 +39,7 @@ public class ComplexTimeTest {
   private List<Long> initNonPrimeList() {
     List<Long> result = new ArrayList<>();
     for (long i = 0; i < size; i++) {
-      result.add(4L);
+      result.add(1000002L);
     }
     return result;
   }

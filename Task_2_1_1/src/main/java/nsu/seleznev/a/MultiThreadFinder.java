@@ -51,12 +51,15 @@ public class MultiThreadFinder {
    * @param countThreads total count of threads
    * @param numbers      list of numbers
    * @return true if list includes not prime number
-   *         false otherwise
+   * false otherwise
    */
   public boolean parallelFinder(int countThreads, List<Long> numbers) {
     int maxCountThreads = Runtime.getRuntime().availableProcessors();
-    if (countThreads <= 0 || countThreads > maxCountThreads) {
+    if (countThreads <= 0) {
       throw new IllegalArgumentException("Number of threads is incorrect!");
+    }
+    if (countThreads > maxCountThreads) {
+      countThreads = maxCountThreads;
     }
     int len = numbers.size(), part;
     if (numbers.size() >= countThreads) {
