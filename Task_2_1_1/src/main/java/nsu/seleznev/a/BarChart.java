@@ -23,7 +23,11 @@ import org.jfree.ui.RefineryUtilities;
 /**
  * Chart implementation based on ComplexTimeTest.
  * You can easily change some variables for complex test.
- * Check ComplexTimeTest
+ * Check ComplexTimeTest!
+ * Chart is making with the size of the array :
+ * 1) size = 1000000
+ * 2) prime number = 1000003
+ * 3) non-prime number = 1000002
  */
 public class BarChart extends ApplicationFrame {
 
