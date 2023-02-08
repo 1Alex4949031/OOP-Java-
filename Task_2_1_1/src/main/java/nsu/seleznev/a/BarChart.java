@@ -2,7 +2,6 @@ package nsu.seleznev.a;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.io.Serial;
 import javax.swing.JPanel;
 
 import org.jfree.chart.ChartFactory;
@@ -28,7 +27,6 @@ import org.jfree.ui.RefineryUtilities;
  */
 public class BarChart extends ApplicationFrame {
 
-  @Serial
   private static final long serialVersionUID = 1L;
 
   static {
