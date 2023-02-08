@@ -3,7 +3,6 @@ package nsu.seleznev.a;
 import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
-
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
