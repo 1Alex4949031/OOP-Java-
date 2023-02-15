@@ -417,6 +417,50 @@ public class ComplexTimeTest {
   }
 
   @Test
+  public void parallelPrimeTestThread32() {
+    MultiThreadFinder test = new MultiThreadFinder();
+    long time = System.currentTimeMillis();
+    boolean act = test.parallelFinder(32, numbersOnlyPrime);
+    System.out.println("32 threads with prime number: "
+        + (System.currentTimeMillis() - time));
+    boolean exp = false;
+    Assertions.assertEquals(exp, act);
+  }
+
+  @Test
+  public void parallelNonPrimeTestThread32() {
+    MultiThreadFinder test = new MultiThreadFinder();
+    long time = System.currentTimeMillis();
+    boolean act = test.parallelFinder(32, numbersOnlyNonPrime);
+    System.out.println("32 threads without prime number: "
+        + (System.currentTimeMillis() - time));
+    boolean exp = true;
+    Assertions.assertEquals(exp, act);
+  }
+
+  @Test
+  public void parallelPrimeTestThread100() {
+    MultiThreadFinder test = new MultiThreadFinder();
+    long time = System.currentTimeMillis();
+    boolean act = test.parallelFinder(100, numbersOnlyPrime);
+    System.out.println("100 threads with prime number: "
+        + (System.currentTimeMillis() - time));
+    boolean exp = false;
+    Assertions.assertEquals(exp, act);
+  }
+
+  @Test
+  public void parallelNonPrimeTestThread100() {
+    MultiThreadFinder test = new MultiThreadFinder();
+    long time = System.currentTimeMillis();
+    boolean act = test.parallelFinder(100, numbersOnlyNonPrime);
+    System.out.println("100 threads without prime number: "
+        + (System.currentTimeMillis() - time));
+    boolean exp = true;
+    Assertions.assertEquals(exp, act);
+  }
+
+  @Test
   public void parallelStreamNonPrimeTest() {
     ParallelsStreamFinder test = new ParallelsStreamFinder();
     long time = System.currentTimeMillis();

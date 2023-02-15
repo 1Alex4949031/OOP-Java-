@@ -86,6 +86,8 @@ public class BarChart extends ApplicationFrame {
     dataset.addValue(588, "Параллельно", "14");
     dataset.addValue(586, "Параллельно", "15");
     dataset.addValue(556, "Параллельно", "16");
+    dataset.addValue(1039, "Параллельно", "32");
+    dataset.addValue(1289, "Параллельно", "100");
     dataset.addValue(557, "Parallels Stream", "Parallel Stream Api");
     return dataset;
   }
