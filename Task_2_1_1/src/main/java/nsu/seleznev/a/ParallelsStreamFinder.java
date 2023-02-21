@@ -18,7 +18,7 @@ public class ParallelsStreamFinder {
    * @return true if list includes not prime number,
    *         false otherwise
    */
-  public boolean parallelStreamApiFinder(List<Long> numbers) {
+  public static boolean parallelStreamApiFinder(List<Long> numbers) {
     return numbers.parallelStream().anyMatch(NotPrimeNumber::isNotPrimeNumber);
   }
 }

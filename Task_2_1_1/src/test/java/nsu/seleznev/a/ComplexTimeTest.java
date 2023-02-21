@@ -44,9 +44,8 @@ public class ComplexTimeTest {
 
   @Test
   public void sequentialPrimeTest() {
-    SequentialFinder test = new SequentialFinder();
     long time = System.currentTimeMillis();
-    boolean act = test.finder(numbersOnlyPrime);
+    boolean act = SequentialFinder.finder(numbersOnlyPrime);
     System.out.println("Sequential test with prime numbers: "
         + (System.currentTimeMillis() - time));
     boolean exp = false;
@@ -55,9 +54,8 @@ public class ComplexTimeTest {
 
   @Test
   public void sequentialNonPrimeTest() {
-    SequentialFinder test = new SequentialFinder();
     long time = System.currentTimeMillis();
-    boolean act = test.finder(numbersOnlyNonPrime);
+    boolean act = SequentialFinder.finder(numbersOnlyNonPrime);
     System.out.println("Sequential test without prime numbers: "
         + (System.currentTimeMillis() - time));
     boolean exp = true;
@@ -462,9 +460,8 @@ public class ComplexTimeTest {
 
   @Test
   public void parallelStreamNonPrimeTest() {
-    ParallelsStreamFinder test = new ParallelsStreamFinder();
     long time = System.currentTimeMillis();
-    boolean act = test.parallelStreamApiFinder(numbersOnlyNonPrime);
+    boolean act = ParallelsStreamFinder.parallelStreamApiFinder(numbersOnlyNonPrime);
     System.out.println("Parallel Stream Api without prime numbers: "
         + (System.currentTimeMillis() - time));
     boolean exp = true;
@@ -473,9 +470,8 @@ public class ComplexTimeTest {
 
   @Test
   public void parallelStreamPrimeTest() {
-    ParallelsStreamFinder test = new ParallelsStreamFinder();
     long time = System.currentTimeMillis();
-    boolean act = test.parallelStreamApiFinder(numbersOnlyPrime);
+    boolean act = ParallelsStreamFinder.parallelStreamApiFinder(numbersOnlyPrime);
     System.out.println("Parallel Stream Api with prime numbers: "
         + (System.currentTimeMillis() - time));
     boolean exp = false;
