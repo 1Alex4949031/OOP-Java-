@@ -73,7 +73,7 @@ public class JsonValuesTest {
   }
 
   @Test
-  public void EqualsTest() {
+  public void equalsTest() {
     List<JsonCook> cooks = new ArrayList<>();
     cooks.add(new JsonCook("Alex", 1));
     cooks.add(new JsonCook("Sasha", 2));

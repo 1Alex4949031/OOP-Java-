@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
  */
 public class PizzeriaMainTest {
   @Test
-  public void PizzeriaTest(){
+  public void pizzeriaTest() {
     PizzeriaMain.main(null);
   }
 }
