@@ -57,4 +57,46 @@ public class JsonValuesTest {
 
     Assertions.assertEquals(exp, act);
   }
+
+  @Test
+  public void notEqualsTest() {
+    List<JsonCook> cooks = new ArrayList<>();
+    cooks.add(new JsonCook("Alex", 1));
+    cooks.add(new JsonCook("Sasha", 2));
+    List<JsonCourier> couriers = new ArrayList<>();
+    couriers.add(new JsonCourier("Ben", 1, 7));
+    couriers.add(new JsonCourier("Ten", 3, 5));
+    JsonValues act = new JsonValues(cooks, couriers, 5, 7);
+    JsonValues exp = new JsonValues(cooks, couriers, 5, 6);
+
+    Assertions.assertNotEquals(exp, act);
+  }
+
+  @Test
+  public void EqualsTest() {
+    List<JsonCook> cooks = new ArrayList<>();
+    cooks.add(new JsonCook("Alex", 1));
+    cooks.add(new JsonCook("Sasha", 2));
+    List<JsonCourier> couriers = new ArrayList<>();
+    couriers.add(new JsonCourier("Ben", 1, 7));
+    couriers.add(new JsonCourier("Ten", 3, 5));
+    JsonValues act = new JsonValues(cooks, couriers, 5, 6);
+    JsonValues exp = new JsonValues(cooks, couriers, 5, 6);
+
+    Assertions.assertEquals(exp, act);
+  }
+
+  @Test
+  public void hashCodeTest(){
+    List<JsonCook> cooks = new ArrayList<>();
+    cooks.add(new JsonCook("Alex", 1));
+    cooks.add(new JsonCook("Sasha", 2));
+    List<JsonCourier> couriers = new ArrayList<>();
+    couriers.add(new JsonCourier("Ben", 1, 7));
+    couriers.add(new JsonCourier("Ten", 3, 5));
+    JsonValues act = new JsonValues(cooks, couriers, 5, 6);
+    JsonValues exp = new JsonValues(cooks, couriers, 5, 6);
+
+    Assertions.assertEquals(exp.hashCode(), act.hashCode());
+  }
 }
