@@ -20,7 +20,7 @@ public class DeliveryQueue extends ProductQueue {
   }
 
   /**
-   * Function that takes (1 < n <= availableCount && n <= size of the Queue)
+   * Function that takes (1..availableCount..size of the Queue)
    * orders.
    *
    * @param availableCount max count of orders can be taken
