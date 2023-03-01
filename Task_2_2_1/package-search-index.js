@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"ru.nsu.seleznev.a"},{"l":"ru.nsu.seleznev.a.jsonreader"},{"l":"ru.nsu.seleznev.a.orders"},{"l":"ru.nsu.seleznev.a.threads"}];updateSearchResults();
