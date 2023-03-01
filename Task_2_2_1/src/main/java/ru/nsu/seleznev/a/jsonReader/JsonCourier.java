@@ -1,4 +1,4 @@
-package JsonReader;
+package ru.nsu.seleznev.a.jsonReader;
 
 import java.util.Objects;
 
@@ -58,8 +58,12 @@ public class JsonCourier {
    */
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     JsonCourier that = (JsonCourier) o;
     return deliveryExperience == that.deliveryExperience
         && deliverySize == that.deliverySize

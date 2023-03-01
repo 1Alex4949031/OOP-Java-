@@ -1,6 +1,8 @@
-import JsonReader.JsonCook;
-import JsonReader.JsonCourier;
-import JsonReader.JsonValues;
+package ru.nsu.seleznev.a;
+
+import ru.nsu.seleznev.a.jsonReader.JsonCook;
+import ru.nsu.seleznev.a.jsonReader.JsonCourier;
+import ru.nsu.seleznev.a.jsonReader.JsonValues;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

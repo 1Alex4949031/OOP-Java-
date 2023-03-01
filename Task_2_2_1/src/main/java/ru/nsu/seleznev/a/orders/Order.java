@@ -1,10 +1,10 @@
-package Orders;
+package ru.nsu.seleznev.a.orders;
 
 /**
  * Order class that implements the order.
  * Order is consist of status and id.
  */
-public class Order{
+public class Order {
   private String orderStatus;
   private final int orderId;
 
@@ -53,9 +53,8 @@ public class Order{
    */
   @Override
   public String toString() {
-    return "Order { " +
-        "orderStatus = '" + orderStatus + '\'' +
-        ", orderId = " + orderId +
-        " }";
+    return "Order { "
+        + "orderStatus = '" + orderStatus + '\''
+        + ", orderId = " + orderId + " }";
   }
 }

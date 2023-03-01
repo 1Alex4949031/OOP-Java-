@@ -1,8 +1,13 @@
-package Orders;
+package ru.nsu.seleznev.a.orders;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * DeliveryQueue class extends ProductQueue.
+ * Implements ProductQueue methods and
+ * one local method transferAvailableOrders.
+ */
 public class DeliveryQueue extends ProductQueue {
 
   /**

@@ -1,5 +1,7 @@
-import JsonReader.GsonParser;
-import JsonReader.JsonValues;
+package ru.nsu.seleznev.a;
+
+import ru.nsu.seleznev.a.jsonReader.GsonParser;
+import ru.nsu.seleznev.a.jsonReader.JsonValues;
 
 /**
  * PizzeriaMain class that starts the work of the Pizzeria "BIG J".

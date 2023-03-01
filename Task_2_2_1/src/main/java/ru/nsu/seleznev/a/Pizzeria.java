@@ -1,11 +1,13 @@
-import JsonReader.JsonCook;
-import JsonReader.JsonCourier;
-import JsonReader.JsonValues;
-import Orders.DeliveryQueue;
-import Orders.ProductQueue;
-import Threads.Cook;
-import Threads.Courier;
-import Threads.OrderReceiving;
+package ru.nsu.seleznev.a;
+
+import ru.nsu.seleznev.a.jsonReader.JsonCook;
+import ru.nsu.seleznev.a.jsonReader.JsonCourier;
+import ru.nsu.seleznev.a.jsonReader.JsonValues;
+import ru.nsu.seleznev.a.orders.DeliveryQueue;
+import ru.nsu.seleznev.a.orders.ProductQueue;
+import ru.nsu.seleznev.a.threads.Cook;
+import ru.nsu.seleznev.a.threads.Courier;
+import ru.nsu.seleznev.a.threads.OrderReceiving;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,8 +43,8 @@ public class Pizzeria {
    */
   private List<Cook> setupCooks(List<JsonCook> cooks) {
     List<Cook> values = new ArrayList<>();
-    cooks.forEach(i -> values.add(new Cook(i.getName(), i.getExperience(),
-        orderQueue, storageQueue)));
+    cooks.forEach(i -> values.add(new Cook(i.getName(),
+        i.getExperience(), orderQueue, storageQueue)));
     return values;
   }
 
@@ -54,8 +56,8 @@ public class Pizzeria {
    */
   private List<Courier> setupCouriers(List<JsonCourier> couriers) {
     List<Courier> values = new ArrayList<>();
-    couriers.forEach(i -> values.add(new Courier(i.getName(), i.getDeliveryExperience(),
-        i.getDeliverySize(), storageQueue)));
+    couriers.forEach(i -> values.add(new Courier(i.getName(),
+        i.getDeliveryExperience(), i.getDeliverySize(), storageQueue)));
     return values;
   }
 
@@ -66,7 +68,7 @@ public class Pizzeria {
    */
   public void running(int time) {
     OrderReceiving orders = new OrderReceiving(orderQueue);
-    Thread ordersToReceive = new Thread(orders, "Orders");
+    Thread ordersToReceive = new Thread(orders, "Order");
     ordersToReceive.start();
 
     // Cooks start their work!

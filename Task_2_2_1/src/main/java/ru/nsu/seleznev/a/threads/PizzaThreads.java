@@ -1,7 +1,7 @@
-package Threads;
+package ru.nsu.seleznev.a.threads;
 
 /**
- * Threads.PizzaThreads interface for cooks and couriers and order receiving.
+ * PizzaThreads interface for cooks and couriers and order receiving.
  */
 public interface PizzaThreads extends Runnable {
   /**

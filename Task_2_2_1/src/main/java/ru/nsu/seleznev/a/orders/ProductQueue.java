@@ -1,4 +1,4 @@
-package Orders;
+package ru.nsu.seleznev.a.orders;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
@@ -33,7 +33,8 @@ public class ProductQueue {
         try {
           queue.wait();
         } catch (InterruptedException e) {
-          throw new RuntimeException("Exception connected with full size of queue!");
+          e.printStackTrace();
+          System.out.println("Thread is interrupted while waiting!");
         }
       }
       queue.add(order);
@@ -52,7 +53,8 @@ public class ProductQueue {
         try {
           queue.wait();
         } catch (InterruptedException e) {
-          throw new RuntimeException("Exception connected with empty queue!");
+          e.printStackTrace();
+          System.out.println("Thread is interrupted while waiting!");
         }
       }
       Order order = queue.poll();

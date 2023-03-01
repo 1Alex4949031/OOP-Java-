@@ -1,4 +1,4 @@
-package JsonReader;
+package ru.nsu.seleznev.a.jsonReader;
 
 import com.google.gson.Gson;
 
@@ -12,7 +12,8 @@ import java.nio.file.Path;
  * the values of cooks and couriers, orders, etc.
  */
 public class GsonParser {
-  private static final File baseFile = new File("Pizzeria.json");
+  private static final File baseFile =
+      new File("Pizzeria.json");
 
 
   /**

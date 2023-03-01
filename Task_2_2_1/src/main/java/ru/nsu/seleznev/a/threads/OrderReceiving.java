@@ -1,7 +1,7 @@
-package Threads;
+package ru.nsu.seleznev.a.threads;
 
-import Orders.Order;
-import Orders.ProductQueue;
+import ru.nsu.seleznev.a.orders.Order;
+import ru.nsu.seleznev.a.orders.ProductQueue;
 
 /**
  * OrderReceiving class used for receiving orders in the Queue of preparing.

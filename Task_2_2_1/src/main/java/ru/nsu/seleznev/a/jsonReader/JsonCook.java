@@ -1,4 +1,4 @@
-package JsonReader;
+package ru.nsu.seleznev.a.jsonReader;
 
 
 import java.util.Objects;
@@ -9,7 +9,6 @@ import java.util.Objects;
 public class JsonCook {
   private final String name;
   private final int experience;
-
 
   /**
    * Constructor for JsonCook.
@@ -48,10 +47,15 @@ public class JsonCook {
    */
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     JsonCook jsonCook = (JsonCook) o;
-    return experience == jsonCook.experience && Objects.equals(name, jsonCook.name);
+    return experience == jsonCook.experience
+        && Objects.equals(name, jsonCook.name);
   }
 
   /**

@@ -1,4 +1,4 @@
-package JsonReader;
+package ru.nsu.seleznev.a.jsonReader;
 
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +20,8 @@ public class JsonValues {
    * @param storageSize storage size
    * @param queueSize   queue size
    */
-  public JsonValues(List<JsonCook> cooks, List<JsonCourier> couriers, int storageSize, int queueSize) {
+  public JsonValues(List<JsonCook> cooks, List<JsonCourier> couriers,
+                    int storageSize, int queueSize) {
     this.cooks = cooks;
     this.couriers = couriers;
     this.storageSize = storageSize;
@@ -64,11 +65,20 @@ public class JsonValues {
     return couriers;
   }
 
-
+  /**
+   * Equals function that compares JsonValues objects.
+   *
+   * @param o object need to compare with
+   * @return true if equals, false otherwise
+   */
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     JsonValues that = (JsonValues) o;
     return storageSize == that.storageSize
         && queueSize == that.queueSize
@@ -76,6 +86,11 @@ public class JsonValues {
         && Objects.equals(couriers, that.couriers);
   }
 
+  /**
+   * Function that counts hash of the object.
+   *
+   * @return hash of the object
+   */
   @Override
   public int hashCode() {
     return Objects.hash(cooks, couriers, storageSize, queueSize);

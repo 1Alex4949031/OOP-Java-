@@ -1,8 +1,7 @@
-package Threads;
+package ru.nsu.seleznev.a.threads;
 
-import Orders.DeliveryQueue;
-import Orders.Order;
-import Orders.ProductQueue;
+import ru.nsu.seleznev.a.orders.DeliveryQueue;
+import ru.nsu.seleznev.a.orders.Order;
 
 import java.util.List;
 
@@ -38,8 +37,8 @@ public class Courier implements PizzaThreads {
   @Override
   public void run() {
     isWorking = true;
-    int TIME = 20000;
-    int deliveryTime = TIME / deliveryExperience;
+    int time = 20000;
+    int deliveryTime = time / deliveryExperience;
     List<Order> orders;
     while (isWorking) {
       orders = ordersToDelivery.transferAvailableOrders(deliverySize);

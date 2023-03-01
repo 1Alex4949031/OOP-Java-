@@ -1,11 +1,11 @@
-package Threads;
+package ru.nsu.seleznev.a.threads;
 
-import Orders.DeliveryQueue;
-import Orders.Order;
-import Orders.ProductQueue;
+import ru.nsu.seleznev.a.orders.DeliveryQueue;
+import ru.nsu.seleznev.a.orders.Order;
+import ru.nsu.seleznev.a.orders.ProductQueue;
 
 /**
- * Cook class for Threads.Cook thread implementation.
+ * Cook class for Cook thread implementation.
  */
 public class Cook implements PizzaThreads {
   private boolean isWorking;
@@ -22,7 +22,8 @@ public class Cook implements PizzaThreads {
    * @param ordersToCook     orders for cook
    * @param ordersToDelivery prepared orders in the storage
    */
-  public Cook(String name, int experience, ProductQueue ordersToCook, DeliveryQueue ordersToDelivery) {
+  public Cook(String name, int experience,
+              ProductQueue ordersToCook, DeliveryQueue ordersToDelivery) {
     this.name = name;
     this.experience = experience;
     this.ordersToCook = ordersToCook;
@@ -35,8 +36,8 @@ public class Cook implements PizzaThreads {
   @Override
   public void run() {
     isWorking = true;
-    int TIME = 5000;
-    int cookingTime = TIME / experience;
+    int time = 5000;
+    int cookingTime = time / experience;
     while (isWorking) {
       Order order = ordersToCook.transferOrder();
       preparingPizzaInfo(order);
