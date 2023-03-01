@@ -9,7 +9,7 @@ import ru.nsu.seleznev.a.jsonreader.JsonValues;
  */
 public class PizzeriaTest {
   @Test
-  public void pizzeriaWorkingTest(){
+  public void pizzeriaWorkingTest() {
     GsonParser jsonFile = new GsonParser();
     JsonValues values = jsonFile.parse();
     Pizzeria pizzeria = new Pizzeria(values);

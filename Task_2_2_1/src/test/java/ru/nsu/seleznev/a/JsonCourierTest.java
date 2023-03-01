@@ -1,9 +1,8 @@
 package ru.nsu.seleznev.a;
 
-import ru.nsu.seleznev.a.jsonreader.JsonCourier;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
+import ru.nsu.seleznev.a.jsonreader.JsonCourier;
 
 /**
  * JsonCourier tests

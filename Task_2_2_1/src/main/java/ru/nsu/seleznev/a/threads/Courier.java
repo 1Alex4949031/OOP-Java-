@@ -1,8 +1,8 @@
 package ru.nsu.seleznev.a.threads;
 
+import java.util.List;
 import ru.nsu.seleznev.a.orders.DeliveryQueue;
 import ru.nsu.seleznev.a.orders.Order;
-import java.util.List;
 
 /**
  * Courier class for Courier thread implementation.
