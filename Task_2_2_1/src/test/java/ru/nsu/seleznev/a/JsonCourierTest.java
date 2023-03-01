@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.seleznev.a.jsonreader.JsonCourier;
 
 /**
- * JsonCourier tests
+ * JsonCourier tests.
  */
 public class JsonCourierTest {
   @Test

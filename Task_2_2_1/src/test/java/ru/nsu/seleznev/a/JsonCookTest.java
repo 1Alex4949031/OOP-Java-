@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import ru.nsu.seleznev.a.jsonreader.JsonCook;
 
 /**
- * JsonCook tests
+ * JsonCook tests.
  */
 public class JsonCookTest {
   @Test

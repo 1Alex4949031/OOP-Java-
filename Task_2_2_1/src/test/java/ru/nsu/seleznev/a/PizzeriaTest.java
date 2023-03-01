@@ -5,7 +5,7 @@ import ru.nsu.seleznev.a.jsonreader.GsonParser;
 import ru.nsu.seleznev.a.jsonreader.JsonValues;
 
 /**
- * Pizzeria "Big J" Test
+ * Pizzeria "Big J" Test.
  */
 public class PizzeriaTest {
   @Test
