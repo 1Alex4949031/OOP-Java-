@@ -1,7 +1,6 @@
-package ru.nsu.seleznev.a.jsonReader;
+package ru.nsu.seleznev.a.jsonreader;
 
 import com.google.gson.Gson;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -26,8 +25,8 @@ public class GsonParser {
       } catch (IOException e) {
         e.printStackTrace();
       }
-      System.out.println("Created Pizzeria.json file...\n" +
-          "You need to add some information!");
+      System.out.println("Created Pizzeria.json file...\n"
+          + "You need to add some information!");
     }
   }
 

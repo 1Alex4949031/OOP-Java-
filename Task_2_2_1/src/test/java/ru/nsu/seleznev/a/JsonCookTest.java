@@ -1,6 +1,6 @@
 package ru.nsu.seleznev.a;
 
-import ru.nsu.seleznev.a.jsonReader.JsonCook;
+import ru.nsu.seleznev.a.jsonreader.JsonCook;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

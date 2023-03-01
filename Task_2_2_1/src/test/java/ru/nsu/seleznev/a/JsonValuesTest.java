@@ -1,11 +1,10 @@
 package ru.nsu.seleznev.a;
 
-import ru.nsu.seleznev.a.jsonReader.JsonCook;
-import ru.nsu.seleznev.a.jsonReader.JsonCourier;
-import ru.nsu.seleznev.a.jsonReader.JsonValues;
+import ru.nsu.seleznev.a.jsonreader.JsonCook;
+import ru.nsu.seleznev.a.jsonreader.JsonCourier;
+import ru.nsu.seleznev.a.jsonreader.JsonValues;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-
 import java.util.ArrayList;
 import java.util.List;
 

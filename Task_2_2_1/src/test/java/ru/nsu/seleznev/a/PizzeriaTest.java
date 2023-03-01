@@ -1,13 +1,15 @@
 package ru.nsu.seleznev.a;
 
-import ru.nsu.seleznev.a.jsonReader.GsonParser;
-import ru.nsu.seleznev.a.jsonReader.JsonValues;
 import org.junit.jupiter.api.Test;
-import ru.nsu.seleznev.a.Pizzeria;
+import ru.nsu.seleznev.a.jsonreader.GsonParser;
+import ru.nsu.seleznev.a.jsonreader.JsonValues;
 
+/**
+ * Pizzeria "Big J" Test
+ */
 public class PizzeriaTest {
   @Test
-  public void PizzeriaWorkingTest(){
+  public void pizzeriaWorkingTest(){
     GsonParser jsonFile = new GsonParser();
     JsonValues values = jsonFile.parse();
     Pizzeria pizzeria = new Pizzeria(values);

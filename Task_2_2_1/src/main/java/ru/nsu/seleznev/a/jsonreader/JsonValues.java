@@ -1,4 +1,4 @@
-package ru.nsu.seleznev.a.jsonReader;
+package ru.nsu.seleznev.a.jsonreader;
 
 import java.util.List;
 import java.util.Objects;

@@ -2,7 +2,6 @@ package ru.nsu.seleznev.a.threads;
 
 import ru.nsu.seleznev.a.orders.DeliveryQueue;
 import ru.nsu.seleznev.a.orders.Order;
-
 import java.util.List;
 
 /**
