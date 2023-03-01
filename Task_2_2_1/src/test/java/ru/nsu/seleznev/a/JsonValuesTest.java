@@ -87,7 +87,7 @@ public class JsonValuesTest {
   }
 
   @Test
-  public void hashCodeTest(){
+  public void hashCodeTest() {
     List<JsonCook> cooks = new ArrayList<>();
     cooks.add(new JsonCook("Alex", 1));
     cooks.add(new JsonCook("Sasha", 2));
