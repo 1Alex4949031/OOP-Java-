@@ -10,8 +10,8 @@ import java.util.Queue;
  * 2) Prepared orders to delivery Queue.
  */
 public class ProductQueue {
-  public final int queueSize;
-  public final Queue<Order> queue = new ArrayDeque<>();
+  private final int maxQueueSize;
+  private final Queue<Order> queue = new ArrayDeque<>();
 
   /**
    * ProductQueue constructor.
@@ -19,7 +19,16 @@ public class ProductQueue {
    * @param queueSize size of the queue
    */
   public ProductQueue(int queueSize) {
-    this.queueSize = queueSize;
+    this.maxQueueSize = queueSize;
+  }
+
+  /**
+   * Function that returns the queue.
+   *
+   * @return current queue
+   */
+  public Queue<Order> getQueue() {
+    return queue;
   }
 
   /**
@@ -29,12 +38,12 @@ public class ProductQueue {
    */
   public void receiveOrder(Order order) {
     synchronized (queue) {
-      while (queue.size() == queueSize) {
+      while (queue.size() == maxQueueSize) {
         try {
           queue.wait();
         } catch (InterruptedException e) {
           e.printStackTrace();
-          System.out.println("Thread is interrupted while waiting!");
+          throw new RuntimeException("Thread is interrupted while waiting!");
         }
       }
       queue.add(order);
@@ -54,7 +63,7 @@ public class ProductQueue {
           queue.wait();
         } catch (InterruptedException e) {
           e.printStackTrace();
-          System.out.println("Thread is interrupted while waiting!");
+          throw new RuntimeException("Thread is interrupted while waiting!");
         }
       }
       Order order = queue.poll();

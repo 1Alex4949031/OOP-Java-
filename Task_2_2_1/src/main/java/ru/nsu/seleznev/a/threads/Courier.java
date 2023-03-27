@@ -1,5 +1,6 @@
 package ru.nsu.seleznev.a.threads;
 
+import java.util.ArrayList;
 import java.util.List;
 import ru.nsu.seleznev.a.orders.DeliveryQueue;
 import ru.nsu.seleznev.a.orders.Order;
@@ -66,6 +67,8 @@ public class Courier implements PizzaThreads {
     try {
       Thread.sleep(time);
     } catch (InterruptedException e) {
+      isWorking = false;
+      e.printStackTrace();
       throw new RuntimeException("Exception connected with delivering pizza!");
     }
   }

@@ -109,7 +109,8 @@ public class Pizzeria {
       Arrays.stream(cooksThreads).forEach(Thread::interrupt);
       Arrays.stream(couriersThreads).forEach(Thread::interrupt);
     } catch (InterruptedException e) {
-      System.out.println("Кто-то находился в wait() -> Interrupted Exception");
+      e.printStackTrace();
+      throw new RuntimeException("Someone was into wait section!");
     }
   }
 }

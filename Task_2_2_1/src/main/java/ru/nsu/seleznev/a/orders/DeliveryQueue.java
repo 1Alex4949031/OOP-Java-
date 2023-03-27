@@ -27,20 +27,21 @@ public class DeliveryQueue extends ProductQueue {
    * @return list of orders that were taken
    */
   public List<Order> transferAvailableOrders(int availableCount) {
-    synchronized (queue) {
+    synchronized (getQueue()) {
       List<Order> orders = new ArrayList<>();
-      while (queue.isEmpty()) {
+      while (getQueue().isEmpty()) {
         try {
-          queue.wait();
+          getQueue().wait();
         } catch (InterruptedException e) {
+          e.printStackTrace();
           throw new RuntimeException("Exception connected with empty queue!");
         }
       }
-      for (int i = 0; i < queue.size() && i < availableCount; i++) {
-        Order order = queue.poll();
+      for (int i = 0; i < getQueue().size() && i < availableCount; i++) {
+        Order order = getQueue().poll();
         orders.add(order);
       }
-      queue.notifyAll();
+      getQueue().notifyAll();
       return orders;
     }
   }

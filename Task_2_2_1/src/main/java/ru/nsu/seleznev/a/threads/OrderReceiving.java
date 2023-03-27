@@ -55,7 +55,9 @@ public class OrderReceiving implements PizzaThreads {
     try {
       Thread.sleep(time);
     } catch (InterruptedException e) {
+      isWorking = false;
       e.printStackTrace();
+      throw new RuntimeException("Something goes wrong with receiving!");
     }
   }
 }

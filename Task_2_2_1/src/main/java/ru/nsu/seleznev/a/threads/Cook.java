@@ -67,6 +67,8 @@ public class Cook implements PizzaThreads {
     try {
       Thread.sleep(time);
     } catch (InterruptedException e) {
+      isWorking = false;
+      e.printStackTrace();
       throw new RuntimeException("Exception connected with cooking pizza!");
     }
   }
