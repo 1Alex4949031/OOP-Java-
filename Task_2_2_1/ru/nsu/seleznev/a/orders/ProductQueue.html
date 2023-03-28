@@ -179,22 +179,28 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="receiveOrder(ru.nsu.seleznev.a.orders.Order)">
 <h3>receiveOrder</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">receiveOrder</span><wbr><span class="parameters">(<a href="Order.html" title="class in ru.nsu.seleznev.a.orders">Order</a>&nbsp;order)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">void</span>&nbsp;<span class="element-name">receiveOrder</span><wbr><span class="parameters">(<a href="Order.html" title="class in ru.nsu.seleznev.a.orders">Order</a>&nbsp;order)</span>
+                  throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
 <div class="block">Function that receives order in the queue.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>order</code> - order need to receive</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>
 </section>
 </li>
 <li>
 <section class="detail" id="transferOrder()">
 <h3>transferOrder</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Order.html" title="class in ru.nsu.seleznev.a.orders">Order</a></span>&nbsp;<span class="element-name">transferOrder</span>()</div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="Order.html" title="class in ru.nsu.seleznev.a.orders">Order</a></span>&nbsp;<span class="element-name">transferOrder</span>()
+                    throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
 <div class="block">Function that takes the order from the queue.</div>
 <dl class="notes">
 <dt>Returns:</dt>
 <dd>order need to take</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>
 </section>
 </li>

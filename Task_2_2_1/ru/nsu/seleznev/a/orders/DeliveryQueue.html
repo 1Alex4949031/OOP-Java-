@@ -159,7 +159,8 @@ loadScripts(document, 'script');</script>
 <li>
 <section class="detail" id="transferAvailableOrders(int)">
 <h3>transferAvailableOrders</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Order.html" title="class in ru.nsu.seleznev.a.orders">Order</a>&gt;</span>&nbsp;<span class="element-name">transferAvailableOrders</span><wbr><span class="parameters">(int&nbsp;availableCount)</span></div>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Order.html" title="class in ru.nsu.seleznev.a.orders">Order</a>&gt;</span>&nbsp;<span class="element-name">transferAvailableOrders</span><wbr><span class="parameters">(int&nbsp;availableCount)</span>
+                                    throws <span class="exceptions"><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></span></div>
 <div class="block">Function that takes (1..availableCount..size of the Queue)
  orders.</div>
 <dl class="notes">
@@ -167,6 +168,8 @@ loadScripts(document, 'script');</script>
 <dd><code>availableCount</code> - max count of orders can be taken</dd>
 <dt>Returns:</dt>
 <dd>list of orders that were taken</dd>
+<dt>Throws:</dt>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/lang/InterruptedException.html" title="class or interface in java.lang" class="external-link">InterruptedException</a></code></dd>
 </dl>
 </section>
 </li>
