@@ -36,15 +36,10 @@ public class ProductQueue {
    *
    * @param order order need to receive
    */
-  public void receiveOrder(Order order) {
+  public void receiveOrder(Order order) throws InterruptedException {
     synchronized (queue) {
       while (queue.size() == maxQueueSize) {
-        try {
           queue.wait();
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-          throw new RuntimeException("Thread is interrupted while waiting!");
-        }
       }
       queue.add(order);
       queue.notifyAll();
@@ -56,15 +51,10 @@ public class ProductQueue {
    *
    * @return order need to take
    */
-  public Order transferOrder() {
+  public Order transferOrder() throws InterruptedException {
     synchronized (queue) {
       while (queue.isEmpty()) {
-        try {
           queue.wait();
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-          throw new RuntimeException("Thread is interrupted while waiting!");
-        }
       }
       Order order = queue.poll();
       queue.notifyAll();

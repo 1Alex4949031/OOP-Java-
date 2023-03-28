@@ -26,16 +26,11 @@ public class DeliveryQueue extends ProductQueue {
    * @param availableCount max count of orders can be taken
    * @return list of orders that were taken
    */
-  public List<Order> transferAvailableOrders(int availableCount) {
+  public List<Order> transferAvailableOrders(int availableCount) throws InterruptedException {
     synchronized (getQueue()) {
       List<Order> orders = new ArrayList<>();
       while (getQueue().isEmpty()) {
-        try {
           getQueue().wait();
-        } catch (InterruptedException e) {
-          e.printStackTrace();
-          throw new RuntimeException("Exception connected with empty queue!");
-        }
       }
       for (int i = 0; i < getQueue().size() && i < availableCount; i++) {
         Order order = getQueue().poll();

@@ -41,7 +41,11 @@ public class Courier implements PizzaThreads {
     int deliveryTime = time / deliveryExperience;
     List<Order> orders;
     while (isWorking) {
-      orders = ordersToDelivery.transferAvailableOrders(deliverySize);
+      try {
+        orders = ordersToDelivery.transferAvailableOrders(deliverySize);
+      } catch (InterruptedException e) {
+        throw new RuntimeException("Exception connected with transferring orders!");
+      }
       deliveringPizzaInfo(orders);
       workingTime(deliveryTime);
       deliveredPizzaInfo(orders);
@@ -68,8 +72,7 @@ public class Courier implements PizzaThreads {
       Thread.sleep(time);
     } catch (InterruptedException e) {
       isWorking = false;
-      e.printStackTrace();
-      throw new RuntimeException("Exception connected with delivering pizza!");
+      System.out.println("Courier " + name + " is not working anymore!");
     }
   }
 

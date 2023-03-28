@@ -30,7 +30,11 @@ public class OrderReceiving implements PizzaThreads {
     int count = 1;
     while (isWorking) {
       Order order = new Order(count);
-      queue.receiveOrder(order);
+      try {
+        queue.receiveOrder(order);
+      } catch (InterruptedException e) {
+        throw new RuntimeException("Exception connected with Order Receiving thread!");
+      }
       System.out.println(order.getOrderStatus());
       waitingTime(time);
       count++;
@@ -55,7 +59,6 @@ public class OrderReceiving implements PizzaThreads {
     try {
       Thread.sleep(time);
     } catch (InterruptedException e) {
-      isWorking = false;
       e.printStackTrace();
       throw new RuntimeException("Something goes wrong with receiving!");
     }

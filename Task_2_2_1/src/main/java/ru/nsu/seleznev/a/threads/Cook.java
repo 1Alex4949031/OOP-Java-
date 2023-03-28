@@ -39,11 +39,20 @@ public class Cook implements PizzaThreads {
     int time = 5000;
     int cookingTime = time / experience;
     while (isWorking) {
-      Order order = ordersToCook.transferOrder();
+      Order order;
+      try {
+        order = ordersToCook.transferOrder();
+      } catch (InterruptedException e) {
+        throw new RuntimeException("Exception connected with transferring orders!");
+      }
       preparingPizzaInfo(order);
       workingTime(cookingTime);
       preparedPizzaInfo(order);
-      ordersToDelivery.receiveOrder(order);
+      try {
+        ordersToDelivery.receiveOrder(order);
+      } catch (InterruptedException e) {
+        throw new RuntimeException("Exception connected with receiving orders!");
+      }
       inStoragePizzaInfo(order);
     }
   }
@@ -68,8 +77,7 @@ public class Cook implements PizzaThreads {
       Thread.sleep(time);
     } catch (InterruptedException e) {
       isWorking = false;
-      e.printStackTrace();
-      throw new RuntimeException("Exception connected with cooking pizza!");
+      System.out.println("Cook " + name + " is not working anymore!");
     }
   }
 
