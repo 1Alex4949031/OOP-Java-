@@ -39,7 +39,7 @@ public class ProductQueue {
   public void receiveOrder(Order order) throws InterruptedException {
     synchronized (queue) {
       while (queue.size() == maxQueueSize) {
-          queue.wait();
+        queue.wait();
       }
       queue.add(order);
       queue.notifyAll();
@@ -54,7 +54,7 @@ public class ProductQueue {
   public Order transferOrder() throws InterruptedException {
     synchronized (queue) {
       while (queue.isEmpty()) {
-          queue.wait();
+        queue.wait();
       }
       Order order = queue.poll();
       queue.notifyAll();

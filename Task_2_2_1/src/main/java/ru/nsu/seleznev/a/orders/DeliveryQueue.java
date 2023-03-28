@@ -30,7 +30,7 @@ public class DeliveryQueue extends ProductQueue {
     synchronized (getQueue()) {
       List<Order> orders = new ArrayList<>();
       while (getQueue().isEmpty()) {
-          getQueue().wait();
+        getQueue().wait();
       }
       for (int i = 0; i < getQueue().size() && i < availableCount; i++) {
         Order order = getQueue().poll();
