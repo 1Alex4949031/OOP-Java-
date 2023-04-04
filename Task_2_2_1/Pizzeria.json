@@ -1,0 +1,30 @@
+{
+  "cooks": [
+    {
+      "name": "Alex",
+      "experience": 1
+    },
+    {
+      "name": "Misha",
+      "experience": 2
+    },
+    {
+      "name": "Igor",
+      "experience": 3
+    }
+  ],
+  "couriers": [
+    {
+      "name": "Big Evdokimov J",
+      "deliveryExperience": 1,
+      "deliverySize": 2
+    },
+    {
+      "name": "Garry Igorevich F",
+      "deliveryExperience": 1,
+      "deliverySize": 10
+    }
+  ],
+  "storageSize": 15,
+  "queueSize": 15
+}
