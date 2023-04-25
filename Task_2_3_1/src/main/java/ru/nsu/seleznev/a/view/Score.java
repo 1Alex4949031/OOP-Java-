@@ -1,4 +1,4 @@
-package ru.nsu.seleznev.a.task_2_3_1.view;
+package ru.nsu.seleznev.a.view;
 
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;

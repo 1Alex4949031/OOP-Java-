@@ -1,4 +1,4 @@
-package ru.nsu.seleznev.a.task_2_3_1.model;
+package ru.nsu.seleznev.a.model;
 
 
 import java.util.ArrayList;

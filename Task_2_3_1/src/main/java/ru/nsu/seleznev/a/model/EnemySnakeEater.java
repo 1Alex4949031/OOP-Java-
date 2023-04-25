@@ -1,31 +1,33 @@
-package ru.nsu.seleznev.a.task_2_3_1.model;
+package ru.nsu.seleznev.a.model;
 
-
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Random;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 /**
- * EnemySnakeRandom class that implements Random Snake behavior.
+ * EnemySnakeEater class that implements snake,
+ * that tries to eat food in the field.
  */
-public class EnemySnakeRandom extends SnakeDefault {
+public class EnemySnakeEater extends SnakeDefault {
   private final Image body = new Image(Objects.requireNonNull(
-      getClass().getResourceAsStream("/enemySnakeRandom/snakeBody.png")));
+      getClass().getResourceAsStream("/enemySnakeEater/snakeBody.png")));
   private final Image tail = new Image(Objects.requireNonNull(
-      getClass().getResourceAsStream("/enemySnakeRandom/snakeTail.png")));
+      getClass().getResourceAsStream("/enemySnakeEater/snakeTail.png")));
   private final Image headRight = new Image(Objects.requireNonNull(
-      getClass().getResourceAsStream("/enemySnakeRandom/snakeHeadRight.png")));
+      getClass().getResourceAsStream("/enemySnakeEater/snakeHeadRight.png")));
   private final Image headLeft = new Image(Objects.requireNonNull(
-      getClass().getResourceAsStream("/enemySnakeRandom/snakeHeadLeft.png")));
+      getClass().getResourceAsStream("/enemySnakeEater/snakeHeadLeft.png")));
   private final Image headUp = new Image(Objects.requireNonNull(
-      getClass().getResourceAsStream("/enemySnakeRandom/snakeHeadUp.png")));
+      getClass().getResourceAsStream("/enemySnakeEater/snakeHeadUp.png")));
   private final Image headDown = new Image(Objects.requireNonNull(
-      getClass().getResourceAsStream("/enemySnakeRandom/snakeHeadDown.png")));
-  private List<Integer> directions = new ArrayList<>(Arrays.asList(0, 1, 2, 3));
-
+      getClass().getResourceAsStream("/enemySnakeEater/snakeHeadDown.png")));
+  private List<Integer> directions = new ArrayList<>();
 
   /**
-   * EnemySnakeRandom constructor.
+   * Enemy Snake Eater constructor.
    *
    * @param rows       ROWS
    * @param columns    COLUMNS
@@ -34,38 +36,58 @@ public class EnemySnakeRandom extends SnakeDefault {
    * @param y          y-coordinate for initialization
    * @param size       initial size of the snake
    */
-  public EnemySnakeRandom(int rows, int columns, int squareSize, int x, int y, int size) {
+  public EnemySnakeEater(int rows, int columns, int squareSize, int x, int y, int size) {
     super(rows, columns, squareSize, x, y, size);
   }
 
   /**
-   * Function that counts next direction for Random snake behavior.
+   * Function that counts next direction for snake.
+   * Experiment with Random().
    *
-   * @param unused unused
+   * @param food food to eat
    */
   @Override
-  public void movingNext(Food unused) {
-    Random rand = new Random();
-    if (directions.size() == 0) {
-      setIsAlive(false);
+  public void movingNext(Food food) {
+    int xFood = food.getX();
+    int yFood = food.getY();
+    directions = allowedDirections();
+    if (yFood - getSnakeHead().getY() > 0 && directions.contains(DOWN)) {
+      moveDown();
+      return;
+    } else if (yFood - getSnakeHead().getY() == 0) {
+      if (xFood - getSnakeHead().getX() > 0 && directions.contains(RIGHT)) {
+        moveRight();
+        return;
+      } else if (directions.contains(LEFT)) {
+        moveLeft();
+        return;
+      }
+    } else if (directions.contains(UP)) {
+      moveUp();
       return;
     }
-    int random = rand.nextInt(directions.size());
-    switch (directions.get(random)) {
-      case RIGHT -> moveRight();
-      case LEFT -> moveLeft();
-      case UP -> moveUp();
-      case DOWN -> moveDown();
+
+    if (directions.isEmpty()) {
+      setIsAlive(false);
+    } else {
+      Random rand = new Random();
+      int random = rand.nextInt(directions.size());
+      switch (directions.get(random)) {
+        case RIGHT -> moveRight();
+        case LEFT -> moveLeft();
+        case UP -> moveUp();
+        case DOWN -> moveDown();
+      }
     }
-    directions = allowedDirections();
   }
 
+
   /**
-   * Function that returns the allowed directions for Snake.
+   * Function that counts the allowed directions for the snake.
    *
    * @return List of allowed directions
    */
-  public List<Integer> allowedDirections() {
+  private List<Integer> allowedDirections() {
     List<Integer> directions = new ArrayList<>();
     if (getSnakeBody().stream().noneMatch(i -> (i != getSnakeHead())
         && ((getSnakeHead().getX() + 1) % COLUMNS == i.getX())
@@ -83,7 +105,7 @@ public class EnemySnakeRandom extends SnakeDefault {
   }
 
   /**
-   * Function that draws the Snake in the field.
+   * Function that draws the snake in the field.
    *
    * @param gc GraphicsContext for Canvas
    */

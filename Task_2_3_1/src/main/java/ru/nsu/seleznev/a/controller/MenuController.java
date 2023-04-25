@@ -1,4 +1,4 @@
-package ru.nsu.seleznev.a.task_2_3_1.controller;
+package ru.nsu.seleznev.a.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;

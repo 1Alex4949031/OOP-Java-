@@ -1,4 +1,4 @@
-package ru.nsu.seleznev.a.task_2_3_1.view;
+package ru.nsu.seleznev.a.view;
 
 
 import javafx.scene.Group;
@@ -10,7 +10,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import lombok.Getter;
-import ru.nsu.seleznev.a.task_2_3_1.model.PlayerSnake;
+import ru.nsu.seleznev.a.model.PlayerSnake;
 
 /**
  * GameStage class. Presents the main field of the SnakeGame.

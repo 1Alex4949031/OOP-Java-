@@ -1,15 +1,15 @@
-module ru.nsu.seleznev.a.SnakeGame {
+module ru.nsu.seleznev.a {
   requires javafx.controls;
   requires javafx.fxml;
   requires static lombok;
 
 
-  exports ru.nsu.seleznev.a.task_2_3_1.view;
-  opens ru.nsu.seleznev.a.task_2_3_1.view to javafx.fxml;
-  exports ru.nsu.seleznev.a.task_2_3_1.model;
-  opens ru.nsu.seleznev.a.task_2_3_1.model to javafx.fxml;
-  exports ru.nsu.seleznev.a.task_2_3_1.controller;
-  opens ru.nsu.seleznev.a.task_2_3_1.controller to javafx.fxml;
-  exports ru.nsu.seleznev.a.task_2_3_1;
-  opens ru.nsu.seleznev.a.task_2_3_1 to javafx.fxml;
+  exports ru.nsu.seleznev.a.view;
+  opens ru.nsu.seleznev.a.view to javafx.fxml;
+  exports ru.nsu.seleznev.a.model;
+  opens ru.nsu.seleznev.a.model to javafx.fxml;
+  exports ru.nsu.seleznev.a.controller;
+  opens ru.nsu.seleznev.a.controller to javafx.fxml;
+  exports ru.nsu.seleznev.a;
+  opens ru.nsu.seleznev.a to javafx.fxml;
 }

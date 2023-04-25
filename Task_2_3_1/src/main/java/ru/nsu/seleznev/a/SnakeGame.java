@@ -1,4 +1,4 @@
-package ru.nsu.seleznev.a.task_2_3_1;
+package ru.nsu.seleznev.a;
 
 
 import java.util.ArrayList;
@@ -13,12 +13,12 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import ru.nsu.seleznev.a.task_2_3_1.controller.MenuController;
-import ru.nsu.seleznev.a.task_2_3_1.controller.RestartController;
-import ru.nsu.seleznev.a.task_2_3_1.model.*;
-import ru.nsu.seleznev.a.task_2_3_1.view.Background;
-import ru.nsu.seleznev.a.task_2_3_1.view.GameStage;
-import ru.nsu.seleznev.a.task_2_3_1.view.Score;
+import ru.nsu.seleznev.a.controller.MenuController;
+import ru.nsu.seleznev.a.controller.RestartController;
+import ru.nsu.seleznev.a.model.*;
+import ru.nsu.seleznev.a.view.Background;
+import ru.nsu.seleznev.a.view.GameStage;
+import ru.nsu.seleznev.a.view.Score;
 
 /**
  * SnakeGame class that implements the SnakeGame.

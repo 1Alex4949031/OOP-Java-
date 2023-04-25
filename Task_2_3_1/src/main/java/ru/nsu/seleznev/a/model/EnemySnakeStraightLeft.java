@@ -1,4 +1,4 @@
-package ru.nsu.seleznev.a.task_2_3_1.model;
+package ru.nsu.seleznev.a.model;
 
 
 import java.util.Objects;
@@ -6,19 +6,18 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 /**
- * EnemySnakeStraightDown class that implements the snakeDown behavior.
+ * EnemySnakeStraightLeft class that implements snakeLeft behavior.
  */
-public class EnemySnakeStraightDown extends SnakeDefault {
+public class EnemySnakeStraightLeft extends SnakeDefault {
   private final Image body = new Image(Objects.requireNonNull(
-      getClass().getResourceAsStream("/enemySnakeDown/snakeBody.png")));
+      getClass().getResourceAsStream("/enemySnakeLeft/snakeBody.png")));
   private final Image tail = new Image(Objects.requireNonNull(
-      getClass().getResourceAsStream("/enemySnakeDown/snakeTail.png")));
-  private final Image headDown = new Image(Objects.requireNonNull(
-      getClass().getResourceAsStream("/enemySnakeDown/snakeHeadDown.png")));
-
+      getClass().getResourceAsStream("/enemySnakeLeft/snakeTail.png")));
+  private final Image headLeft = new Image(Objects.requireNonNull(
+      getClass().getResourceAsStream("/enemySnakeLeft/snakeHeadLeft.png")));
 
   /**
-   * EnemySnakeStraightDown constructor.
+   * EnemySnakeStraightLeft constructor.
    *
    * @param rows       ROWS
    * @param columns    COLUMNS
@@ -27,18 +26,18 @@ public class EnemySnakeStraightDown extends SnakeDefault {
    * @param y          y-coordinate for initialization
    * @param size       initial size of the snake
    */
-  public EnemySnakeStraightDown(int rows, int columns, int squareSize, int x, int y, int size) {
+  public EnemySnakeStraightLeft(int rows, int columns, int squareSize, int x, int y, int size) {
     super(rows, columns, squareSize, x, y, size);
   }
 
   /**
-   * Function that counts next direction for snakeDown behavior.
+   * Function that counts that next direction for the Snake.
    *
    * @param unused unused
    */
   @Override
   public void movingNext(Food unused) {
-    moveDown();
+    moveLeft();
   }
 
   /**
@@ -48,7 +47,7 @@ public class EnemySnakeStraightDown extends SnakeDefault {
    */
   @Override
   public void drawSnake(GraphicsContext gc) {
-    drawPoint(gc, headDown, 0);
+    drawPoint(gc, headLeft, 0);
     for (int i = 1; i < getSnakeBody().size() - 1; i++) {
       drawPoint(gc, body, i);
     }
