@@ -63,19 +63,18 @@ public class SnakeGame extends Application {
   public void start(Stage primaryStage) throws Exception {
     GsonParser gson = new GsonParser();
     JsonValues values = gson.parse();
-    int WIDTH = values.getWidth();
-    int HEIGHT = values.getHeight();
     ROWS = values.getRows();
     COLUMNS = values.getColumns();
-    SQUARE_SIZE = WIDTH / ROWS;
-
-    game = new GameStage(primaryStage, score, snake, WIDTH, HEIGHT);
-
+    int Width = values.getWidth();
+    int Height = values.getHeight();
+    SQUARE_SIZE = Width / ROWS;
+    game = new GameStage(primaryStage, score, snake, Width, Height);
+    // RestartScene
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/RestartScene.fxml"));
     restartController = new RestartController(this, timeline);
     loader.setController(restartController);
     gameOverStage = loader.load();
-
+    // Menu
     FXMLLoader loaderMenu = new FXMLLoader(getClass().getResource("/Menu.fxml"));
     MenuController menuController = new MenuController();
     menuController.setPrimaryStage(primaryStage);
@@ -83,10 +82,8 @@ public class SnakeGame extends Application {
     loaderMenu.setController(menuController);
     Stage menuStage = loaderMenu.load();
     menuStage.show();
-
     bg = new Background(ROWS, COLUMNS, SQUARE_SIZE);
     timeline.setCycleCount(Animation.INDEFINITE);
-
     addEnemySnakes();
     initialState();
   }

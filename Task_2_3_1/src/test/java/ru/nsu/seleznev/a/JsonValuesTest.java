@@ -1,6 +1,7 @@
 package ru.nsu.seleznev.a;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
+
 import org.junit.jupiter.api.Test;
 import ru.nsu.seleznev.a.jsonreader.JsonValues;
 
@@ -12,10 +13,10 @@ public class JsonValuesTest {
   @Test
   void testGetters() {
     JsonValues jsonValues = new JsonValues(1, 2, 3, 4);
-    assertEquals(1, jsonValues.getRows());
-    assertEquals(2, jsonValues.getColumns());
-    assertEquals(3, jsonValues.getWidth());
-    assertEquals(4, jsonValues.getHeight());
+    Assertions.assertEquals(1, jsonValues.getRows());
+    Assertions.assertEquals(2, jsonValues.getColumns());
+    Assertions.assertEquals(3, jsonValues.getWidth());
+    Assertions.assertEquals(4, jsonValues.getHeight());
   }
 
   @Test
@@ -25,18 +26,18 @@ public class JsonValuesTest {
     jsonValues.setColumns(6);
     jsonValues.setWidth(7);
     jsonValues.setHeight(8);
-    assertEquals(5, jsonValues.getRows());
-    assertEquals(6, jsonValues.getColumns());
-    assertEquals(7, jsonValues.getWidth());
-    assertEquals(8, jsonValues.getHeight());
+    Assertions.assertEquals(5, jsonValues.getRows());
+    Assertions.assertEquals(6, jsonValues.getColumns());
+    Assertions.assertEquals(7, jsonValues.getWidth());
+    Assertions.assertEquals(8, jsonValues.getHeight());
   }
 
   @Test
   void testConstructor() {
     JsonValues jsonValues = new JsonValues(1, 2, 3, 4);
-    assertEquals(1, jsonValues.getRows());
-    assertEquals(2, jsonValues.getColumns());
-    assertEquals(3, jsonValues.getWidth());
-    assertEquals(4, jsonValues.getHeight());
+    Assertions.assertEquals(1, jsonValues.getRows());
+    Assertions.assertEquals(2, jsonValues.getColumns());
+    Assertions.assertEquals(3, jsonValues.getWidth());
+    Assertions.assertEquals(4, jsonValues.getHeight());
   }
 }
