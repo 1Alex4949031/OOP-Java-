@@ -1,5 +1,7 @@
 package ru.nsu.seleznev.a.task_2_3_1.controller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -8,8 +10,6 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * MenuController class. Presents the controller for Menu fxml.

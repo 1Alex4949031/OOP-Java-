@@ -1,5 +1,9 @@
 package ru.nsu.seleznev.a.task_2_3_1.controller;
 
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -7,10 +11,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import ru.nsu.seleznev.a.task_2_3_1.SnakeGame;
-
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 /**
  * RestartController class. Presents the controller for RestartScene fxml

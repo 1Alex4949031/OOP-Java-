@@ -1,5 +1,6 @@
 package ru.nsu.seleznev.a.task_2_3_1.view;
 
+
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 

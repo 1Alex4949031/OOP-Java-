@@ -1,11 +1,11 @@
 package ru.nsu.seleznev.a.task_2_3_1.model;
 
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  * EnemySnakeEater class that implements snake,

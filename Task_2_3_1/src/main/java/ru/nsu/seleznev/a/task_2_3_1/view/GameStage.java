@@ -1,5 +1,6 @@
 package ru.nsu.seleznev.a.task_2_3_1.view;
 
+
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;

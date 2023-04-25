@@ -1,5 +1,9 @@
 package ru.nsu.seleznev.a.task_2_3_1;
 
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -15,9 +19,6 @@ import ru.nsu.seleznev.a.task_2_3_1.model.*;
 import ru.nsu.seleznev.a.task_2_3_1.view.Background;
 import ru.nsu.seleznev.a.task_2_3_1.view.GameStage;
 import ru.nsu.seleznev.a.task_2_3_1.view.Score;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * SnakeGame class that implements the SnakeGame.

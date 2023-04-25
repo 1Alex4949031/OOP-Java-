@@ -1,8 +1,9 @@
 package ru.nsu.seleznev.a.task_2_3_1.model;
 
+
+import java.util.List;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import java.util.List;
 
 /**
  * Snake interface the implements main methods of the all snakes.
