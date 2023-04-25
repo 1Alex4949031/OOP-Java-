@@ -1,5 +1,5 @@
-module:ru.nsu.seleznev.a.SnakeGame
-ru.nsu.seleznev.a.task_2_3_1
-ru.nsu.seleznev.a.task_2_3_1.controller
-ru.nsu.seleznev.a.task_2_3_1.model
-ru.nsu.seleznev.a.task_2_3_1.view
+module:ru.nsu.seleznev.a
+ru.nsu.seleznev.a
+ru.nsu.seleznev.a.controller
+ru.nsu.seleznev.a.model
+ru.nsu.seleznev.a.view

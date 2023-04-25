@@ -1,1 +1,1 @@
-moduleSearchIndex = [{"l":"ru.nsu.seleznev.a.SnakeGame"}];updateSearchResults();
+moduleSearchIndex = [{"l":"ru.nsu.seleznev.a"}];updateSearchResults();
