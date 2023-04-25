@@ -65,10 +65,10 @@ public class SnakeGame extends Application {
     JsonValues values = gson.parse();
     ROWS = values.getRows();
     COLUMNS = values.getColumns();
-    int Width = values.getWidth();
-    int Height = values.getHeight();
-    SQUARE_SIZE = Width / ROWS;
-    game = new GameStage(primaryStage, score, snake, Width, Height);
+    int width = values.getWidth();
+    int height = values.getHeight();
+    SQUARE_SIZE = width / ROWS;
+    game = new GameStage(primaryStage, score, snake, width, height);
     // RestartScene
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/RestartScene.fxml"));
     restartController = new RestartController(this, timeline);
@@ -129,13 +129,11 @@ public class SnakeGame extends Application {
     });
     snake.drawSnake(gc);
     drawFood(gc);
-
     checkGameOver();
     checkIntersectionWithPlayer();
     checkIntersectionBetweenEnemies();
     enemySnakesCycle();
     playerSnakeCycle();
-
     if (snake.eatFood(food)) {
       score.plusOneToScore();
       generateFood();
