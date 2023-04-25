@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 

@@ -15,7 +15,6 @@ import ru.nsu.seleznev.a.task_2_3_1.model.*;
 import ru.nsu.seleznev.a.task_2_3_1.view.Background;
 import ru.nsu.seleznev.a.task_2_3_1.view.GameStage;
 import ru.nsu.seleznev.a.task_2_3_1.view.Score;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

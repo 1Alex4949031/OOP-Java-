@@ -2,7 +2,6 @@ package ru.nsu.seleznev.a.task_2_3_1.model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-
 import java.util.Objects;
 
 /**
