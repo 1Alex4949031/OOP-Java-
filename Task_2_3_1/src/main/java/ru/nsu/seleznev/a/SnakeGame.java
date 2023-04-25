@@ -68,6 +68,7 @@ public class SnakeGame extends Application {
     int width = values.getWidth();
     int height = values.getHeight();
     SQUARE_SIZE = width / ROWS;
+    // GameScene
     game = new GameStage(primaryStage, score, snake, width, height);
     // RestartScene
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/RestartScene.fxml"));

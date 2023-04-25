@@ -29,7 +29,7 @@ public abstract class SnakeDefault implements Snake {
   private final int size;
   private boolean isAlive = true;
   /**
-   * The next fields I made public for code beauty.
+   * The next fields I made are public for code beauty.
    * I know that sometimes it's bad, but it's really unused to make
    * getters and setters for directions and values from Json.
    */
