@@ -33,9 +33,9 @@ public abstract class SnakeDefault implements Snake {
   public static final int LEFT = 1;
   public static final int UP = 2;
   public static final int DOWN = 3;
-  public final int ROWS;
-  public final int COLUMNS;
-  public final int SQUARE_SIZE;
+  public static int ROWS;
+  public static int COLUMNS;
+  public static int SQUARE_SIZE;
 
   /**
    * SnakeDefault constructor.

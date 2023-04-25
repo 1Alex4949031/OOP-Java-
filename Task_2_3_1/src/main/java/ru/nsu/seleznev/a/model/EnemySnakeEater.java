@@ -24,7 +24,6 @@ public class EnemySnakeEater extends SnakeDefault {
       getClass().getResourceAsStream("/enemySnakeEater/snakeHeadUp.png")));
   private final Image headDown = new Image(Objects.requireNonNull(
       getClass().getResourceAsStream("/enemySnakeEater/snakeHeadDown.png")));
-  private List<Integer> directions = new ArrayList<>();
 
   /**
    * Enemy Snake Eater constructor.
@@ -48,14 +47,14 @@ public class EnemySnakeEater extends SnakeDefault {
    */
   @Override
   public void movingNext(Food food) {
-    int xFood = food.getX();
-    int yFood = food.getY();
-    directions = allowedDirections();
-    if (yFood - getSnakeHead().getY() > 0 && directions.contains(DOWN)) {
+    int foodX = food.getX();
+    int foodY = food.getY();
+    List<Integer> directions = allowedDirections();
+    if (foodY - getSnakeHead().getY() > 0 && directions.contains(DOWN)) {
       moveDown();
       return;
-    } else if (yFood - getSnakeHead().getY() == 0) {
-      if (xFood - getSnakeHead().getX() > 0 && directions.contains(RIGHT)) {
+    } else if (foodY - getSnakeHead().getY() == 0) {
+      if (foodX - getSnakeHead().getX() > 0 && directions.contains(RIGHT)) {
         moveRight();
         return;
       } else if (directions.contains(LEFT)) {
@@ -77,6 +76,8 @@ public class EnemySnakeEater extends SnakeDefault {
         case LEFT -> moveLeft();
         case UP -> moveUp();
         case DOWN -> moveDown();
+        default ->
+            throw new IllegalStateException("Check the directions of the EnemySnakeEater");
       }
     }
   }
@@ -91,16 +92,24 @@ public class EnemySnakeEater extends SnakeDefault {
     List<Integer> directions = new ArrayList<>();
     if (getSnakeBody().stream().noneMatch(i -> (i != getSnakeHead())
         && ((getSnakeHead().getX() + 1) % COLUMNS == i.getX())
-        && getSnakeHead().getY() == i.getY())) directions.add(RIGHT);
+        && getSnakeHead().getY() == i.getY())) {
+      directions.add(RIGHT);
+    }
     if (getSnakeBody().stream().noneMatch(i -> (i != getSnakeHead())
         && ((getSnakeHead().getX() - 1) % COLUMNS == i.getX())
-        && getSnakeHead().getY() == i.getY())) directions.add(LEFT);
+        && getSnakeHead().getY() == i.getY())) {
+      directions.add(LEFT);
+    }
     if (getSnakeBody().stream().noneMatch(i -> (i != getSnakeHead())
         && ((getSnakeHead().getY() - 1) % ROWS == i.getY())
-        && getSnakeHead().getX() == i.getX())) directions.add(UP);
+        && getSnakeHead().getX() == i.getX())) {
+      directions.add(UP);
+    }
     if (getSnakeBody().stream().noneMatch(i -> (i != getSnakeHead())
         && ((getSnakeHead().getY() + 1) % ROWS == i.getY())
-        && getSnakeHead().getX() == i.getX())) directions.add(DOWN);
+        && getSnakeHead().getX() == i.getX())) {
+      directions.add(DOWN);
+    }
     return directions;
   }
 
@@ -116,6 +125,8 @@ public class EnemySnakeEater extends SnakeDefault {
       case LEFT -> drawPoint(gc, headLeft, 0);
       case UP -> drawPoint(gc, headUp, 0);
       case DOWN -> drawPoint(gc, headDown, 0);
+      default ->
+          throw new IllegalStateException("Check the directions of the EnemySnakeEater");
     }
     for (int i = 1; i < getSnakeBody().size() - 1; i++) {
       drawPoint(gc, body, i);

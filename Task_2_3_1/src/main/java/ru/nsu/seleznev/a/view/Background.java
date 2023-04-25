@@ -8,9 +8,9 @@ import javafx.scene.paint.Color;
  * Background class for the SnakeGame field.
  */
 public class Background {
-  private final int ROWS;
-  private final int COLUMNS;
-  private final int SQUARE_SIZE;
+  private static int ROWS;
+  private static int COLUMNS;
+  private static int SQUARE_SIZE;
 
   /**
    * Background constructor.

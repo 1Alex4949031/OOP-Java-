@@ -33,7 +33,7 @@ public interface Snake {
 
   boolean getIsAlive();
 
-  void setIsAlive(boolean isALive);
+  void setIsAlive(boolean isAlive);
 
   void snakeInit();
 

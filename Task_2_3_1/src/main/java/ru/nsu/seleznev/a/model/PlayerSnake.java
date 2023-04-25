@@ -42,6 +42,8 @@ public class PlayerSnake extends SnakeDefault {
       case LEFT -> moveLeft();
       case UP -> moveUp();
       case DOWN -> moveDown();
+      default ->
+          throw new IllegalStateException("Check the direction of Player's Snake");
     }
   }
 
@@ -57,6 +59,8 @@ public class PlayerSnake extends SnakeDefault {
       case LEFT -> drawPoint(gc, headLeft, 0);
       case UP -> drawPoint(gc, headUp, 0);
       case DOWN -> drawPoint(gc, headDown, 0);
+      default ->
+          throw new IllegalStateException("Check the direction of Player's Snake");
     }
     for (int i = 1; i < getSnakeBody().size() - 1; i++) {
       drawPoint(gc, body, i);

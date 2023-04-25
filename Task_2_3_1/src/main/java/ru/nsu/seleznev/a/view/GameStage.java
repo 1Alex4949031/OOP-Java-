@@ -30,19 +30,19 @@ public class GameStage {
    * @param primaryStage primaryStage
    * @param score        score part
    * @param snake        Player snake used for handle buttons
-   * @param WIDTH        WIDTH of the field
-   * @param HEIGHT       HEIGHT of the filed
+   * @param width        WIDTH of the field
+   * @param height       HEIGHT of the filed
    */
-  public GameStage(Stage primaryStage, Score score, PlayerSnake snake, int WIDTH, int HEIGHT) {
+  public GameStage(Stage primaryStage, Score score, PlayerSnake snake, int width, int height) {
     primaryStage.setTitle("Snake");
     Group root = new Group();
-    Scene scene = new Scene(root);
     BorderPane pane = new BorderPane();
-    Canvas canvas = new Canvas(WIDTH, HEIGHT);
+    Canvas canvas = new Canvas(width, height);
     gc = canvas.getGraphicsContext2D();
     pane.setCenter(canvas);
     pane.setRight(score);
     root.getChildren().addAll(pane);
+    Scene scene = new Scene(root);
     scene.setOnKeyPressed(event -> {
       KeyCode code = event.getCode();
       if (code == KeyCode.RIGHT || code == KeyCode.D) {

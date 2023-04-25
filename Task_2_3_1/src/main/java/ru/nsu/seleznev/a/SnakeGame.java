@@ -15,7 +15,16 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import ru.nsu.seleznev.a.controller.MenuController;
 import ru.nsu.seleznev.a.controller.RestartController;
-import ru.nsu.seleznev.a.model.*;
+import ru.nsu.seleznev.a.model.EnemySnakeEater;
+import ru.nsu.seleznev.a.model.EnemySnakeRandom;
+import ru.nsu.seleznev.a.model.EnemySnakeStraightDown;
+import ru.nsu.seleznev.a.model.EnemySnakeStraightLeft;
+import ru.nsu.seleznev.a.model.EnemySnakeStraightRight;
+import ru.nsu.seleznev.a.model.EnemySnakeStraightUp;
+import ru.nsu.seleznev.a.model.Food;
+import ru.nsu.seleznev.a.model.PlayerSnake;
+import ru.nsu.seleznev.a.model.Point;
+import ru.nsu.seleznev.a.model.SnakeDefault;
 import ru.nsu.seleznev.a.view.Background;
 import ru.nsu.seleznev.a.view.GameStage;
 import ru.nsu.seleznev.a.view.Score;
@@ -25,19 +34,19 @@ import ru.nsu.seleznev.a.view.Score;
  * Main class of the game.
  */
 public class SnakeGame extends Application {
-  private final int WIDTH = 800;
-  private final int HEIGHT = 800;
-  private final int ROWS = 40;
-  private final int COLUMNS = 40;
+  private final static int WIDTH = 800;
+  private final static int HEIGHT = 800;
+  private final static int ROWS = 40;
+  private final static int COLUMNS = 40;
   private final int SQUARE_SIZE = WIDTH / ROWS;
   private final PlayerSnake snake = new PlayerSnake(ROWS, COLUMNS, SQUARE_SIZE, 5, 5, 3);
   private Background bg;
   private Stage gameOverStage;
-  private Stage menuStage;
   private final List<SnakeDefault> enemySnakes = new ArrayList<>();
   private final Score score = new Score();
   private GameStage game;
-  private final Timeline timeline = new Timeline(new KeyFrame(Duration.millis(70), event -> run(game.getGc())));
+  private final Timeline timeline = new Timeline(
+      new KeyFrame(Duration.millis(70), event -> run(game.getGc())));
   private final Food food = new Food();
   private RestartController restartController;
 
@@ -64,7 +73,7 @@ public class SnakeGame extends Application {
     menuController.setPrimaryStage(primaryStage);
     menuController.setTimeline(timeline);
     loaderMenu.setController(menuController);
-    menuStage = loaderMenu.load();
+    Stage menuStage = loaderMenu.load();
     menuStage.show();
 
     bg = new Background(ROWS, COLUMNS, SQUARE_SIZE);
@@ -86,7 +95,9 @@ public class SnakeGame extends Application {
     generateFood();
     bg.drawBackground(game.getGc());
     enemySnakes.forEach(i -> {
-      if (i.getIsAlive()) i.drawSnake(game.getGc());
+      if (i.getIsAlive()) {
+        i.drawSnake(game.getGc());
+      }
     });
     snake.drawSnake(game.getGc());
     drawFood(game.getGc());
@@ -159,8 +170,9 @@ public class SnakeGame extends Application {
    */
   private void checkGameOver() {
     enemySnakes.forEach(sn -> {
-      if (sn.getIsAlive() && sn.getSnakeBody().stream().anyMatch(point -> point.getY() == snake.getSnakeHead().getY()
-          && point.getX() == snake.getSnakeHead().getX())) {
+      if (sn.getIsAlive() && sn.getSnakeBody().stream().anyMatch(
+          point -> point.getY() == snake.getSnakeHead().getY()
+              && point.getX() == snake.getSnakeHead().getX())) {
         snake.setIsAlive(false);
       }
     });
@@ -177,7 +189,8 @@ public class SnakeGame extends Application {
           sni.setIsAlive(false);
           snj.setIsAlive(false);
         }
-        if (sni.getSnakeBody().stream().anyMatch(i -> i != sni.getSnakeHead() && i.getY() == snj.getSnakeHead().getY()
+        if (sni.getSnakeBody().stream().anyMatch(i -> i != sni.getSnakeHead()
+            && i.getY() == snj.getSnakeHead().getY()
             && i.getX() == snj.getSnakeHead().getX())) {
           snj.setIsAlive(false);
         }
@@ -186,7 +199,7 @@ public class SnakeGame extends Application {
   }
 
   /**
-   * Function that checks the intersection between enemies and Player's Snake
+   * Function that checks the intersection between enemies and Player's Snake.
    */
   private void checkIntersectionWithPlayer() {
     enemySnakes.forEach(sn -> {
@@ -256,9 +269,13 @@ public class SnakeGame extends Application {
    * @param gc GraphicsContext for Canvas
    */
   private void drawFood(GraphicsContext gc) {
-    gc.drawImage(food.getFoodImage(), food.getX() * SQUARE_SIZE, food.getY() * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+    gc.drawImage(food.getFoodImage(), food.getX() * SQUARE_SIZE,
+        food.getY() * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
   }
 
+  /**
+   * Function that adds enemies in the Game.
+   */
   private void addEnemySnakes() {
     enemySnakes.add(new EnemySnakeEater(ROWS, COLUMNS, SQUARE_SIZE, 25, 25, 3));
     enemySnakes.add(new EnemySnakeRandom(ROWS, COLUMNS, SQUARE_SIZE, 31, 31, 3));
