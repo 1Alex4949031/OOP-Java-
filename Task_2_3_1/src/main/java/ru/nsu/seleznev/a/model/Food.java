@@ -12,10 +12,10 @@ import lombok.Setter;
 public class Food {
   @Getter
   @Setter
-  private int x;
+  private int foodX;
   @Getter
   @Setter
-  private int y;
+  private int foodY;
   @Getter
   @Setter
   private Image foodImage;

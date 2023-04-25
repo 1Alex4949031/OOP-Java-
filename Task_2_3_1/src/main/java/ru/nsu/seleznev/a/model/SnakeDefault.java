@@ -24,8 +24,8 @@ public abstract class SnakeDefault implements Snake {
   @Setter
   private Point snakeHead;
 
-  private final int x;
-  private final int y;
+  private final int initX;
+  private final int initY;
   private final int size;
   private boolean isAlive = true;
 
@@ -43,16 +43,16 @@ public abstract class SnakeDefault implements Snake {
    * @param rows       ROWS
    * @param columns    COLUMNS
    * @param squareSize SQUARE SIZE
-   * @param x          x-coordinate for initialization
-   * @param y          y-coordinate for initialization
+   * @param initX      x-coordinate for initialization
+   * @param initY      y-coordinate for initialization
    * @param size       size of initialization
    */
-  public SnakeDefault(int rows, int columns, int squareSize, int x, int y, int size) {
+  public SnakeDefault(int rows, int columns, int squareSize, int initX, int initY, int size) {
     ROWS = rows;
     COLUMNS = columns;
     SQUARE_SIZE = squareSize;
-    this.x = x;
-    this.y = y;
+    this.initX = initX;
+    this.initY = initY;
     this.size = size;
   }
 
@@ -86,22 +86,22 @@ public abstract class SnakeDefault implements Snake {
   public void drawSnake(GraphicsContext gc) {
     gc.setFill(Color.web("4674E9"));
     gc.fillRoundRect(
-        snakeHead.getX() * SQUARE_SIZE,
-        snakeHead.getY() * SQUARE_SIZE,
+        snakeHead.getPointX() * SQUARE_SIZE,
+        snakeHead.getPointY() * SQUARE_SIZE,
         SQUARE_SIZE - 1, SQUARE_SIZE - 1,
         35, 35);
     gc.setFill(Color.web("FFFFFF"));
     for (int i = 1; i < snakeBody.size() - 1; i++) {
       gc.fillRoundRect(
-          snakeBody.get(i).getX() * SQUARE_SIZE,
-          snakeBody.get(i).getY() * SQUARE_SIZE,
+          snakeBody.get(i).getPointX() * SQUARE_SIZE,
+          snakeBody.get(i).getPointY() * SQUARE_SIZE,
           SQUARE_SIZE - 1, SQUARE_SIZE - 1,
           20, 20);
     }
     gc.setFill(Color.web("4674E9"));
     gc.fillRoundRect(
-        snakeBody.get(snakeBody.size() - 1).getX() * SQUARE_SIZE,
-        snakeBody.get(snakeBody.size() - 1).getY() * SQUARE_SIZE,
+        snakeBody.get(snakeBody.size() - 1).getPointX() * SQUARE_SIZE,
+        snakeBody.get(snakeBody.size() - 1).getPointY() * SQUARE_SIZE,
         SQUARE_SIZE - 1, SQUARE_SIZE - 1,
         35, 35);
 
@@ -116,7 +116,7 @@ public abstract class SnakeDefault implements Snake {
       throw new IllegalArgumentException("Check the initial size of the Snake!");
     }
     for (int i = 0; i < size; i++) {
-      snakeBody.add(new Point(x, y));
+      snakeBody.add(new Point(initX, initY));
     }
     snakeHead = snakeBody.get(0);
   }
@@ -127,17 +127,17 @@ public abstract class SnakeDefault implements Snake {
   @Override
   public void checkPosition() {
     for (Point i : snakeBody) {
-      if (i.getX() >= COLUMNS) {
-        i.setX(0);
+      if (i.getPointX() >= COLUMNS) {
+        i.setPointX(0);
       }
-      if (i.getX() < 0) {
-        i.setX(COLUMNS - 1);
+      if (i.getPointX() < 0) {
+        i.setPointX(COLUMNS - 1);
       }
-      if (i.getY() >= ROWS) {
-        i.setY(0);
+      if (i.getPointY() >= ROWS) {
+        i.setPointY(0);
       }
-      if (i.getY() < 0) {
-        i.setY(ROWS - 1);
+      if (i.getPointY() < 0) {
+        i.setPointY(ROWS - 1);
       }
     }
   }
@@ -148,8 +148,8 @@ public abstract class SnakeDefault implements Snake {
   @Override
   public void movingParts() {
     for (int i = snakeBody.size() - 1; i >= 1; i--) {
-      snakeBody.get(i).setX(snakeBody.get(i - 1).getX());
-      snakeBody.get(i).setY(snakeBody.get(i - 1).getY());
+      snakeBody.get(i).setPointX(snakeBody.get(i - 1).getPointX());
+      snakeBody.get(i).setPointY(snakeBody.get(i - 1).getPointY());
     }
   }
 
@@ -160,7 +160,7 @@ public abstract class SnakeDefault implements Snake {
   @Override
   public void moveRight() {
     currentDirection = 0;
-    snakeHead.setX(snakeHead.getX() + 1);
+    snakeHead.setPointX(snakeHead.getPointX() + 1);
   }
 
   /**
@@ -170,7 +170,7 @@ public abstract class SnakeDefault implements Snake {
   @Override
   public void moveLeft() {
     currentDirection = 1;
-    snakeHead.setX(snakeHead.getX() - 1);
+    snakeHead.setPointX(snakeHead.getPointX() - 1);
   }
 
   /**
@@ -180,7 +180,7 @@ public abstract class SnakeDefault implements Snake {
   @Override
   public void moveUp() {
     currentDirection = 2;
-    snakeHead.setY(snakeHead.getY() - 1);
+    snakeHead.setPointY(snakeHead.getPointY() - 1);
   }
 
   /**
@@ -191,7 +191,7 @@ public abstract class SnakeDefault implements Snake {
   @Override
   public void moveDown() {
     currentDirection = 3;
-    snakeHead.setY(snakeHead.getY() + 1);
+    snakeHead.setPointY(snakeHead.getPointY() + 1);
   }
 
   /**
@@ -202,7 +202,8 @@ public abstract class SnakeDefault implements Snake {
    */
   @Override
   public boolean eatFood(Food food) {
-    if (snakeHead.getX() == food.getX() && snakeHead.getY() == food.getY()) {
+    if (snakeHead.getPointX() == food.getFoodX()
+        && snakeHead.getPointY() == food.getFoodY()) {
       snakeBody.add(new Point(-1, -1));
       return true;
     }
@@ -238,8 +239,8 @@ public abstract class SnakeDefault implements Snake {
    */
   @Override
   public void drawPoint(GraphicsContext gc, Image image, int index) {
-    gc.drawImage(image, getSnakeBody().get(index).getX() * SQUARE_SIZE,
-        getSnakeBody().get(index).getY() * SQUARE_SIZE,
+    gc.drawImage(image, getSnakeBody().get(index).getPointX() * SQUARE_SIZE,
+        getSnakeBody().get(index).getPointY() * SQUARE_SIZE,
         SQUARE_SIZE, SQUARE_SIZE);
   }
 

@@ -35,12 +35,12 @@ public class GameStage {
    */
   public GameStage(Stage primaryStage, Score score, PlayerSnake snake, int width, int height) {
     primaryStage.setTitle("Snake");
-    Group root = new Group();
-    BorderPane pane = new BorderPane();
     Canvas canvas = new Canvas(width, height);
     gc = canvas.getGraphicsContext2D();
+    BorderPane pane = new BorderPane();
     pane.setCenter(canvas);
     pane.setRight(score);
+    Group root = new Group();
     root.getChildren().addAll(pane);
     Scene scene = new Scene(root);
     scene.setOnKeyPressed(event -> {

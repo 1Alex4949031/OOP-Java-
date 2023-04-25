@@ -60,8 +60,7 @@ public class EnemySnakeRandom extends SnakeDefault {
       case LEFT -> moveLeft();
       case UP -> moveUp();
       case DOWN -> moveDown();
-      default ->
-          throw new IllegalStateException("Check the directions of the EnemySnakeRandom");
+      default -> throw new IllegalStateException("Check the directions of the EnemySnakeRandom");
     }
     directions = allowedDirections();
   }
@@ -74,23 +73,23 @@ public class EnemySnakeRandom extends SnakeDefault {
   public List<Integer> allowedDirections() {
     List<Integer> directions = new ArrayList<>();
     if (getSnakeBody().stream().noneMatch(i -> (i != getSnakeHead())
-        && ((getSnakeHead().getX() + 1) % COLUMNS == i.getX())
-        && getSnakeHead().getY() == i.getY())) {
+        && ((getSnakeHead().getPointX() + 1) % COLUMNS == i.getPointX())
+        && getSnakeHead().getPointY() == i.getPointY())) {
       directions.add(RIGHT);
     }
     if (getSnakeBody().stream().noneMatch(i -> (i != getSnakeHead())
-        && ((getSnakeHead().getX() - 1) % COLUMNS == i.getX())
-        && getSnakeHead().getY() == i.getY())) {
+        && ((getSnakeHead().getPointX() - 1) % COLUMNS == i.getPointX())
+        && getSnakeHead().getPointY() == i.getPointY())) {
       directions.add(LEFT);
     }
     if (getSnakeBody().stream().noneMatch(i -> (i != getSnakeHead())
-        && ((getSnakeHead().getY() - 1) % ROWS == i.getY())
-        && getSnakeHead().getX() == i.getX())) {
+        && ((getSnakeHead().getPointY() - 1) % ROWS == i.getPointY())
+        && getSnakeHead().getPointX() == i.getPointX())) {
       directions.add(UP);
     }
     if (getSnakeBody().stream().noneMatch(i -> (i != getSnakeHead())
-        && ((getSnakeHead().getY() + 1) % ROWS == i.getY())
-        && getSnakeHead().getX() == i.getX())) {
+        && ((getSnakeHead().getPointY() + 1) % ROWS == i.getPointY())
+        && getSnakeHead().getPointX() == i.getPointX())) {
       directions.add(DOWN);
     }
     return directions;
@@ -108,8 +107,7 @@ public class EnemySnakeRandom extends SnakeDefault {
       case LEFT -> drawPoint(gc, headLeft, 0);
       case UP -> drawPoint(gc, headUp, 0);
       case DOWN -> drawPoint(gc, headDown, 0);
-      default ->
-          throw new IllegalStateException("Check the directions of the EnemySnakeRandom");
+      default -> throw new IllegalStateException("Check the directions of the EnemySnakeRandom");
     }
     for (int i = 1; i < getSnakeBody().size() - 1; i++) {
       drawPoint(gc, body, i);

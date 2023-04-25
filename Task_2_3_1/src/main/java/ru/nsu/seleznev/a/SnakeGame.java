@@ -34,11 +34,11 @@ import ru.nsu.seleznev.a.view.Score;
  * Main class of the game.
  */
 public class SnakeGame extends Application {
-  private final static int WIDTH = 800;
-  private final static int HEIGHT = 800;
-  private final static int ROWS = 40;
-  private final static int COLUMNS = 40;
-  private final int SQUARE_SIZE = WIDTH / ROWS;
+  private static final int WIDTH = 800;
+  private static final int HEIGHT = 800;
+  private static final int ROWS = 40;
+  private static final int COLUMNS = 40;
+  private static final int SQUARE_SIZE = WIDTH / ROWS;
   private final PlayerSnake snake = new PlayerSnake(ROWS, COLUMNS, SQUARE_SIZE, 5, 5, 3);
   private Background bg;
   private Stage gameOverStage;
@@ -92,6 +92,7 @@ public class SnakeGame extends Application {
     enemySnakes.forEach(SnakeDefault::restartSnake);
     enemySnakes.forEach(SnakeDefault::snakeInit);
     snake.snakeInit();
+    snake.moveRight();
     generateFood();
     bg.drawBackground(game.getGc());
     enemySnakes.forEach(i -> {
@@ -171,8 +172,8 @@ public class SnakeGame extends Application {
   private void checkGameOver() {
     enemySnakes.forEach(sn -> {
       if (sn.getIsAlive() && sn.getSnakeBody().stream().anyMatch(
-          point -> point.getY() == snake.getSnakeHead().getY()
-              && point.getX() == snake.getSnakeHead().getX())) {
+          point -> point.getPointY() == snake.getSnakeHead().getPointY()
+              && point.getPointX() == snake.getSnakeHead().getPointX())) {
         snake.setIsAlive(false);
       }
     });
@@ -184,14 +185,14 @@ public class SnakeGame extends Application {
   private void checkIntersectionBetweenEnemies() {
     enemySnakes.forEach(sni -> enemySnakes.forEach(snj -> {
       if (sni != snj && sni.getIsAlive() && snj.getIsAlive()) {
-        if (sni.getSnakeHead().getY() == snj.getSnakeHead().getY()
-            && sni.getSnakeHead().getX() == snj.getSnakeHead().getX()) {
+        if (sni.getSnakeHead().getPointY() == snj.getSnakeHead().getPointY()
+            && sni.getSnakeHead().getPointX() == snj.getSnakeHead().getPointX()) {
           sni.setIsAlive(false);
           snj.setIsAlive(false);
         }
         if (sni.getSnakeBody().stream().anyMatch(i -> i != sni.getSnakeHead()
-            && i.getY() == snj.getSnakeHead().getY()
-            && i.getX() == snj.getSnakeHead().getX())) {
+            && i.getPointY() == snj.getSnakeHead().getPointY()
+            && i.getPointX() == snj.getSnakeHead().getPointX())) {
           snj.setIsAlive(false);
         }
       }
@@ -204,8 +205,8 @@ public class SnakeGame extends Application {
   private void checkIntersectionWithPlayer() {
     enemySnakes.forEach(sn -> {
       if (sn.getIsAlive() && snake.getSnakeBody().stream().anyMatch(i -> i != snake.getSnakeHead()
-          && i.getY() == sn.getSnakeHead().getY()
-          && i.getX() == sn.getSnakeHead().getX())) {
+          && i.getPointY() == sn.getSnakeHead().getPointY()
+          && i.getPointX() == sn.getSnakeHead().getPointX())) {
         sn.setIsAlive(false);
       }
     });
@@ -216,8 +217,8 @@ public class SnakeGame extends Application {
    */
   private void checkCollision() {
     if (snake.getSnakeBody().stream().anyMatch(i -> i != snake.getSnakeHead()
-        && snake.getSnakeHead().getX() == i.getX()
-        && snake.getSnakeHead().getY() == i.getY())) {
+        && snake.getSnakeHead().getPointX() == i.getPointX()
+        && snake.getSnakeHead().getPointY() == i.getPointY())) {
       snake.setIsAlive(false);
     }
   }
@@ -235,7 +236,7 @@ public class SnakeGame extends Application {
       randomX = (int) (Math.random() * COLUMNS);
       randomY = (int) (Math.random() * ROWS);
       for (Point i : snake.getSnakeBody()) {
-        if (i.getY() == randomY && i.getX() == randomX) {
+        if (i.getPointY() == randomY && i.getPointX() == randomX) {
           break;
         } else {
           count += 1;
@@ -244,7 +245,7 @@ public class SnakeGame extends Application {
       for (var sn : enemySnakes) {
         if (sn.getIsAlive()) {
           for (Point i : sn.getSnakeBody()) {
-            if (i.getY() == randomY && i.getX() == randomX) {
+            if (i.getPointY() == randomY && i.getPointX() == randomX) {
               break;
             } else {
               count += 1;
@@ -259,8 +260,8 @@ public class SnakeGame extends Application {
     Image image = new Image(Objects.requireNonNull(
         getClass().getResourceAsStream(food.getRandomFood())));
     food.setFoodImage(image);
-    food.setX(randomX);
-    food.setY(randomY);
+    food.setFoodX(randomX);
+    food.setFoodY(randomY);
   }
 
   /**
@@ -269,8 +270,8 @@ public class SnakeGame extends Application {
    * @param gc GraphicsContext for Canvas
    */
   private void drawFood(GraphicsContext gc) {
-    gc.drawImage(food.getFoodImage(), food.getX() * SQUARE_SIZE,
-        food.getY() * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
+    gc.drawImage(food.getFoodImage(), food.getFoodX() * SQUARE_SIZE,
+        food.getFoodY() * SQUARE_SIZE, SQUARE_SIZE, SQUARE_SIZE);
   }
 
   /**
