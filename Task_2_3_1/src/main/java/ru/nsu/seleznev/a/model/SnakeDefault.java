@@ -28,7 +28,11 @@ public abstract class SnakeDefault implements Snake {
   private final int initY;
   private final int size;
   private boolean isAlive = true;
-
+  /**
+   * The next fields I made public for code beauty.
+   * I know that sometimes it's bad, but it's really unused to make
+   * getters and setters for directions and values from Json.
+   */
   public static final int RIGHT = 0;
   public static final int LEFT = 1;
   public static final int UP = 2;

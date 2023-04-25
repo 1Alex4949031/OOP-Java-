@@ -15,6 +15,8 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import ru.nsu.seleznev.a.controller.MenuController;
 import ru.nsu.seleznev.a.controller.RestartController;
+import ru.nsu.seleznev.a.jsonreader.GsonParser;
+import ru.nsu.seleznev.a.jsonreader.JsonValues;
 import ru.nsu.seleznev.a.model.EnemySnakeEater;
 import ru.nsu.seleznev.a.model.EnemySnakeRandom;
 import ru.nsu.seleznev.a.model.EnemySnakeStraightDown;
@@ -34,11 +36,9 @@ import ru.nsu.seleznev.a.view.Score;
  * Main class of the game.
  */
 public class SnakeGame extends Application {
-  private static final int WIDTH = 800;
-  private static final int HEIGHT = 800;
-  private static final int ROWS = 40;
-  private static final int COLUMNS = 40;
-  private static final int SQUARE_SIZE = WIDTH / ROWS;
+  private static int ROWS;
+  private static int COLUMNS;
+  private static int SQUARE_SIZE;
   private final PlayerSnake snake = new PlayerSnake(ROWS, COLUMNS, SQUARE_SIZE, 5, 5, 3);
   private Background bg;
   private Stage gameOverStage;
@@ -61,6 +61,14 @@ public class SnakeGame extends Application {
    */
   @Override
   public void start(Stage primaryStage) throws Exception {
+    GsonParser gson = new GsonParser();
+    JsonValues values = gson.parse();
+    int WIDTH = values.getWidth();
+    int HEIGHT = values.getHeight();
+    ROWS = values.getRows();
+    COLUMNS = values.getColumns();
+    SQUARE_SIZE = WIDTH / ROWS;
+
     game = new GameStage(primaryStage, score, snake, WIDTH, HEIGHT);
 
     FXMLLoader loader = new FXMLLoader(getClass().getResource("/RestartScene.fxml"));
