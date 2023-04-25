@@ -16,7 +16,7 @@ ext {
     junitVersion = '5.9.2'
 }
 
-sourceCompatibility = '16'
+sourceCompatibility = '14'
 targetCompatibility = '16'
 
 tasks.withType(JavaCompile) {
