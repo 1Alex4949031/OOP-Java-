@@ -21,6 +21,7 @@ tasks.withType(JavaCompile) {
 }
 
 application {
+    mainClass = 'ru.nsu.seleznev.a.task_2_3_1.SnakeGame'
     mainModule = 'ru.nsu.seleznev.a.task_2_3_1'
 }
 
