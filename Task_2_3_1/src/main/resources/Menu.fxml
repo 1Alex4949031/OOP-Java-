@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.stage.Stage?>
+
+<Stage xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:id="menuStage"
+       width="620" height="580">
+    <scene>
+        <Scene>
+            <AnchorPane prefHeight="531.0" prefWidth="588.0" style="-fx-background-color: #A2D149;">
+                <ImageView fitHeight="217.0" fitWidth="148.0" layoutX="439.0" layoutY="164.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@menuModels/snakePurple.png"/>
+                </ImageView>
+                <ImageView fitHeight="144.0" fitWidth="206.0" layoutX="368.0" layoutY="381.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@menuModels/snakeYellow.png"/>
+                </ImageView>
+                <ImageView fitHeight="134.0" fitWidth="142.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@menuModels/snakePink.png"/>
+                </ImageView>
+                <ImageView fitHeight="261.0" fitWidth="71.0" layoutX="17.0" layoutY="256.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@menuModels/snakeGreen.png"/>
+                </ImageView>
+                <ImageView fitHeight="368.0" fitWidth="193.0" layoutX="82.0" layoutY="323.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@menuModels/snakeOrange.png"/>
+                </ImageView>
+                <ImageView fitHeight="278.0" fitWidth="215.0" layoutX="294.0" layoutY="238.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@menuModels/snakeBlue.png"/>
+                </ImageView>
+                <ImageView fitHeight="212.0" fitWidth="204.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@menuModels/snakeOrange90.png"/>
+                </ImageView>
+                <ImageView fitHeight="197.0" fitWidth="131.0" layoutX="88.0" layoutY="252.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <Image url="@menuModels/snakePurple.png"/>
+                </ImageView>
+                <Button layoutX="263.0" layoutY="148.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="114.0"
+                        style="-fx-background-color: #89B23B;" text="Start" fx:id="startButton">
+                    <font>
+                        <Font name="Cooper Black" size="25.0"/>
+                    </font>
+                    <textFill>
+                        <LinearGradient endY="0.8825757521571536" startX="0.30397727272727276">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color red="0.03529411926865578" green="0.5568627715110779"
+                                               blue="0.019607843831181526"/>
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.023859649896621704" green="0.17894737422466278"/>
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </textFill>
+                </Button>
+                <Button layoutX="263.0" layoutY="218.0" mnemonicParsing="false" prefHeight="54.0" prefWidth="114.0"
+                        style="-fx-background-color: #89B23B;" text="Exit" fx:id="exitButton">
+                    <font>
+                        <Font name="Cooper Black" size="25.0"/>
+                    </font>
+                    <textFill>
+                        <LinearGradient endY="0.8825757521571536" startX="0.30397727272727276">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color red="0.03529411926865578" green="0.5568627715110779"
+                                               blue="0.019607843831181526"/>
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.023859649896621704" green="0.17894737422466278"/>
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </textFill>
+                </Button>
+                <Text layoutX="247.0" layoutY="98.0" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="SnakeGame" textAlignment="JUSTIFY" wrappingWidth="326.1367492675781">
+                    <font>
+                        <Font name="Cooper Black" size="50.0"/>
+                    </font>
+                    <fill>
+                        <LinearGradient endY="0.8825757521571536" startX="0.30397727272727276">
+                            <stops>
+                                <Stop>
+                                    <color>
+                                        <Color red="0.03529411926865578" green="0.5568627715110779"
+                                               blue="0.019607843831181526"/>
+                                    </color>
+                                </Stop>
+                                <Stop offset="1.0">
+                                    <color>
+                                        <Color red="0.023859649896621704" green="0.17894737422466278"/>
+                                    </color>
+                                </Stop>
+                            </stops>
+                        </LinearGradient>
+                    </fill>
+                    <effect>
+                        <InnerShadow>
+                            <color>
+                                <Color red="0.03529411926865578" green="0.5568627715110779"
+                                       blue="0.019607843831181526"/>
+                            </color>
+                        </InnerShadow>
+                    </effect>
+                </Text>
+            </AnchorPane>
+        </Scene>
+    </scene>
+</Stage>
