@@ -17,16 +17,7 @@ import ru.nsu.seleznev.a.controller.MenuController;
 import ru.nsu.seleznev.a.controller.RestartController;
 import ru.nsu.seleznev.a.jsonreader.GsonParser;
 import ru.nsu.seleznev.a.jsonreader.JsonValues;
-import ru.nsu.seleznev.a.model.EnemySnakeEater;
-import ru.nsu.seleznev.a.model.EnemySnakeRandom;
-import ru.nsu.seleznev.a.model.EnemySnakeStraightDown;
-import ru.nsu.seleznev.a.model.EnemySnakeStraightLeft;
-import ru.nsu.seleznev.a.model.EnemySnakeStraightRight;
-import ru.nsu.seleznev.a.model.EnemySnakeStraightUp;
-import ru.nsu.seleznev.a.model.Food;
-import ru.nsu.seleznev.a.model.PlayerSnake;
-import ru.nsu.seleznev.a.model.Point;
-import ru.nsu.seleznev.a.model.SnakeDefault;
+import ru.nsu.seleznev.a.model.*;
 import ru.nsu.seleznev.a.view.Background;
 import ru.nsu.seleznev.a.view.GameStage;
 import ru.nsu.seleznev.a.view.Score;
@@ -39,7 +30,7 @@ public class SnakeGame extends Application {
   private static int ROWS;
   private static int COLUMNS;
   private static int SQUARE_SIZE;
-  private final PlayerSnake snake = new PlayerSnake(ROWS, COLUMNS, SQUARE_SIZE, 5, 5, 3);
+  private PlayerSnake snake;
   private Background bg;
   private Stage gameOverStage;
   private final List<SnakeDefault> enemySnakes = new ArrayList<>();
@@ -68,6 +59,8 @@ public class SnakeGame extends Application {
     int width = values.getWidth();
     int height = values.getHeight();
     SQUARE_SIZE = width / ROWS;
+    // Player's Snake
+    snake = new PlayerSnake(ROWS, COLUMNS, SQUARE_SIZE, 5, 5, 3);
     // GameScene
     game = new GameStage(primaryStage, score, snake, width, height);
     // RestartScene
@@ -231,41 +224,42 @@ public class SnakeGame extends Application {
    * Function that generates the food in the field.
    */
   private void generateFood() {
-    int randomX = 0;
-    int randomY = 0;
     int count = 0;
+    int appropriateX = -1;
+    int appropriateY = -1;
     int totalSnakesSize = getTotalSnakesSizes();
     while (count != snake.getSnakeSize() + totalSnakesSize) {
       count = 0;
-      randomX = (int) (Math.random() * COLUMNS);
-      randomY = (int) (Math.random() * ROWS);
-      for (Point i : snake.getSnakeBody()) {
-        if (i.getPointY() == randomY && i.getPointX() == randomX) {
-          break;
-        } else {
-          count += 1;
-        }
-      }
-      for (var sn : enemySnakes) {
-        if (sn.getIsAlive()) {
-          for (Point i : sn.getSnakeBody()) {
-            if (i.getPointY() == randomY && i.getPointX() == randomX) {
-              break;
-            } else {
-              count += 1;
-            }
-          }
-        } else {
-          count += sn.getSnakeSize();
-        }
-      }
+      final var randomX = (int) (Math.random() * COLUMNS);
+      final var randomY = (int) (Math.random() * ROWS);
+      count += getUnsuitablePositionCount(snake, randomX, randomY) + enemySnakes.stream()
+          .map(s -> s.getIsAlive() ? getUnsuitablePositionCount(s, randomX, randomY) : s.getSnakeSize())
+          .reduce(0, Integer::sum);
+
+      appropriateX = randomX;
+      appropriateY = randomY;
     }
 
     Image image = new Image(Objects.requireNonNull(
         getClass().getResourceAsStream(food.getRandomFood())));
     food.setFoodImage(image);
-    food.setFoodX(randomX);
-    food.setFoodY(randomY);
+    food.setFoodX(appropriateX);
+    food.setFoodY(appropriateY);
+  }
+
+  /**
+   * Function that checks that the food with x-coordinate
+   * and y-coordinate won't be generated in the snake body.
+   *
+   * @param snake   snake
+   * @param randomX x-coordinate in the field
+   * @param randomY y-coordinate in the field
+   * @return number of points where food can't be generated
+   */
+  private int getUnsuitablePositionCount(SnakeDefault snake, int randomX, int randomY) {
+    return (int) snake.getSnakeBody().stream()
+        .filter(p -> !(p.getPointY() == randomY && p.getPointX() == randomX))
+        .count();
   }
 
   /**

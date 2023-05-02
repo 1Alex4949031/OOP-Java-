@@ -47,7 +47,8 @@ public class GsonParser {
       throw new RuntimeException("Exception connected with reading Json file!");
     }
     if (values == null) {
-      throw new RuntimeException("Json file is incorrect!");
+      throw new IllegalStateException(
+          "Check the Json file. Somethings goes wrong with Json values");
     }
     return values;
   }
