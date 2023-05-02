@@ -17,7 +17,15 @@ import ru.nsu.seleznev.a.controller.MenuController;
 import ru.nsu.seleznev.a.controller.RestartController;
 import ru.nsu.seleznev.a.jsonreader.GsonParser;
 import ru.nsu.seleznev.a.jsonreader.JsonValues;
-import ru.nsu.seleznev.a.model.*;
+import ru.nsu.seleznev.a.model.EnemySnakeEater;
+import ru.nsu.seleznev.a.model.EnemySnakeRandom;
+import ru.nsu.seleznev.a.model.EnemySnakeStraightDown;
+import ru.nsu.seleznev.a.model.EnemySnakeStraightLeft;
+import ru.nsu.seleznev.a.model.EnemySnakeStraightRight;
+import ru.nsu.seleznev.a.model.EnemySnakeStraightUp;
+import ru.nsu.seleznev.a.model.Food;
+import ru.nsu.seleznev.a.model.PlayerSnake;
+import ru.nsu.seleznev.a.model.SnakeDefault;
 import ru.nsu.seleznev.a.view.Background;
 import ru.nsu.seleznev.a.view.GameStage;
 import ru.nsu.seleznev.a.view.Score;
@@ -233,7 +241,9 @@ public class SnakeGame extends Application {
       final var randomX = (int) (Math.random() * COLUMNS);
       final var randomY = (int) (Math.random() * ROWS);
       count += getUnsuitablePositionCount(snake, randomX, randomY) + enemySnakes.stream()
-          .map(s -> s.getIsAlive() ? getUnsuitablePositionCount(s, randomX, randomY) : s.getSnakeSize())
+          .map(s -> s.getIsAlive()
+              ? getUnsuitablePositionCount(s, randomX, randomY)
+              : s.getSnakeSize())
           .reduce(0, Integer::sum);
 
       appropriateX = randomX;
