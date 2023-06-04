@@ -1,2 +1,10 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        google()
+        gradlePluginPortal()
+        gradle
+    }
+}
 rootProject.name = 'Task_2_4_1'
 

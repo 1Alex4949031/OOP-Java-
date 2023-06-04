@@ -32,10 +32,29 @@ public class CommandLineOptions {
   public static Options createOptions() {
     Options options = new Options();
     options.addOption(createOption("makeConfig", """
-        Make configuration file""", 0));
+        Make configuration file.""", 0));
     options.addOption(createOption("printConfig", """
-        Print student's configuration file""", 1));
-    // Дополнить...
+        Print student's configuration file.""", 1));
+    options.addOption(createOption("cloneRepo", """
+        Cloning student's repository from Github.""", 1));
+    options.addOption(createOption("test", """
+        Building tests for work.""", 2));
+    options.addOption(createOption("codeStyle", """
+        Check Java Code Style for work.""", 2));
+    options.addOption(createOption("documentation", """
+        Generate java documentation.""", 2));
+    options.addOption(createOption("jacocoTestReport", """
+        Generate jacoco test report for task.""", 2));
+    options.addOption(createOption("generateHtmlReport", """
+        Build task and generate HTML report""", 2));
+    options.addOption(createOption("buildLab", """
+        Build Html report for task""", 2));
+    options.addOption(createOption("buildAll", """
+        Build Html report for group""", 1));
+    options.addOption(createOption("attendance", """
+        Generate attendance report for student""", 1));
+    options.addOption(createOption("attendanceAll", """
+        Generate attendance report for all students in the group""", 1));
     return options;
   }
 
