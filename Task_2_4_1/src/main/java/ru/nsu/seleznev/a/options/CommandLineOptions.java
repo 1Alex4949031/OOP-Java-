@@ -65,6 +65,6 @@ public class CommandLineOptions {
    */
   public static void showHelp(Options options) {
     HelpFormatter formatter = new HelpFormatter();
-    formatter.printHelp("Language ___ v1.0", options);
+    formatter.printHelp("Own Gradle v1.0", options);
   }
 }

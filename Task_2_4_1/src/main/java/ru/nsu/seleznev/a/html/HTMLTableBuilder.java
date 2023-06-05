@@ -28,6 +28,12 @@ public class HTMLTableBuilder {
   public static String COLUMN_END = "</td>";
 
 
+  /**
+   * Html table builder constructor.
+   *
+   * @param header header
+   * @param border border
+   */
   public HTMLTableBuilder(String header, boolean border) {
     if (header != null) {
       table.append("<b>");
@@ -41,6 +47,11 @@ public class HTMLTableBuilder {
   }
 
 
+  /**
+   * Function that adds table headers.
+   *
+   * @param values list with values
+   */
   public void addTableHeader(List<String> values) {
     int lastIndex = table.lastIndexOf(TABLE_END);
     if (lastIndex > 0) {
@@ -56,6 +67,11 @@ public class HTMLTableBuilder {
     }
   }
 
+  /**
+   * Function that adds table headers.
+   *
+   * @param values string values
+   */
   public void addTableHeader(String... values) {
     int lastIndex = table.lastIndexOf(TABLE_END);
     if (lastIndex > 0) {
@@ -72,6 +88,11 @@ public class HTMLTableBuilder {
   }
 
 
+  /**
+   * Function that adds row values.
+   *
+   * @param values list with values
+   */
   public void addRowValues(List<String> values) {
     int lastIndex = table.lastIndexOf(ROW_END);
     if (lastIndex > 0) {
@@ -88,6 +109,11 @@ public class HTMLTableBuilder {
     }
   }
 
+  /**
+   * Function that adds row values.
+   *
+   * @param values string values
+   */
   public void addRowValues(String... values) {
     int lastIndex = table.lastIndexOf(ROW_END);
     if (lastIndex > 0) {
@@ -105,6 +131,11 @@ public class HTMLTableBuilder {
   }
 
 
+  /**
+   * Function that build html table.
+   *
+   * @return string html table
+   */
   public String build() {
     return table.toString();
   }

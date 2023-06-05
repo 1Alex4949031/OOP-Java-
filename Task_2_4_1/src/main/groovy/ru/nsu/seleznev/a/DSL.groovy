@@ -1,12 +1,6 @@
 package ru.nsu.seleznev.a
 
-import ru.nsu.seleznev.a.model.GivenTasks
-import ru.nsu.seleznev.a.model.Group
-import ru.nsu.seleznev.a.model.Lesson
-import ru.nsu.seleznev.a.model.Lessons
-import ru.nsu.seleznev.a.model.Marks
-import ru.nsu.seleznev.a.model.Student
-import ru.nsu.seleznev.a.model.Tasks
+import ru.nsu.seleznev.a.model.*
 
 class DSL {
     private Student student = new Student()
@@ -78,13 +72,8 @@ class DSL {
         return tasks
     }
 
-    Marks getGivenMarks() {
-        return marks
-    }
-
-
     @Override
-    public String toString() {
+    String toString() {
         return "DSL{" +
                 "student=" + student +
                 ", group=" + group +

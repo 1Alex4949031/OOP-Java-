@@ -8,7 +8,17 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
+/**
+ * Directories class.
+ */
 public class Directories {
+  /**
+   * Function that copies the directory.
+   *
+   * @param sourceDirectory source directory
+   * @param targetDirectory target directory
+   * @throws IOException exception
+   */
   public static void copyDirectory(String sourceDirectory, String targetDirectory) throws IOException {
     Path sourcePath = Paths.get(sourceDirectory);
     Path targetPath = Paths.get(targetDirectory);
@@ -29,6 +39,12 @@ public class Directories {
     });
   }
 
+  /**
+   * Function that deletes directory.
+   *
+   * @param directoryPath path of the directory
+   * @throws IOException exception
+   */
   public static void deleteDirectory(String directoryPath) throws IOException {
     Path path = Paths.get(directoryPath);
     if (Files.exists(path)) {
@@ -41,11 +57,24 @@ public class Directories {
     }
   }
 
+  /**
+   * Function that creates directory.
+   *
+   * @param directoryPath path of the directory
+   * @throws IOException exception
+   */
   public static void createDirectory(String directoryPath) throws IOException {
     Path path = Paths.get(directoryPath);
     Files.createDirectories(path);
   }
 
+  /**
+   * Function that creates and writes new html file.
+   *
+   * @param directoryPath path of the directory
+   * @param table         information need to write
+   * @throws IOException exception
+   */
   public static void writeNewHtmlFile(String directoryPath, String table) throws IOException {
     Path path = Paths.get(directoryPath);
     try (FileWriter tableFile = new FileWriter(path + ".html")) {

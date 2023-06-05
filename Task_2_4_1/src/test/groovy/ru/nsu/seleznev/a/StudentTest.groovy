@@ -13,7 +13,7 @@ class StudentTest {
                 Student
         ) as Student
 
-        Student expectedStudent = new Student(123, "Dasha", "https://github.com/ploddasha/Plodushcheva_OOP.git".toURI())
+        Student expectedStudent = new Student(123, "Dasha", "https://github.com/ploddasha/Plodushcheva_OOP.git".toURL())
         Assertions.assertEquals(expectedStudent, actualStudent)
     }
 }

@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jgit.api.errors.GitAPIException;
-import org.gradle.tooling.GradleConnectionException;
 import org.gradle.tooling.GradleConnector;
 import org.gradle.tooling.ProgressListener;
 import ru.nsu.seleznev.a.DSL;
@@ -25,15 +24,24 @@ import ru.nsu.seleznev.a.model.Task;
 import static ru.nsu.seleznev.a.parser.Parser.parseConfiguration;
 import ru.nsu.seleznev.a.xml.JacocoXmlParser;
 
+/**
+ * Builder class with main functionality for the application.
+ */
 public class Builder {
+  /**
+   * Function that builds all test for laboratory work.
+   *
+   * @param studentId student's id
+   * @param task      task
+   * @return true if all tests are built, false otherwise
+   * @throws FileNotFoundException exception
+   */
   public static boolean buildTests(String studentId, String task) throws FileNotFoundException {
-
     File projectDir = new File("./DSL/git/ID" + studentId + "/" + task);
     if (!projectDir.exists()) {
       throw new FileNotFoundException("No such directory for " + studentId + "."
           + " Did you clone the repository?");
     }
-
     try (var conn = GradleConnector.newConnector().forProjectDirectory(projectDir).connect()) {
       conn.newBuild().forTasks("test").addProgressListener(
           (ProgressListener) event -> System.out.println(event.getDescription())
@@ -55,13 +63,19 @@ public class Builder {
     return true;
   }
 
-  public static void getJacocoTestReport(String studentId, String task) throws IOException {
+  /**
+   * Function that generates jacoco test report for laboratory work.
+   *
+   * @param studentId student's id
+   * @param task      task
+   * @throws FileNotFoundException exception
+   */
+  public static void getJacocoTestReport(String studentId, String task) throws FileNotFoundException {
     File projectDir = new File("./DSL/git/ID" + studentId + "/" + task);
     if (!projectDir.exists()) {
       throw new FileNotFoundException("Initially build all tests for getting Jacoco Test Report." +
           "Make sure you cloned the repository of the project");
     }
-
     try {
       createDirectory("./DSL/jacoco/ID" + studentId + "/" + task);
       deleteDirectory(projectDir.toPath() + "/build/test-results/test/binary");
@@ -75,7 +89,8 @@ public class Builder {
       int fileCount = 1;
       for (var file : files) {
         String table = JacocoXmlParser.parseXml(file);
-        writeNewHtmlFile("./DSL/jacoco/ID" + studentId + "/" + task + "/" + "TestFile" + fileCount, table);
+        writeNewHtmlFile("./DSL/jacoco/ID" + studentId + "/"
+            + task + "/" + "TestFile" + fileCount, table);
         fileCount++;
       }
 
@@ -91,13 +106,11 @@ public class Builder {
 
 
   /**
-   * Not working at this moment.
-   * Don't know the problem connected with gradle distribution.
    * Function that checks code coverage.
    *
    * @param studentId name of the student
    * @param task      task need to check
-   * @return
+   * @return true if java code style was checked successfully, false otherwise
    * @throws FileNotFoundException file not found exception
    */
   public static boolean checkCodeStyle(String studentId, String task) throws FileNotFoundException {
@@ -131,6 +144,12 @@ public class Builder {
     return true;
   }
 
+  /**
+   * Function that checks checkstyle.xml file for Checkstyle plugin.
+   *
+   * @param studentId student's id
+   * @param task      task
+   */
   private static void checkCheckStyleXml(String studentId, String task) {
     try {
       File checkStyleXml = new File("./DSL/git/ID" + studentId + "/" + task + "/config/checkstyle/checkstyle.xml");
@@ -145,6 +164,12 @@ public class Builder {
     System.out.println("Checkstyle.xml checked successfully!");
   }
 
+  /**
+   * Function that inserts checkstyle plugin
+   * for build.gradle file of the project.
+   *
+   * @param projectDir project directory
+   */
   private static void insertCheckStylePlugin(File projectDir) {
     try {
       List<String> plugin = new ArrayList<>(List.of("plugins\n{\nid 'checkstyle'\n}"));
@@ -157,6 +182,14 @@ public class Builder {
     System.out.println("\nCheckStyle plugin was inserted successfully!\n");
   }
 
+  /**
+   * Function that generates Java documentation.
+   *
+   * @param studentId student's id
+   * @param task      task
+   * @return true if the documentation was generated successfully, false otherwise
+   * @throws FileNotFoundException exception
+   */
   public static boolean generateJavaDoc(String studentId, String task) throws FileNotFoundException {
     File projectDir = new File("./DSL/git/ID" + studentId + "/" + task);
     if (!projectDir.exists()) {
@@ -183,7 +216,14 @@ public class Builder {
     return true;
   }
 
-  public static void generateStudentHtml(String studentId, String task) throws IOException {
+  /**
+   * Function that generates html report for student.
+   *
+   * @param studentId student's id
+   * @param task      task
+   * @throws FileNotFoundException exception
+   */
+  public static void generateStudentHtml(String studentId, String task) throws FileNotFoundException {
     DSL actualDsl = (DSL) parseConfiguration(new File("./DSL/config/ID" + studentId + ".groovy"), DSL.class);
     String studentName = actualDsl.getStudent().getName();
 
@@ -194,11 +234,22 @@ public class Builder {
         checkCondition(Builder.buildTests(studentId, task)),
         checkCondition(Builder.generateJavaDoc(studentId, task)),
         checkCondition(Builder.checkCodeStyle(studentId, task)));
-    createDirectory("./DSL/studentReport/ID" + studentId);
-    writeNewHtmlFile("./DSL/studentReport/ID" + studentId + "/" + task, tableBuilder.build());
+    try {
+      createDirectory("./DSL/studentReport/ID" + studentId);
+      writeNewHtmlFile("./DSL/studentReport/ID" + studentId + "/" + task, tableBuilder.build());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    System.out.println("\nHtml student report was generated successfully!\n");
   }
 
-  public static void generateGroupHtml(String number) throws FileNotFoundException {
+  /**
+   * Function that generates html group report.
+   *
+   * @param groupNumber number of the group
+   * @throws FileNotFoundException exception
+   */
+  public static void generateGroupHtml(String groupNumber) throws FileNotFoundException {
     File configDir = new File("./DSL/config/");
     if (!configDir.exists()) {
       throw new FileNotFoundException("There is no config file here!");
@@ -207,8 +258,8 @@ public class Builder {
     if (files == null || files.length == 0) {
       throw new IllegalStateException("The directory is empty!");
     }
-    HTMLTableBuilder tableBuilder = new HTMLTableBuilder("Group " + number, true);
-    int group = Integer.parseInt(number);
+    HTMLTableBuilder tableBuilder = new HTMLTableBuilder("Group " + groupNumber, true);
+    int group = Integer.parseInt(groupNumber);
     Arrays.stream(files).forEach(i -> {
       DSL actualDSL = (DSL) parseConfiguration(i, DSL.class);
       tableBuilder.addTableHeader("StudentID", "Task", "Build", "Doc", "Style");
@@ -236,13 +287,20 @@ public class Builder {
       }
     });
     try {
-      createDirectory("./DSL/groupReport/" + number);
-      writeNewHtmlFile("./DSL/groupReport/" + number + "/" + number, tableBuilder.build());
+      createDirectory("./DSL/groupReport/" + groupNumber);
+      writeNewHtmlFile("./DSL/groupReport/" + groupNumber + "/" + groupNumber, tableBuilder.build());
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      e.printStackTrace();
     }
+    System.out.println("\nHtml group report was generated successfully!\n");
   }
 
+  /**
+   * Function that generates html attendance report for the group.
+   *
+   * @param studentId student's id
+   * @throws FileNotFoundException exception
+   */
   public static void generateAttendanceStudentReport(String studentId) throws FileNotFoundException {
     File configDir = new File("./DSL/config/");
     File projectRepo = new File("./DSL/git/ID" + studentId);
@@ -260,7 +318,7 @@ public class Builder {
       try {
         String date = l.getDate().toString();
         tableBuilder.addRowValues(date, checkCondition(checkCommitsInPeriod(projectRepo, l.getDate())));
-      } catch (IOException | GitAPIException e) {
+      } catch (GitAPIException e) {
         throw new RuntimeException("Something goes wrong with checking commits for attendance");
       }
     });
@@ -268,10 +326,17 @@ public class Builder {
       createDirectory("./DSL/studentAttendanceReport");
       writeNewHtmlFile("./DSL/studentAttendanceReport/ID" + studentId, tableBuilder.build());
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      e.printStackTrace();
     }
+    System.out.println("\nHtml attendance report for the student was generated successfully!\n");
   }
 
+  /**
+   * Function that generates attendance report for the group.
+   *
+   * @param groupNumber number of the group
+   * @throws FileNotFoundException exception
+   */
   public static void generateAttendanceGroupReport(String groupNumber) throws FileNotFoundException {
     File configDir = new File("./DSL/config/");
     if (!configDir.exists()) {
@@ -294,7 +359,7 @@ public class Builder {
             File projectDir = new File("./DSL/git/ID" + actualDSL.getStudent().getId());
             String date = l.getDate().toString();
             tableBuilder.addRowValues(date, checkCondition(checkCommitsInPeriod(projectDir, l.getDate())));
-          } catch (IOException | GitAPIException e) {
+          } catch (GitAPIException e) {
             throw new RuntimeException("Something goes wrong with checking commits for attendance");
           }
         });
@@ -304,8 +369,9 @@ public class Builder {
       createDirectory("./DSL/groupAttendanceReport/" + groupNumber);
       writeNewHtmlFile("./DSL/groupAttendanceReport/" + groupNumber + "/" + groupNumber, tableBuilder.build());
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      e.printStackTrace();
     }
+    System.out.println("\nHtml attendance report for the group was generated successfully!\n");
   }
 
   private static String checkCondition(Boolean cond) {

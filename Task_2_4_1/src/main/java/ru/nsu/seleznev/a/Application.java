@@ -2,14 +2,14 @@ package ru.nsu.seleznev.a;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.List;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.Scanner;
 import org.apache.commons.cli.*;
 import ru.nsu.seleznev.a.build.Builder;
 import ru.nsu.seleznev.a.config.Configuration;
 import ru.nsu.seleznev.a.git.GitApi;
 import static ru.nsu.seleznev.a.options.CommandLineOptions.createOptions;
+import static ru.nsu.seleznev.a.options.CommandLineOptions.showHelp;
 
 /**
  * Application class.
@@ -30,45 +30,39 @@ public class Application {
       subDir.mkdir();
       System.out.println("Initial directories were made!");
     }
+    CommandLineParser parser = new DefaultParser();
+    Options options = createOptions();
     try {
-      CommandLineParser parser = new DefaultParser();
-      Options options = createOptions();
       CommandLine commandLine = parser.parse(options, args);
       if (commandLine.hasOption("makeConfig")) {
         makeConfiguration();
-      }
-      if (commandLine.hasOption("printConfig")) {
+      } else if (commandLine.hasOption("printConfig")) {
         printConfiguration();
-      }
-      if (commandLine.hasOption("cloneRepo") && args.length == 2) {
+      } else if (commandLine.hasOption("cloneRepo") && args.length == 2) {
         cloneRepository(commandLine);
-      }
-      if (commandLine.hasOption("test") && args.length == 3) {
+      } else if (commandLine.hasOption("test") && args.length == 3) {
         buildTests(commandLine);
-      }
-      if (commandLine.hasOption("codeStyle") && args.length == 3) {
+      } else if (commandLine.hasOption("codeStyle") && args.length == 3) {
         checkCodeStyle(commandLine);
-      }
-      if (commandLine.hasOption("documentation") && args.length == 3) {
+      } else if (commandLine.hasOption("documentation") && args.length == 3) {
         generateDocumentation(commandLine);
-      }
-      if (commandLine.hasOption("jacocoTestReport") && args.length == 3) {
+      } else if (commandLine.hasOption("jacocoTestReport") && args.length == 3) {
         generateJacocoTestReport(commandLine);
-      }
-      if (commandLine.hasOption("buildLab") && args.length == 3) {
+      } else if (commandLine.hasOption("buildLab") && args.length == 3) {
         generateHtmlStudentReport(commandLine);
-      }
-      if (commandLine.hasOption("buildAll") && args.length == 2) {
+      } else if (commandLine.hasOption("buildAll") && args.length == 2) {
         generateHtmlGroupReport(commandLine);
-      }
-      if (commandLine.hasOption("attendance") && args.length == 2) {
+      } else if (commandLine.hasOption("attendance") && args.length == 2) {
         generateHtmlAttendanceStudentReport(commandLine);
-      }
-      if(commandLine.hasOption("attendanceAll") && args.length == 2){
+      } else if (commandLine.hasOption("attendanceAll") && args.length == 2) {
         generateHtmlAttendanceGroupReport(commandLine);
+      } else {
+        showHelp(options);
       }
-    } catch (ParseException | IOException e) {
-      throw new RuntimeException(e);
+    } catch (ParseException e) {
+      showHelp(options);
+    } catch (FileNotFoundException | FileAlreadyExistsException e) {
+      throw new RuntimeException(e.getMessage());
     }
   }
 
@@ -109,9 +103,9 @@ public class Application {
    * and generates html report.
    *
    * @param commandLine command line with arguments
-   * @throws IOException InputOutput exception
+   * @throws FileNotFoundException exception
    */
-  private static void generateHtmlStudentReport(CommandLine commandLine) throws IOException {
+  private static void generateHtmlStudentReport(CommandLine commandLine) throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("buildLab");
     Builder.generateStudentHtml(args[0], args[1]);
   }
@@ -120,53 +114,56 @@ public class Application {
    * Function that generates Jacoco test report.
    *
    * @param commandLine command line with arguments
-   * @throws IOException InputOutput exception
+   * @throws FileNotFoundException exception
    */
-  private static void generateJacocoTestReport(CommandLine commandLine) throws IOException {
+  private static void generateJacocoTestReport(CommandLine commandLine) throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("jacocoTestReport");
     Builder.getJacocoTestReport(args[0], args[1]);
   }
+
 
   /**
    * Function that generates Java documentation.
    *
    * @param commandLine command line with arguments
-   * @throws IOException InputOutput exception
+   * @throws FileNotFoundException exception
    */
-  private static void generateDocumentation(CommandLine commandLine) throws IOException {
+  private static void generateDocumentation(CommandLine commandLine) throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("documentation");
     Builder.generateJavaDoc(args[0], args[1]);
   }
 
   /**
-   * Not working yet.
+   * Function that checks code for Java Code Style.
    *
    * @param commandLine command line with arguments
-   * @throws FileNotFoundException file not found exception
+   * @throws FileNotFoundException exception
    */
   private static void checkCodeStyle(CommandLine commandLine) throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("codeStyle");
     Builder.checkCodeStyle(args[0], args[1]);
   }
 
+
   /**
    * Function that clones student's repository.
    *
    * @param commandLine command line with arguments
-   * @throws IOException InputOutput exception
+   * @throws FileNotFoundException exception
    */
-  private static void cloneRepository(CommandLine commandLine) throws IOException {
+  private static void cloneRepository(CommandLine commandLine) throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("cloneRepo");
     GitApi gitApi = new GitApi();
     gitApi.cloneRepository(args[0]);
   }
 
+
   /**
    * Function that makes the initial configuration for student.
    *
-   * @throws IOException InputOutput exception
+   * @throws FileAlreadyExistsException exception
    */
-  private static void makeConfiguration() throws IOException {
+  private static void makeConfiguration() throws FileAlreadyExistsException {
     Scanner scan = new Scanner(System.in);
     System.out.println("Write student's ID ");
     String studentID = scan.nextLine();
@@ -178,12 +175,13 @@ public class Application {
     config.makeConfiguration(studentID, studentName, studentURL);
   }
 
+
   /**
    * Function that prints the configuration for student.
    *
-   * @throws IOException InputOutput exception
+   * @throws FileNotFoundException exception
    */
-  private static void printConfiguration() throws IOException {
+  private static void printConfiguration() throws FileNotFoundException {
     Scanner scan = new Scanner(System.in);
     System.out.println("Write student's id: ");
     String studentId = scan.nextLine();
@@ -195,7 +193,7 @@ public class Application {
    * Function that builds all test for student's project.
    *
    * @param commandLine command line with arguments
-   * @throws FileNotFoundException file not found exception
+   * @throws FileNotFoundException exception
    */
   private static void buildTests(CommandLine commandLine) throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("test");

@@ -13,45 +13,49 @@ import org.eclipse.jgit.revwalk.filter.CommitTimeRevFilter;
 import ru.nsu.seleznev.a.DSL;
 import ru.nsu.seleznev.a.parser.Parser;
 
+/**
+ * GitApi class.
+ */
 public class GitApi {
-  public void cloneRepository(String studentId) throws IOException {
+  /**
+   * Function that clones the repository.
+   *
+   * @param studentId student's id
+   * @throws FileNotFoundException exception
+   */
+  public void cloneRepository(String studentId) throws FileNotFoundException {
     File file = new File("./DSL/config/ID" + studentId + ".groovy");
     if (!file.exists()) {
       throw new FileNotFoundException("No such student!");
     }
     DSL dslConfig = (DSL) Parser.parseConfiguration(file, DSL.class);
     File gitFolder = new File("./DSL/git/ID" + studentId);
-    try {
-      Git.cloneRepository()
-          .setURI(String.valueOf(dslConfig.getStudent().getRepoURL()))
-          .setDirectory(gitFolder)
-          .call();
-    } catch (GitAPIException e) {
-      throw new RuntimeException("Something goes wrong with cloning repository!");
-    }
-    System.out.println("\nRepository was cloned successfully!\n");
-  }
-
-  public static void cloneRepositoryDsl(String studentName, URL studentUrl) throws FileAlreadyExistsException {
-    File gitFolder = new File("./git/" + studentName);
-    if (gitFolder.exists()) {
-      throw new FileAlreadyExistsException("File is already exists!");
-    }
-    try {
-      Git.cloneRepository()
-          .setURI(String.valueOf(studentUrl))
-          .setDirectory(gitFolder)
-          .call();
+    try (Git ignored = Git.cloneRepository()
+        .setURI(String.valueOf(dslConfig.getStudent().getRepoURL()))
+        .setDirectory(gitFolder)
+        .call()) {
+      System.out.println("\nRepository was cloned successfully!\n");
     } catch (GitAPIException e) {
       throw new RuntimeException("Something goes wrong with cloning repository!");
     }
   }
 
-  public static boolean checkCommitsInPeriod(File projectDir, LocalDate date) throws IOException, GitAPIException {
+  /**
+   * Function that checks commits in fixed period.
+   * Period: [date - 7 days, date].
+   *
+   * @param projectDir project directory
+   * @param date date
+   * @return true if commits were made in period, false otherwise
+   * @throws GitAPIException git api exception
+   */
+  public static boolean checkCommitsInPeriod(File projectDir, LocalDate date) throws GitAPIException {
     try (Git git = Git.open(projectDir)) {
       var revFilter = CommitTimeRevFilter.between(Date.valueOf(date.minusWeeks(1)), Date.valueOf(date));
       var commits = git.log().setRevFilter(revFilter).call();
       return commits.iterator().hasNext();
+    } catch (IOException e) {
+      throw new RuntimeException("Git opening failed!");
     }
   }
 }
