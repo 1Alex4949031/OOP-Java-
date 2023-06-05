@@ -9,7 +9,17 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import org.codehaus.groovy.control.CompilerConfiguration;
 
+/**
+ * Parser class.
+ */
 public class Parser {
+  /**
+   * Function that parser the configuration.
+   *
+   * @param file file need to be parsed
+   * @param ourClass class we need to parse
+   * @return parsed object
+   */
   public static Object parseConfiguration(File file, Class<?> ourClass) {
     try {
       CompilerConfiguration cc = new CompilerConfiguration();

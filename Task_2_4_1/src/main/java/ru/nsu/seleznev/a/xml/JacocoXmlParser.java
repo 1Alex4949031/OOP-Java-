@@ -11,12 +11,23 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
 import ru.nsu.seleznev.a.html.HTMLTableBuilder;
 
+/**
+ * Jacoco xml parser.
+ */
 public class JacocoXmlParser {
   private static final List<String> headerParams =
-      Arrays.asList("name", "tests", "skipped", "failures", "errors", "timestamp", "hostname", "time");
+      Arrays.asList("name", "tests", "skipped", "failures",
+          "errors", "timestamp", "hostname", "time");
   private static final List<String> bodyParams =
       Arrays.asList("name", "classname", "time");
 
+  /**
+   * Function that parses the xml file.
+   * I want to mention that this public method is made for building html report.
+   *
+   * @param file file need to be parsed
+   * @return string value of parsed file
+   */
   public static String parseXml(File file) {
     try {
       List<String> values = new ArrayList<>();

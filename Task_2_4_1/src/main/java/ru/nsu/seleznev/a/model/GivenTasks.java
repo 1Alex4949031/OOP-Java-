@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Objects;
 import ru.nsu.seleznev.a.strings.GivenTaskString;
 
+/**
+ * GivenTasks class.
+ */
 public class GivenTasks {
   private List<GivenTask> tasks = new ArrayList<>();
 

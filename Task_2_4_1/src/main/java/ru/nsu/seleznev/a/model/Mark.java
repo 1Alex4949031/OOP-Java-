@@ -3,6 +3,7 @@ package ru.nsu.seleznev.a.model;
 import java.time.LocalDate;
 import java.util.Objects;
 
+
 public class Mark {
   private int mark;
   private LocalDate date;

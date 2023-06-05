@@ -2,10 +2,10 @@ package ru.nsu.seleznev.a.model;
 
 import groovy.lang.Closure;
 import java.net.MalformedURLException;
-import java.net.URI;
 import java.net.URL;
 import java.util.Objects;
 import ru.nsu.seleznev.a.strings.StudentString;
+
 
 public class Student {
   private int id;

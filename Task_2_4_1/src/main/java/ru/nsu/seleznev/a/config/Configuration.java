@@ -38,6 +38,7 @@ public class Configuration {
       } catch (IOException e) {
         throw new RuntimeException("Couldn't make files for configuration!");
       }
+      System.out.println("Configuration was made successfully!");
     }
   }
 

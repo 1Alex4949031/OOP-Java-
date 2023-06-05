@@ -3,8 +3,6 @@ package ru.nsu.seleznev.a.git;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.URL;
-import java.nio.file.FileAlreadyExistsException;
 import java.sql.Date;
 import java.time.LocalDate;
 import org.eclipse.jgit.api.Git;
