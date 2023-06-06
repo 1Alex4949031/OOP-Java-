@@ -58,9 +58,7 @@ public class Tasks {
    */
   @Override
   public String toString() {
-    return "Tasks{" +
-        "tasks=" + tasks +
-        '}';
+    return "Tasks{" + "tasks=" + tasks + '}';
   }
 
   /**
@@ -71,8 +69,12 @@ public class Tasks {
    */
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     Tasks tasks1 = (Tasks) o;
     return Objects.equals(tasks, tasks1.tasks);
   }

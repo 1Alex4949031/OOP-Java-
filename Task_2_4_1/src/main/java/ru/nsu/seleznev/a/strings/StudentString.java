@@ -7,7 +7,7 @@ package ru.nsu.seleznev.a.strings;
 public class StudentString {
   private String id;
   private String name;
-  private String repoURL;
+  private String repoUrl;
 
   /**
    * Empty constructor.
@@ -38,7 +38,7 @@ public class StudentString {
    *
    * @return student's repo url
    */
-  public String getRepoURL() {
-    return repoURL;
+  public String getRepoUrl() {
+    return repoUrl;
   }
 }

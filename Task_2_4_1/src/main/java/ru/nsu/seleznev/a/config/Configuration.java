@@ -1,6 +1,11 @@
 package ru.nsu.seleznev.a.config;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 
 /**
@@ -15,7 +20,8 @@ public class Configuration {
    * @param studentRepo student's repository
    * @throws FileAlreadyExistsException exception
    */
-  public void makeConfiguration(String studentId, String studentName, String studentRepo) throws FileAlreadyExistsException {
+  public void makeConfiguration(String studentId, String studentName, String studentRepo)
+      throws FileAlreadyExistsException {
     File file = new File("./DSL/config/ID" + studentId + ".groovy");
     if (file.exists()) {
       throw new FileAlreadyExistsException("File with this student already exists!");
@@ -23,16 +29,15 @@ public class Configuration {
       try {
         file.createNewFile();
         try (FileWriter writer = new FileWriter(file)) {
-          writer.write("student " + "{" +
-              "id = " + studentId + "\n" +
-              "name = " + "\"" + studentName + "\"" + "\n" +
-              "repoURL = " + "\"" + studentRepo + "\"" + "\n" +
-              "}" + "\n" +
-              "group" + "{ \"Write number of the group\" }" + "\n" +
-              "tasks" + "{ \"Write some tasks here\" }" + "\n" +
-              "marks" + "{ \"Write some marks here\" }" + "\n" +
-              "tasksInfo" + "{ \"Write information about the tasks\" }" + "\n" +
-              "lessons" + "{ \"Write lessons here\" }"
+          writer.write("student "
+              + "{" + "id = " + studentId + "\n"
+              + "name = " + "\"" + studentName + "\"" + "\n"
+              + "repoURL = " + "\"" + studentRepo + "\"" + "\n"
+              + "}" + "\n" + "group" + "{ \"Write number of the group\" }" + "\n"
+              + "tasks" + "{ \"Write some tasks here\" }" + "\n"
+              + "marks" + "{ \"Write some marks here\" }" + "\n"
+              + "tasksInfo" + "{ \"Write information about the tasks\" }" + "\n"
+              + "lessons" + "{ \"Write lessons here\" }"
           );
         }
       } catch (IOException e) {

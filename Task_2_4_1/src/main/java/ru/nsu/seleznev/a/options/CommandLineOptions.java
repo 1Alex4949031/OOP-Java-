@@ -54,7 +54,7 @@ public class CommandLineOptions {
     options.addOption(createOption("attendance", """
         Generate attendance report for the student. Args: [student's id]""", 1));
     options.addOption(createOption("attendanceAll", """
-        Generate attendance report for all students in the group. Args: [group number]""" , 1));
+        Generate attendance report for all students in the group. Args: [group number]""", 1));
     return options;
   }
 

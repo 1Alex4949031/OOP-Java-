@@ -39,7 +39,8 @@ public class Lessons {
     closure.setDelegate(lessonString);
     closure.setResolveStrategy(Closure.DELEGATE_ONLY);
     closure.call();
-    lessons.add(new Lesson(LocalDate.parse(lessonString.getDate(), DateTimeFormatter.ofPattern("dd-MM-yyyy"))));
+    lessons.add(new Lesson(LocalDate.parse(
+        lessonString.getDate(), DateTimeFormatter.ofPattern("dd-MM-yyyy"))));
   }
 
   /**
@@ -58,9 +59,7 @@ public class Lessons {
    */
   @Override
   public String toString() {
-    return "Lessons{" +
-        "lessons=" + lessons +
-        '}';
+    return "Lessons{" + "lessons=" + lessons + '}';
   }
 
   /**
@@ -71,8 +70,12 @@ public class Lessons {
    */
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     Lessons lessons1 = (Lessons) o;
     return Objects.equals(lessons, lessons1.lessons);
   }

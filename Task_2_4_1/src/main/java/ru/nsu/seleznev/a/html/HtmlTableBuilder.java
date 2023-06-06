@@ -13,7 +13,7 @@ import java.util.List;
  * String table = htmlBuilder.build();
  * System.out.println(table.toString());
  */
-public class HTMLTableBuilder {
+public class HtmlTableBuilder {
   private final StringBuilder table = new StringBuilder();
   public static String HTML_START = "<html>";
   public static String HTML_END = "</html>";
@@ -34,7 +34,7 @@ public class HTMLTableBuilder {
    * @param header header
    * @param border border
    */
-  public HTMLTableBuilder(String header, boolean border) {
+  public HtmlTableBuilder(String header, boolean border) {
     if (header != null) {
       table.append("<b>");
       table.append(header);
@@ -96,7 +96,6 @@ public class HTMLTableBuilder {
   public void addRowValues(List<String> values) {
     int lastIndex = table.lastIndexOf(ROW_END);
     if (lastIndex > 0) {
-      int index = lastIndex + ROW_END.length();
       StringBuilder sb = new StringBuilder();
       sb.append(ROW_START);
       for (String value : values) {
@@ -105,6 +104,7 @@ public class HTMLTableBuilder {
         sb.append(COLUMN_END);
       }
       sb.append(ROW_END);
+      int index = lastIndex + ROW_END.length();
       table.insert(index, sb);
     }
   }
@@ -117,7 +117,6 @@ public class HTMLTableBuilder {
   public void addRowValues(String... values) {
     int lastIndex = table.lastIndexOf(ROW_END);
     if (lastIndex > 0) {
-      int index = lastIndex + ROW_END.length();
       StringBuilder sb = new StringBuilder();
       sb.append(ROW_START);
       for (String value : values) {
@@ -126,6 +125,7 @@ public class HTMLTableBuilder {
         sb.append(COLUMN_END);
       }
       sb.append(ROW_END);
+      int index = lastIndex + ROW_END.length();
       table.insert(index, sb);
     }
   }

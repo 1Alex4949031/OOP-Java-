@@ -16,7 +16,7 @@ import static ru.nsu.seleznev.a.directories.Directories.*;
 import static ru.nsu.seleznev.a.git.GitApi.checkCommitsInPeriod;
 import static ru.nsu.seleznev.a.grades.Grades.calculateTotalMark;
 import static ru.nsu.seleznev.a.grades.Grades.toStringGrades;
-import ru.nsu.seleznev.a.html.HTMLTableBuilder;
+import ru.nsu.seleznev.a.html.HtmlTableBuilder;
 import ru.nsu.seleznev.a.model.GivenTask;
 import ru.nsu.seleznev.a.model.Lesson;
 import ru.nsu.seleznev.a.model.Mark;
@@ -227,7 +227,7 @@ public class Builder {
     DSL actualDsl = (DSL) parseConfiguration(new File("./DSL/config/ID" + studentId + ".groovy"), DSL.class);
     String studentName = actualDsl.getStudent().getName();
 
-    HTMLTableBuilder tableBuilder = new HTMLTableBuilder("Info for student with ID: " + studentId, true);
+    HtmlTableBuilder tableBuilder = new HtmlTableBuilder("Info for student with ID: " + studentId, true);
 
     tableBuilder.addTableHeader("Student", "Build", "Doc", "Style");
     tableBuilder.addRowValues(studentName,
@@ -258,7 +258,7 @@ public class Builder {
     if (files == null || files.length == 0) {
       throw new IllegalStateException("The directory is empty!");
     }
-    HTMLTableBuilder tableBuilder = new HTMLTableBuilder("Group " + groupNumber, true);
+    HtmlTableBuilder tableBuilder = new HtmlTableBuilder("Group " + groupNumber, true);
     int group = Integer.parseInt(groupNumber);
     Arrays.stream(files).forEach(i -> {
       DSL actualDSL = (DSL) parseConfiguration(i, DSL.class);
@@ -310,7 +310,7 @@ public class Builder {
     DSL actualDsl = (DSL) parseConfiguration(new File("./DSL/config/ID" + studentId + ".groovy"), DSL.class);
     List<Lesson> lessons = actualDsl.getLessons().getLessonList();
     String studentName = actualDsl.getStudent().getName();
-    HTMLTableBuilder tableBuilder = new HTMLTableBuilder(
+    HtmlTableBuilder tableBuilder = new HtmlTableBuilder(
         "Student with ID: " + studentId, true);
     tableBuilder.addTableHeader("Name", studentName);
     tableBuilder.addRowValues("Date", "Attendance");
@@ -346,7 +346,7 @@ public class Builder {
     if (files == null || files.length == 0) {
       throw new IllegalStateException("The directory is empty!");
     }
-    HTMLTableBuilder tableBuilder = new HTMLTableBuilder("Group " + groupNumber, true);
+    HtmlTableBuilder tableBuilder = new HtmlTableBuilder("Group " + groupNumber, true);
     int group = Integer.parseInt(groupNumber);
     Arrays.stream(files).forEach(i -> {
       DSL actualDSL = (DSL) parseConfiguration(i, DSL.class);

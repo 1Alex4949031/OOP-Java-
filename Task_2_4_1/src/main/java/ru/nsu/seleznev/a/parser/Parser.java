@@ -16,7 +16,7 @@ public class Parser {
   /**
    * Function that parser the configuration.
    *
-   * @param file file need to be parsed
+   * @param file     file need to be parsed
    * @param ourClass class we need to parse
    * @return parsed object
    */
@@ -30,8 +30,11 @@ public class Parser {
       script.setDelegate(obj);
       script.run();
       return obj;
-    } catch (IOException | InvocationTargetException | InstantiationException | IllegalAccessException |
-             NoSuchMethodException e) {
+    } catch (IOException
+             | InvocationTargetException
+             | InstantiationException
+             | IllegalAccessException
+             | NoSuchMethodException e) {
       throw new RuntimeException(e);
     }
   }

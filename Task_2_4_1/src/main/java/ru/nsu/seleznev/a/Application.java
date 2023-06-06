@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.FileAlreadyExistsException;
 import java.util.Scanner;
-import org.apache.commons.cli.*;
+import org.apache.commons.cli.CommandLine;
+import org.apache.commons.cli.CommandLineParser;
+import org.apache.commons.cli.DefaultParser;
+import org.apache.commons.cli.Options;
+import org.apache.commons.cli.ParseException;
 import ru.nsu.seleznev.a.build.Builder;
 import ru.nsu.seleznev.a.config.Configuration;
 import ru.nsu.seleznev.a.git.GitApi;
@@ -71,7 +75,8 @@ public class Application {
    *
    * @param commandLine command line with arguments
    */
-  private static void generateHtmlAttendanceGroupReport(CommandLine commandLine) throws FileNotFoundException {
+  private static void generateHtmlAttendanceGroupReport(CommandLine commandLine)
+      throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("attendanceAll");
     Builder.generateAttendanceGroupReport(args[0]);
   }
@@ -82,7 +87,8 @@ public class Application {
    * @param commandLine command line with arguments
    * @throws FileNotFoundException file not found exception
    */
-  private static void generateHtmlAttendanceStudentReport(CommandLine commandLine) throws FileNotFoundException {
+  private static void generateHtmlAttendanceStudentReport(CommandLine commandLine)
+      throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("attendance");
     Builder.generateAttendanceStudentReport(args[0]);
   }
@@ -93,7 +99,8 @@ public class Application {
    * @param commandLine command line with arguments
    * @throws FileNotFoundException file not found exception
    */
-  private static void generateHtmlGroupReport(CommandLine commandLine) throws FileNotFoundException {
+  private static void generateHtmlGroupReport(CommandLine commandLine)
+      throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("buildAll");
     Builder.generateGroupHtml(args[0]);
   }
@@ -105,7 +112,8 @@ public class Application {
    * @param commandLine command line with arguments
    * @throws FileNotFoundException exception
    */
-  private static void generateHtmlStudentReport(CommandLine commandLine) throws FileNotFoundException {
+  private static void generateHtmlStudentReport(CommandLine commandLine)
+      throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("buildLab");
     Builder.generateStudentHtml(args[0], args[1]);
   }
@@ -116,7 +124,8 @@ public class Application {
    * @param commandLine command line with arguments
    * @throws FileNotFoundException exception
    */
-  private static void generateJacocoTestReport(CommandLine commandLine) throws FileNotFoundException {
+  private static void generateJacocoTestReport(CommandLine commandLine)
+      throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("jacocoTestReport");
     Builder.getJacocoTestReport(args[0], args[1]);
   }
@@ -128,7 +137,8 @@ public class Application {
    * @param commandLine command line with arguments
    * @throws FileNotFoundException exception
    */
-  private static void generateDocumentation(CommandLine commandLine) throws FileNotFoundException {
+  private static void generateDocumentation(CommandLine commandLine)
+      throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("documentation");
     Builder.generateJavaDoc(args[0], args[1]);
   }
@@ -139,7 +149,8 @@ public class Application {
    * @param commandLine command line with arguments
    * @throws FileNotFoundException exception
    */
-  private static void checkCodeStyle(CommandLine commandLine) throws FileNotFoundException {
+  private static void checkCodeStyle(CommandLine commandLine)
+      throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("codeStyle");
     Builder.checkCodeStyle(args[0], args[1]);
   }
@@ -151,7 +162,8 @@ public class Application {
    * @param commandLine command line with arguments
    * @throws FileNotFoundException exception
    */
-  private static void cloneRepository(CommandLine commandLine) throws FileNotFoundException {
+  private static void cloneRepository(CommandLine commandLine)
+      throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("cloneRepo");
     GitApi gitApi = new GitApi();
     gitApi.cloneRepository(args[0]);
@@ -163,16 +175,17 @@ public class Application {
    *
    * @throws FileAlreadyExistsException exception
    */
-  private static void makeConfiguration() throws FileAlreadyExistsException {
+  private static void makeConfiguration()
+      throws FileAlreadyExistsException {
     Scanner scan = new Scanner(System.in);
     System.out.println("Write student's ID ");
-    String studentID = scan.nextLine();
+    String studentId = scan.nextLine();
     System.out.println("Write student's name: ");
     String studentName = scan.nextLine();
     System.out.println("Write student's URL on Github.com: ");
-    String studentURL = scan.nextLine();
+    String studentUrl = scan.nextLine();
     Configuration config = new Configuration();
-    config.makeConfiguration(studentID, studentName, studentURL);
+    config.makeConfiguration(studentId, studentName, studentUrl);
   }
 
 
@@ -181,7 +194,8 @@ public class Application {
    *
    * @throws FileNotFoundException exception
    */
-  private static void printConfiguration() throws FileNotFoundException {
+  private static void printConfiguration()
+      throws FileNotFoundException {
     Scanner scan = new Scanner(System.in);
     System.out.println("Write student's id: ");
     String studentId = scan.nextLine();
@@ -195,7 +209,8 @@ public class Application {
    * @param commandLine command line with arguments
    * @throws FileNotFoundException exception
    */
-  private static void buildTests(CommandLine commandLine) throws FileNotFoundException {
+  private static void buildTests(CommandLine commandLine)
+      throws FileNotFoundException {
     String[] args = commandLine.getOptionValues("test");
     Builder.buildTests(args[0], args[1]);
   }

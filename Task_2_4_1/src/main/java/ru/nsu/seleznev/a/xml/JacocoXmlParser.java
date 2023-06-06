@@ -9,7 +9,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.NodeList;
-import ru.nsu.seleznev.a.html.HTMLTableBuilder;
+import ru.nsu.seleznev.a.html.HtmlTableBuilder;
 
 /**
  * Jacoco xml parser.
@@ -39,7 +39,7 @@ public class JacocoXmlParser {
       for (var p : headerParams) {
         values.add(rootNode.getNamedItem(p).getNodeValue());
       }
-      HTMLTableBuilder tableBuilder = new HTMLTableBuilder(null, true);
+      HtmlTableBuilder tableBuilder = new HtmlTableBuilder(null, true);
       tableBuilder.addTableHeader(headerParams);
       tableBuilder.addRowValues(values);
       values.clear();

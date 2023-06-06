@@ -20,12 +20,12 @@ public class Student {
    *
    * @param id      student's id
    * @param name    student's name
-   * @param repoURL student's repository url
+   * @param repoUrl student's repository url
    */
-  public Student(int id, String name, URL repoURL) {
+  public Student(int id, String name, URL repoUrl) {
     this.id = id;
     this.name = name;
-    this.repoURL = repoURL;
+    this.repoURL = repoUrl;
   }
 
   /**
@@ -44,7 +44,7 @@ public class Student {
   }
 
   /**
-   * Function that returns student's name
+   * Function that returns student's name.
    *
    * @return student's name
    */
@@ -57,7 +57,7 @@ public class Student {
    *
    * @return repo url
    */
-  public URL getRepoURL() {
+  public URL getRepoUrl() {
     return repoURL;
   }
 
@@ -74,7 +74,7 @@ public class Student {
 
     id = Integer.parseInt(studentString.getId());
     name = studentString.getName();
-    repoURL = new URL(studentString.getRepoURL());
+    repoURL = new URL(studentString.getRepoUrl());
   }
 
   /**
@@ -84,11 +84,9 @@ public class Student {
    */
   @Override
   public String toString() {
-    return "Student{" +
-        "id=" + id +
-        ", name='" + name + '\'' +
-        ", repoURL=" + repoURL +
-        '}';
+    return "Student{" + "id=" + id
+        + ", name='" + name + '\''
+        + ", repoURL=" + repoURL + '}';
   }
 
   /**
@@ -99,8 +97,12 @@ public class Student {
    */
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     Student student = (Student) o;
     return id == student.id && Objects.equals(name, student.name) && Objects.equals(repoURL, student.repoURL);
   }

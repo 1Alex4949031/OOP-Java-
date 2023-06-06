@@ -52,9 +52,7 @@ public class Marks {
    */
   @Override
   public String toString() {
-    return "Marks{" +
-        "marks=" + marks +
-        '}';
+    return "Marks{" + "marks=" + marks + '}';
   }
 
   /**
@@ -65,8 +63,12 @@ public class Marks {
    */
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     Marks marks1 = (Marks) o;
     return Objects.equals(marks, marks1.marks);
   }

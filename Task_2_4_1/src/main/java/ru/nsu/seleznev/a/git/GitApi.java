@@ -21,7 +21,8 @@ public class GitApi {
    * @param studentId student's id
    * @throws FileNotFoundException exception
    */
-  public void cloneRepository(String studentId) throws FileNotFoundException {
+  public void cloneRepository(String studentId)
+      throws FileNotFoundException {
     File file = new File("./DSL/config/ID" + studentId + ".groovy");
     if (!file.exists()) {
       throw new FileNotFoundException("No such student!");
@@ -29,7 +30,7 @@ public class GitApi {
     DSL dslConfig = (DSL) Parser.parseConfiguration(file, DSL.class);
     File gitFolder = new File("./DSL/git/ID" + studentId);
     try (Git ignored = Git.cloneRepository()
-        .setURI(String.valueOf(dslConfig.getStudent().getRepoURL()))
+        .setURI(String.valueOf(dslConfig.getStudent().getRepoUrl()))
         .setDirectory(gitFolder)
         .call()) {
       System.out.println("\nRepository was cloned successfully!\n");
@@ -47,9 +48,11 @@ public class GitApi {
    * @return true if commits were made in period, false otherwise
    * @throws GitAPIException git api exception
    */
-  public static boolean checkCommitsInPeriod(File projectDir, LocalDate date) throws GitAPIException {
+  public static boolean checkCommitsInPeriod(File projectDir, LocalDate date)
+      throws GitAPIException {
     try (Git git = Git.open(projectDir)) {
-      var revFilter = CommitTimeRevFilter.between(Date.valueOf(date.minusWeeks(1)), Date.valueOf(date));
+      var revFilter = CommitTimeRevFilter.between(
+          Date.valueOf(date.minusWeeks(1)), Date.valueOf(date));
       var commits = git.log().setRevFilter(revFilter).call();
       return commits.iterator().hasNext();
     } catch (IOException e) {

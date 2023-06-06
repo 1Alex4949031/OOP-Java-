@@ -46,6 +46,7 @@ public class GivenTasks {
     tasks.add(new GivenTask(taskString.getId(),
         LocalDate.parse(taskString.getDate(), DateTimeFormatter.ofPattern("dd-MM-yyyy"))));
   }
+
   /**
    * To String function.
    *
@@ -53,10 +54,9 @@ public class GivenTasks {
    */
   @Override
   public String toString() {
-    return "GivenTasks{" +
-        "tasks=" + tasks +
-        '}';
+    return "GivenTasks{" + "tasks=" + tasks + '}';
   }
+
   /**
    * Default equals function.
    *
@@ -65,11 +65,16 @@ public class GivenTasks {
    */
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     GivenTasks that = (GivenTasks) o;
     return Objects.equals(tasks, that.tasks);
   }
+
   /**
    * Default hashcode function.
    *

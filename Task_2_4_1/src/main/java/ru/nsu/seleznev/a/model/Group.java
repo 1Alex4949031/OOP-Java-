@@ -54,9 +54,7 @@ public class Group {
    */
   @Override
   public String toString() {
-    return "Group{" +
-        "number=" + number +
-        '}';
+    return "Group{" + "number=" + number + '}';
   }
 
   /**
@@ -67,8 +65,12 @@ public class Group {
    */
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
     Group group = (Group) o;
     return number == group.number;
   }

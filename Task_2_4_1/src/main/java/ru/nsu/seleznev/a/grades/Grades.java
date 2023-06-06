@@ -34,6 +34,7 @@ public class Grades {
    */
   public static double calculateTotalMark(List<Mark> marks, List<Task> tasksInfo) {
     return (marks.stream().mapToDouble(Mark::mark).sum()
-        + tasksInfo.stream().mapToDouble(Task::points).sum() / 2) / (marks.size() + tasksInfo.size());
+        + tasksInfo.stream().mapToDouble(
+        Task::points).sum() / 2) / (marks.size() + tasksInfo.size());
   }
 }
