@@ -13,7 +13,7 @@ import ru.nsu.seleznev.a.strings.StudentString;
 public class Student {
   private int id;
   private String name;
-  private URL repoURL;
+  private URL repoUrl;
 
   /**
    * Constructor.
@@ -25,7 +25,7 @@ public class Student {
   public Student(int id, String name, URL repoUrl) {
     this.id = id;
     this.name = name;
-    this.repoURL = repoUrl;
+    this.repoUrl = repoUrl;
   }
 
   /**
@@ -58,7 +58,7 @@ public class Student {
    * @return repo url
    */
   public URL getRepoUrl() {
-    return repoURL;
+    return repoUrl;
   }
 
   /**
@@ -74,7 +74,7 @@ public class Student {
 
     id = Integer.parseInt(studentString.getId());
     name = studentString.getName();
-    repoURL = new URL(studentString.getRepoUrl());
+    repoUrl = new URL(studentString.getRepoUrl());
   }
 
   /**
@@ -86,7 +86,7 @@ public class Student {
   public String toString() {
     return "Student{" + "id=" + id
         + ", name='" + name + '\''
-        + ", repoURL=" + repoURL + '}';
+        + ", repoURL=" + repoUrl + '}';
   }
 
   /**
@@ -104,7 +104,8 @@ public class Student {
       return false;
     }
     Student student = (Student) o;
-    return id == student.id && Objects.equals(name, student.name) && Objects.equals(repoURL, student.repoURL);
+    return id == student.id && Objects.equals(name, student.name)
+        && Objects.equals(repoUrl, student.repoUrl);
   }
 
   /**
@@ -114,6 +115,6 @@ public class Student {
    */
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, repoURL);
+    return Objects.hash(id, name, repoUrl);
   }
 }

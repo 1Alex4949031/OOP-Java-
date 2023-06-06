@@ -5,7 +5,7 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
 /**
- * CommandLineOptions for console application
+ * CommandLineOptions for console application.
  */
 public class CommandLineOptions {
 

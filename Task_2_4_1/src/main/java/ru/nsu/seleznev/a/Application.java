@@ -1,5 +1,8 @@
 package ru.nsu.seleznev.a;
 
+import static ru.nsu.seleznev.a.options.CommandLineOptions.createOptions;
+import static ru.nsu.seleznev.a.options.CommandLineOptions.showHelp;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.nio.file.FileAlreadyExistsException;
@@ -12,8 +15,6 @@ import org.apache.commons.cli.ParseException;
 import ru.nsu.seleznev.a.build.Builder;
 import ru.nsu.seleznev.a.config.Configuration;
 import ru.nsu.seleznev.a.git.GitApi;
-import static ru.nsu.seleznev.a.options.CommandLineOptions.createOptions;
-import static ru.nsu.seleznev.a.options.CommandLineOptions.showHelp;
 
 /**
  * Application class.

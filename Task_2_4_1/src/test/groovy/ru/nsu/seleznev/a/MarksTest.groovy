@@ -12,11 +12,11 @@ import java.time.format.DateTimeFormatter
 class MarksTest {
     @Test
     void markConfigurationTest() {
-        Marks actualDSL = Parser.parseConfiguration(
+        Marks actualDsl = Parser.parseConfiguration(
                 new File(getClass().getClassLoader().getResource("./Marks.groovy").toURI()),
                 Marks
         ) as Marks
-        Mark actualMark = actualDSL.getMarks().get(0)
+        Mark actualMark = actualDsl.getMarks().get(0)
         Mark expectedMark = new Mark(5, LocalDate.parse("17-05-2023", DateTimeFormatter.ofPattern("dd-MM-yyyy")))
         Assertions.assertEquals(expectedMark, actualMark)
     }
