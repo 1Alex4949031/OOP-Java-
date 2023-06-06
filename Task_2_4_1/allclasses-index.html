@@ -15,7 +15,11 @@
 <script type="text/javascript" src="script-dir/jquery-ui.min.js"></script>
 </head>
 <body class="all-classes-index-page">
-<script type="text/javascript">var pathtoroot = "./";
+<script type="text/javascript">var evenRowColor = "even-row-color";
+var oddRowColor = "odd-row-color";
+var tableTab = "table-tab";
+var activeTableTab = "active-table-tab";
+var pathtoroot = "./";
 loadScripts(document, 'script');</script>
 <noscript>
 <div>JavaScript is disabled on your browser.</div>
@@ -50,8 +54,9 @@ loadScripts(document, 'script');</script>
 <h1 title="All Classes and Interfaces" class="title">All Classes and Interfaces</h1>
 </div>
 <div id="all-classes-table">
-<div class="caption"><span>Classes</span></div>
-<div class="summary-table two-column-summary">
+<div class="table-tabs" role="tablist" aria-orientation="horizontal"><button id="all-classes-table-tab0" role="tab" aria-selected="true" aria-controls="all-classes-table.tabpanel" tabindex="0" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table', 2)" class="active-table-tab">All Classes and Interfaces</button><button id="all-classes-table-tab2" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab2', 2)" class="table-tab">Classes</button><button id="all-classes-table-tab4" role="tab" aria-selected="false" aria-controls="all-classes-table.tabpanel" tabindex="-1" onkeydown="switchTab(event)" onclick="show('all-classes-table', 'all-classes-table-tab4', 2)" class="table-tab">Record Classes</button></div>
+<div id="all-classes-table.tabpanel" role="tabpanel">
+<div class="summary-table two-column-summary" aria-labelledby="all-classes-table-tab0">
 <div class="table-header col-first">Class</div>
 <div class="table-header col-last">Description</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/Application.html" title="class in ru.nsu.seleznev.a">Application</a></div>
@@ -64,7 +69,7 @@ loadScripts(document, 'script');</script>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/options/CommandLineOptions.html" title="class in ru.nsu.seleznev.a.options">CommandLineOptions</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">CommandLineOptions for console application</div>
+<div class="block">CommandLineOptions for console application.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/config/Configuration.html" title="class in ru.nsu.seleznev.a.config">Configuration</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
@@ -78,25 +83,31 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">GitApi class.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/model/GivenTask.html" title="class in ru.nsu.seleznev.a.model">GivenTask</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
-<div class="block">GivenTask class.</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="ru/nsu/seleznev/a/model/GivenTask.html" title="class in ru.nsu.seleznev.a.model">GivenTask</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
+<div class="block">GivenTask record class.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/model/GivenTasks.html" title="class in ru.nsu.seleznev.a.model">GivenTasks</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">GivenTasks class.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/strings/GivenTaskString.html" title="class in ru.nsu.seleznev.a.strings">GivenTaskString</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">GivenTaskString class for reading dsl config.</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/grades/Grades.html" title="class in ru.nsu.seleznev.a.grades">Grades</a></div>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Grades class.</div>
 </div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/model/Group.html" title="class in ru.nsu.seleznev.a.model">Group</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Group class.</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/strings/GroupString.html" title="class in ru.nsu.seleznev.a.strings">GroupString</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/html/HTMLTableBuilder.html" title="class in ru.nsu.seleznev.a.html">HTMLTableBuilder</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">GroupString class for reading dsl config.</div>
+</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/html/HtmlTableBuilder.html" title="class in ru.nsu.seleznev.a.html">HtmlTableBuilder</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Uses:
  HTMLTableBuilder htmlBuilder = new HTMLTableBuilder(null, true, 2, 3);
@@ -111,32 +122,55 @@ loadScripts(document, 'script');</script>
 <div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Jacoco xml parser.</div>
 </div>
-<div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/model/Lesson.html" title="class in ru.nsu.seleznev.a.model">Lesson</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-first even-row-color all-classes-table all-classes-table-tab4"><a href="ru/nsu/seleznev/a/model/Lesson.html" title="class in ru.nsu.seleznev.a.model">Lesson</a></div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab4">
+<div class="block">Lesson class.</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/model/Lessons.html" title="class in ru.nsu.seleznev.a.model">Lessons</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Lessons class.</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/strings/LessonString.html" title="class in ru.nsu.seleznev.a.strings">LessonString</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/model/Mark.html" title="class in ru.nsu.seleznev.a.model">Mark</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">LessonString class for reading dsl config.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="ru/nsu/seleznev/a/model/Mark.html" title="class in ru.nsu.seleznev.a.model">Mark</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
+<div class="block">Mark record class.</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/model/Marks.html" title="class in ru.nsu.seleznev.a.model">Marks</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Marks class.</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/strings/MarkString.html" title="class in ru.nsu.seleznev.a.strings">MarkString</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">MarkString class for reading dsl config.</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/parser/Parser.html" title="class in ru.nsu.seleznev.a.parser">Parser</a></div>
 <div class="col-last even-row-color all-classes-table all-classes-table-tab2">
 <div class="block">Parser class.</div>
 </div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/model/Student.html" title="class in ru.nsu.seleznev.a.model">Student</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Student class.</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/strings/StudentString.html" title="class in ru.nsu.seleznev.a.strings">StudentString</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
-<div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/model/Task.html" title="class in ru.nsu.seleznev.a.model">Task</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">StudentString class for reading dsl config.</div>
+</div>
+<div class="col-first odd-row-color all-classes-table all-classes-table-tab4"><a href="ru/nsu/seleznev/a/model/Task.html" title="class in ru.nsu.seleznev.a.model">Task</a></div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab4">
+<div class="block">Task record class.</div>
+</div>
 <div class="col-first even-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/model/Tasks.html" title="class in ru.nsu.seleznev.a.model">Tasks</a></div>
-<div class="col-last even-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last even-row-color all-classes-table all-classes-table-tab2">
+<div class="block">Tasks class.</div>
+</div>
 <div class="col-first odd-row-color all-classes-table all-classes-table-tab2"><a href="ru/nsu/seleznev/a/strings/TaskString.html" title="class in ru.nsu.seleznev.a.strings">TaskString</a></div>
-<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">&nbsp;</div>
+<div class="col-last odd-row-color all-classes-table all-classes-table-tab2">
+<div class="block">TaskString class for reading dsl config.</div>
+</div>
+</div>
 </div>
 </div>
 </main>
