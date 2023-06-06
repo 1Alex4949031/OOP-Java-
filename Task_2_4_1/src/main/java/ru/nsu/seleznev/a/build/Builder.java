@@ -108,7 +108,7 @@ public class Builder {
     }
     System.out.println("""
         Jacoco Test Report is generated! Files were created!
-        But xml files were deleted! If you want to regenerate them delete the jacoco folder!
+        But xml files were deleted! If you want to regenerate report, delete the jacoco folder!
         """);
   }
 
