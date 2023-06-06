@@ -268,11 +268,11 @@ public class Builder {
         tasks.forEach(j -> {
           try {
             String studentId = String.valueOf(actualDSL.getStudent().getId());
-            tableBuilder.addRowValues(studentId, j.getId(),
-                checkCondition(buildTests(studentId, j.getId())),
-                checkCondition(generateJavaDoc(studentId, j.getId())),
-                checkCondition(checkCodeStyle(studentId, j.getId())));
-            getJacocoTestReport(studentId, j.getId());
+            tableBuilder.addRowValues(studentId, j.id(),
+                checkCondition(buildTests(studentId, j.id())),
+                checkCondition(generateJavaDoc(studentId, j.id())),
+                checkCondition(checkCodeStyle(studentId, j.id())));
+            getJacocoTestReport(studentId, j.id());
           } catch (IOException e) {
             throw new RuntimeException(e);
           }
@@ -316,8 +316,8 @@ public class Builder {
     tableBuilder.addRowValues("Date", "Attendance");
     lessons.forEach(l -> {
       try {
-        String date = l.getDate().toString();
-        tableBuilder.addRowValues(date, checkCondition(checkCommitsInPeriod(projectRepo, l.getDate())));
+        String date = l.date().toString();
+        tableBuilder.addRowValues(date, checkCondition(checkCommitsInPeriod(projectRepo, l.date())));
       } catch (GitAPIException e) {
         throw new RuntimeException("Something goes wrong with checking commits for attendance");
       }
@@ -357,8 +357,8 @@ public class Builder {
         lessons.forEach(l -> {
           try {
             File projectDir = new File("./DSL/git/ID" + actualDSL.getStudent().getId());
-            String date = l.getDate().toString();
-            tableBuilder.addRowValues(date, checkCondition(checkCommitsInPeriod(projectDir, l.getDate())));
+            String date = l.date().toString();
+            tableBuilder.addRowValues(date, checkCondition(checkCommitsInPeriod(projectDir, l.date())));
           } catch (GitAPIException e) {
             throw new RuntimeException("Something goes wrong with checking commits for attendance");
           }

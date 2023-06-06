@@ -7,32 +7,65 @@ import java.util.Objects;
 import ru.nsu.seleznev.a.strings.StudentString;
 
 
+/**
+ * Student class.
+ */
 public class Student {
   private int id;
   private String name;
   private URL repoURL;
 
+  /**
+   * Constructor.
+   *
+   * @param id      student's id
+   * @param name    student's name
+   * @param repoURL student's repository url
+   */
   public Student(int id, String name, URL repoURL) {
     this.id = id;
     this.name = name;
     this.repoURL = repoURL;
   }
 
+  /**
+   * Empty constructor.
+   */
   public Student() {
   }
 
+  /**
+   * Function that returns student's id.
+   *
+   * @return student's id
+   */
   public int getId() {
     return id;
   }
 
+  /**
+   * Function that returns student's name
+   *
+   * @return student's name
+   */
   public String getName() {
     return name;
   }
 
+  /**
+   * Function that returns student's repository url.
+   *
+   * @return repo url
+   */
   public URL getRepoURL() {
     return repoURL;
   }
 
+  /**
+   * Student closure for dsl.
+   *
+   * @param closure block of code with important values
+   */
   public void student(Closure<?> closure) throws MalformedURLException {
     StudentString studentString = new StudentString();
     closure.setDelegate(studentString);
@@ -44,6 +77,11 @@ public class Student {
     repoURL = new URL(studentString.getRepoURL());
   }
 
+  /**
+   * To String function.
+   *
+   * @return string value
+   */
   @Override
   public String toString() {
     return "Student{" +
@@ -53,6 +91,12 @@ public class Student {
         '}';
   }
 
+  /**
+   * Default equals function.
+   *
+   * @param o object need to compare with.
+   * @return true if objects are equals, false otherwise
+   */
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -61,6 +105,11 @@ public class Student {
     return id == student.id && Objects.equals(name, student.name) && Objects.equals(repoURL, student.repoURL);
   }
 
+  /**
+   * Default hashcode function.
+   *
+   * @return hash code ot the object
+   */
   @Override
   public int hashCode() {
     return Objects.hash(id, name, repoURL);

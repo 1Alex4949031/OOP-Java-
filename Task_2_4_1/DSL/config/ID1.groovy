@@ -30,12 +30,12 @@ tasksInfo {
     taskInfo {
         taskId = "Task-1-1-1"
         taskName = "First"
-        points = 10
+        points = 4
     }
     taskInfo {
         taskId = "Task-1-1-1"
         taskName = "Second"
-        points = 10
+        points = 9
     }
 }
 lessons {

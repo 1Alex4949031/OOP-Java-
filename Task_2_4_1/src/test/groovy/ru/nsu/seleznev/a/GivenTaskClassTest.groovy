@@ -9,7 +9,7 @@ import ru.nsu.seleznev.a.parser.Parser
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class GivenTaskClassTests {
+class GivenTaskClassTest {
     @Test
     void configurationTest() {
         GivenTasks actualTask = Parser.parseConfiguration(

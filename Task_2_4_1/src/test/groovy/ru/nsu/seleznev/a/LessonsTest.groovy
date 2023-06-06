@@ -13,7 +13,7 @@ class LessonsTest {
     @Test
     void lessonConfigurationTest() {
         Lessons actualLessons = Parser.parseConfiguration(
-                new File(getClass().getClassLoader().getResource("./Lesson.groovy").toURI()),
+                new File(getClass().getClassLoader().getResource("./Lessons.groovy").toURI()),
                 Lessons) as Lessons
         List<Lesson> lessonList = new ArrayList<>()
         lessonList.add(new Lesson(LocalDate.parse("17-05-2023", DateTimeFormatter.ofPattern("dd-MM-yyyy"))))

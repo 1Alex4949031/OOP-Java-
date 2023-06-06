@@ -9,11 +9,11 @@ import ru.nsu.seleznev.a.parser.Parser
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class MarkTest {
+class MarksTest {
     @Test
     void markConfigurationTest() {
         Marks actualDSL = Parser.parseConfiguration(
-                new File(getClass().getClassLoader().getResource("./Mark.groovy").toURI()),
+                new File(getClass().getClassLoader().getResource("./Marks.groovy").toURI()),
                 Marks
         ) as Marks
         Mark actualMark = actualDSL.getMarks().get(0)

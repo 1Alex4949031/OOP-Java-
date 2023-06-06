@@ -19,8 +19,8 @@ public class Grades {
    */
   public static String toStringGrades(List<Mark> marks, List<Task> tasksInfo) {
     return Stream.concat(
-            marks.stream().map(mark -> String.valueOf(mark.getMark() * 2)),
-            tasksInfo.stream().map(task -> String.valueOf(task.getPoints()))
+            marks.stream().map(mark -> String.valueOf(mark.mark() * 2)),
+            tasksInfo.stream().map(task -> String.valueOf(task.points()))
         )
         .collect(Collectors.joining(" "));
   }
@@ -33,7 +33,7 @@ public class Grades {
    * @return total mark double
    */
   public static double calculateTotalMark(List<Mark> marks, List<Task> tasksInfo) {
-    return (marks.stream().mapToDouble(Mark::getMark).sum()
-        + tasksInfo.stream().mapToDouble(Task::getPoints).sum() / 2) / (marks.size() + tasksInfo.size());
+    return (marks.stream().mapToDouble(Mark::mark).sum()
+        + tasksInfo.stream().mapToDouble(Task::points).sum() / 2) / (marks.size() + tasksInfo.size());
   }
 }

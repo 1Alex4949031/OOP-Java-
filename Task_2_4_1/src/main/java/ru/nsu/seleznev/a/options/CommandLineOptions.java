@@ -32,29 +32,29 @@ public class CommandLineOptions {
   public static Options createOptions() {
     Options options = new Options();
     options.addOption(createOption("makeConfig", """
-        Make configuration file.""", 0));
+        Make configuration file for student.""", 0));
     options.addOption(createOption("printConfig", """
-        Print student's configuration file.""", 1));
+        Print student's configuration file. Args: [student's id]""", 1));
     options.addOption(createOption("cloneRepo", """
-        Cloning student's repository from Github.""", 1));
+        Cloning student's repository from the Github. Args: [student's id]""", 1));
     options.addOption(createOption("test", """
-        Building tests for work.""", 2));
+        Building all tests for laboratory work. Args: [student's id] [task id]""", 2));
     options.addOption(createOption("codeStyle", """
-        Check Java Code Style for work.""", 2));
+        Check Java Code Style for work. Args: [student's id] [task id]""", 2));
     options.addOption(createOption("documentation", """
-        Generate java documentation.""", 2));
+        Generate java documentation. Args: [student's id] [task id]""", 2));
     options.addOption(createOption("jacocoTestReport", """
-        Generate jacoco test report for task.""", 2));
+        Generate jacoco test report for task. Args: [student's id] [task id]""", 2));
     options.addOption(createOption("generateHtmlReport", """
-        Build task and generate HTML report""", 2));
+        Build task and generate HTML report. Args: [student's id] [task id]""", 2));
     options.addOption(createOption("buildLab", """
-        Build Html report for task""", 2));
+        Build Html report for the task. Args: [student's id] [task id]""", 2));
     options.addOption(createOption("buildAll", """
-        Build Html report for group""", 1));
+        Build Html report for the group. Args: [group number]""", 1));
     options.addOption(createOption("attendance", """
-        Generate attendance report for student""", 1));
+        Generate attendance report for the student. Args: [student's id]""", 1));
     options.addOption(createOption("attendanceAll", """
-        Generate attendance report for all students in the group""", 1));
+        Generate attendance report for all students in the group. Args: [group number]""" , 1));
     return options;
   }
 
