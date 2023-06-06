@@ -13,7 +13,7 @@ class TaskTest {
                 Task
         ) as Task
 
-        Task expectedTask = new Task(1 as String, "Task_1_1_1", 10)
+        Task expectedTask = new Task("1", "Task_1_1_1", 10)
         Assertions.assertEquals(expectedTask, actualTask)
     }
 }

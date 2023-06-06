@@ -1,5 +1,14 @@
 package ru.nsu.seleznev.a.build;
 
+import static ru.nsu.seleznev.a.directories.Directories.copyDirectory;
+import static ru.nsu.seleznev.a.directories.Directories.createDirectory;
+import static ru.nsu.seleznev.a.directories.Directories.deleteDirectory;
+import static ru.nsu.seleznev.a.directories.Directories.writeNewHtmlFile;
+import static ru.nsu.seleznev.a.git.GitApi.checkCommitsInPeriod;
+import static ru.nsu.seleznev.a.grades.Grades.calculateTotalMark;
+import static ru.nsu.seleznev.a.grades.Grades.toStringGrades;
+import static ru.nsu.seleznev.a.parser.Parser.parseConfiguration;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,16 +21,11 @@ import org.eclipse.jgit.api.errors.GitAPIException;
 import org.gradle.tooling.GradleConnector;
 import org.gradle.tooling.ProgressListener;
 import ru.nsu.seleznev.a.DSL;
-import static ru.nsu.seleznev.a.directories.Directories.*;
-import static ru.nsu.seleznev.a.git.GitApi.checkCommitsInPeriod;
-import static ru.nsu.seleznev.a.grades.Grades.calculateTotalMark;
-import static ru.nsu.seleznev.a.grades.Grades.toStringGrades;
 import ru.nsu.seleznev.a.html.HtmlTableBuilder;
 import ru.nsu.seleznev.a.model.GivenTask;
 import ru.nsu.seleznev.a.model.Lesson;
 import ru.nsu.seleznev.a.model.Mark;
 import ru.nsu.seleznev.a.model.Task;
-import static ru.nsu.seleznev.a.parser.Parser.parseConfiguration;
 import ru.nsu.seleznev.a.xml.JacocoXmlParser;
 
 /**
@@ -36,13 +40,15 @@ public class Builder {
    * @return true if all tests are built, false otherwise
    * @throws FileNotFoundException exception
    */
-  public static boolean buildTests(String studentId, String task) throws FileNotFoundException {
+  public static boolean buildTests(String studentId, String task)
+      throws FileNotFoundException {
     File projectDir = new File("./DSL/git/ID" + studentId + "/" + task);
     if (!projectDir.exists()) {
       throw new FileNotFoundException("No such directory for " + studentId + "."
           + " Did you clone the repository?");
     }
-    try (var conn = GradleConnector.newConnector().forProjectDirectory(projectDir).connect()) {
+    try (var conn = GradleConnector.newConnector()
+        .forProjectDirectory(projectDir).connect()) {
       conn.newBuild().forTasks("test").addProgressListener(
           (ProgressListener) event -> System.out.println(event.getDescription())
       ).run();
@@ -70,11 +76,13 @@ public class Builder {
    * @param task      task
    * @throws FileNotFoundException exception
    */
-  public static void getJacocoTestReport(String studentId, String task) throws FileNotFoundException {
+  public static void getJacocoTestReport(String studentId, String task)
+      throws FileNotFoundException {
     File projectDir = new File("./DSL/git/ID" + studentId + "/" + task);
     if (!projectDir.exists()) {
-      throw new FileNotFoundException("Initially build all tests for getting Jacoco Test Report." +
-          "Make sure you cloned the repository of the project");
+      throw new FileNotFoundException(
+          "Initially build all tests for getting Jacoco Test Report."
+              + "Make sure you cloned the repository of the project");
     }
     try {
       createDirectory("./DSL/jacoco/ID" + studentId + "/" + task);
@@ -82,8 +90,8 @@ public class Builder {
 
       File[] files = new File(projectDir, "build/test-results/test").listFiles();
       if (files == null || files.length == 0) {
-        throw new IllegalStateException(" There are no files to generate Jacoco test report. " +
-            "Check jacoco folder.");
+        throw new IllegalStateException(" There are no files to generate Jacoco test report. "
+            + "Check jacoco folder.");
       }
 
       int fileCount = 1;
@@ -120,14 +128,16 @@ public class Builder {
     }
     insertCheckStylePlugin(dir);
     checkCheckStyleXml(studentId, task);
-    try (var conn = GradleConnector.newConnector().forProjectDirectory(dir).
-        useGradleVersion("8.0").connect()) {
+    try (var conn = GradleConnector.newConnector().forProjectDirectory(dir)
+        .useGradleVersion("8.0").connect()) {
       conn.newBuild().forTasks("checkstyleMain").addProgressListener(
           (ProgressListener) event -> System.out.println(event.getDescription())
       ).run();
     } catch (Exception e) {
-      System.out.println("Failed to check Java Code Style! Check added plugin in build.gradle of the project!"
-          + e.getMessage());
+      System.out.println(
+          "Failed to check Java Code Style!"
+              + " Check added plugin in build.gradle of the project!"
+              + e.getMessage());
       return false;
     }
     try {
@@ -137,8 +147,8 @@ public class Builder {
           "./DSL/checkstyle/ID" + studentId + "/" + task);
       deleteDirectory(dir.toPath() + "/build/reports/checkstyle");
     } catch (IOException e) {
-      throw new RuntimeException("Failed to move files!" +
-          "(Operations: createDirectory, copyDirectory, deleteDirectory)");
+      throw new RuntimeException("Failed to move files!"
+          + "(Operations: createDirectory, copyDirectory, deleteDirectory)");
     }
     System.out.println("\nJava Code Style was successfully checked!\n");
     return true;
@@ -152,7 +162,8 @@ public class Builder {
    */
   private static void checkCheckStyleXml(String studentId, String task) {
     try {
-      File checkStyleXml = new File("./DSL/git/ID" + studentId + "/" + task + "/config/checkstyle/checkstyle.xml");
+      File checkStyleXml = new File("./DSL/git/ID" + studentId + "/"
+          + task + "/config/checkstyle/checkstyle.xml");
       File configFile = new File("./config/checkstyle/checkstyle.xml");
       if (!checkStyleXml.exists()) {
         checkStyleXml.delete();
@@ -190,12 +201,14 @@ public class Builder {
    * @return true if the documentation was generated successfully, false otherwise
    * @throws FileNotFoundException exception
    */
-  public static boolean generateJavaDoc(String studentId, String task) throws FileNotFoundException {
+  public static boolean generateJavaDoc(String studentId, String task)
+      throws FileNotFoundException {
     File projectDir = new File("./DSL/git/ID" + studentId + "/" + task);
     if (!projectDir.exists()) {
       throw new FileNotFoundException("Project directory not found: " + studentId);
     }
-    try (var conn = GradleConnector.newConnector().forProjectDirectory(projectDir).connect()) {
+    try (var conn = GradleConnector.newConnector()
+        .forProjectDirectory(projectDir).connect()) {
       conn.newBuild().forTasks("javadoc").addProgressListener(
           (ProgressListener) event -> System.out.println(event.getDescription())
       ).run();
@@ -223,11 +236,14 @@ public class Builder {
    * @param task      task
    * @throws FileNotFoundException exception
    */
-  public static void generateStudentHtml(String studentId, String task) throws FileNotFoundException {
-    DSL actualDsl = (DSL) parseConfiguration(new File("./DSL/config/ID" + studentId + ".groovy"), DSL.class);
+  public static void generateStudentHtml(String studentId, String task)
+      throws FileNotFoundException {
+    DSL actualDsl = (DSL) parseConfiguration(new File("./DSL/config/ID"
+        + studentId + ".groovy"), DSL.class);
     String studentName = actualDsl.getStudent().getName();
 
-    HtmlTableBuilder tableBuilder = new HtmlTableBuilder("Info for student with ID: " + studentId, true);
+    HtmlTableBuilder tableBuilder = new HtmlTableBuilder(
+        "Info for student with ID: " + studentId, true);
 
     tableBuilder.addTableHeader("Student", "Build", "Doc", "Style");
     tableBuilder.addRowValues(studentName,
@@ -236,7 +252,8 @@ public class Builder {
         checkCondition(Builder.checkCodeStyle(studentId, task)));
     try {
       createDirectory("./DSL/studentReport/ID" + studentId);
-      writeNewHtmlFile("./DSL/studentReport/ID" + studentId + "/" + task, tableBuilder.build());
+      writeNewHtmlFile("./DSL/studentReport/ID" + studentId
+          + "/" + task, tableBuilder.build());
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -261,13 +278,13 @@ public class Builder {
     HtmlTableBuilder tableBuilder = new HtmlTableBuilder("Group " + groupNumber, true);
     int group = Integer.parseInt(groupNumber);
     Arrays.stream(files).forEach(i -> {
-      DSL actualDSL = (DSL) parseConfiguration(i, DSL.class);
+      DSL actualDsl = (DSL) parseConfiguration(i, DSL.class);
       tableBuilder.addTableHeader("StudentID", "Task", "Build", "Doc", "Style");
-      if (actualDSL.getGroup().getNumber() == group) {
-        List<GivenTask> tasks = actualDSL.getTasks().getTasks();
+      if (actualDsl.getGroup().getNumber() == group) {
+        List<GivenTask> tasks = actualDsl.getTasks().getTasks();
         tasks.forEach(j -> {
           try {
-            String studentId = String.valueOf(actualDSL.getStudent().getId());
+            String studentId = String.valueOf(actualDsl.getStudent().getId());
             tableBuilder.addRowValues(studentId, j.id(),
                 checkCondition(buildTests(studentId, j.id())),
                 checkCondition(generateJavaDoc(studentId, j.id())),
@@ -277,18 +294,19 @@ public class Builder {
             throw new RuntimeException(e);
           }
         });
-        List<Mark> marks = actualDSL.getMarks().getMarks();
-        List<Task> tasksInfo = actualDSL.getTasksInfo().getTasks();
+        List<Mark> marks = actualDsl.getMarks().getMarks();
+        List<Task> tasksInfo = actualDsl.getTasksInfo().getTasks();
         tableBuilder.addTableHeader("StudentName", "Credits", "Total Mark");
         double totalMark = calculateTotalMark(marks, tasksInfo);
         String grades = toStringGrades(marks, tasksInfo);
-        String studentName = actualDSL.getStudent().getName();
+        String studentName = actualDsl.getStudent().getName();
         tableBuilder.addRowValues(studentName, grades, String.valueOf(totalMark));
       }
     });
     try {
       createDirectory("./DSL/groupReport/" + groupNumber);
-      writeNewHtmlFile("./DSL/groupReport/" + groupNumber + "/" + groupNumber, tableBuilder.build());
+      writeNewHtmlFile("./DSL/groupReport/" + groupNumber
+          + "/" + groupNumber, tableBuilder.build());
     } catch (IOException e) {
       e.printStackTrace();
     }
@@ -301,13 +319,15 @@ public class Builder {
    * @param studentId student's id
    * @throws FileNotFoundException exception
    */
-  public static void generateAttendanceStudentReport(String studentId) throws FileNotFoundException {
+  public static void generateAttendanceStudentReport(String studentId)
+      throws FileNotFoundException {
     File configDir = new File("./DSL/config/");
     File projectRepo = new File("./DSL/git/ID" + studentId);
     if (!configDir.exists() || !projectRepo.exists()) {
       throw new FileNotFoundException("Check that git repo and config files are exist!");
     }
-    DSL actualDsl = (DSL) parseConfiguration(new File("./DSL/config/ID" + studentId + ".groovy"), DSL.class);
+    DSL actualDsl = (DSL) parseConfiguration(new File("./DSL/config/ID"
+        + studentId + ".groovy"), DSL.class);
     List<Lesson> lessons = actualDsl.getLessons().getLessonList();
     String studentName = actualDsl.getStudent().getName();
     HtmlTableBuilder tableBuilder = new HtmlTableBuilder(
@@ -317,9 +337,11 @@ public class Builder {
     lessons.forEach(l -> {
       try {
         String date = l.date().toString();
-        tableBuilder.addRowValues(date, checkCondition(checkCommitsInPeriod(projectRepo, l.date())));
+        tableBuilder.addRowValues(
+            date, checkCondition(checkCommitsInPeriod(projectRepo, l.date())));
       } catch (GitAPIException e) {
-        throw new RuntimeException("Something goes wrong with checking commits for attendance");
+        throw new RuntimeException(
+            "Something goes wrong with checking commits for attendance");
       }
     });
     try {
@@ -337,7 +359,8 @@ public class Builder {
    * @param groupNumber number of the group
    * @throws FileNotFoundException exception
    */
-  public static void generateAttendanceGroupReport(String groupNumber) throws FileNotFoundException {
+  public static void generateAttendanceGroupReport(String groupNumber)
+      throws FileNotFoundException {
     File configDir = new File("./DSL/config/");
     if (!configDir.exists()) {
       throw new FileNotFoundException("Check that config file exists!");
@@ -349,16 +372,18 @@ public class Builder {
     HtmlTableBuilder tableBuilder = new HtmlTableBuilder("Group " + groupNumber, true);
     int group = Integer.parseInt(groupNumber);
     Arrays.stream(files).forEach(i -> {
-      DSL actualDSL = (DSL) parseConfiguration(i, DSL.class);
-      tableBuilder.addTableHeader("Name", actualDSL.getStudent().getName());
+      DSL actualDsl = (DSL) parseConfiguration(i, DSL.class);
+      tableBuilder.addTableHeader("Name", actualDsl.getStudent().getName());
       tableBuilder.addRowValues("Date", "Attendance");
-      if (actualDSL.getGroup().getNumber() == group) {
-        List<Lesson> lessons = actualDSL.getLessons().getLessonList();
+      if (actualDsl.getGroup().getNumber() == group) {
+        List<Lesson> lessons = actualDsl.getLessons().getLessonList();
         lessons.forEach(l -> {
           try {
-            File projectDir = new File("./DSL/git/ID" + actualDSL.getStudent().getId());
+            File projectDir = new File(
+                "./DSL/git/ID" + actualDsl.getStudent().getId());
             String date = l.date().toString();
-            tableBuilder.addRowValues(date, checkCondition(checkCommitsInPeriod(projectDir, l.date())));
+            tableBuilder.addRowValues(
+                date, checkCondition(checkCommitsInPeriod(projectDir, l.date())));
           } catch (GitAPIException e) {
             throw new RuntimeException("Something goes wrong with checking commits for attendance");
           }
@@ -367,13 +392,20 @@ public class Builder {
     });
     try {
       createDirectory("./DSL/groupAttendanceReport/" + groupNumber);
-      writeNewHtmlFile("./DSL/groupAttendanceReport/" + groupNumber + "/" + groupNumber, tableBuilder.build());
+      writeNewHtmlFile("./DSL/groupAttendanceReport/" + groupNumber
+          + "/" + groupNumber, tableBuilder.build());
     } catch (IOException e) {
       e.printStackTrace();
     }
     System.out.println("\nHtml attendance report for the group was generated successfully!\n");
   }
 
+  /**
+   * Function that returns + if the condition is true, - otherwise.
+   *
+   * @param cond condition need to check
+   * @return + or -
+   */
   private static String checkCondition(Boolean cond) {
     return cond ? "+" : "-";
   }
