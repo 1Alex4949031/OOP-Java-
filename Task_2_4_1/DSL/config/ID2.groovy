@@ -1,7 +1,7 @@
 student {
     id = 2
     name = "Misha"
-    repoURL = "https://github.com/Allody22/OOP_JAVA.git"
+    repoUrl = "https://github.com/Allody22/OOP_JAVA.git"
 }
 group {
     number = 21215
