@@ -1,0 +1,74 @@
+plugins {
+    id 'checkstyle'
+    id 'groovy'
+    id 'jacoco'
+    id 'java-library'
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+compileJava.options.encoding = 'UTF-8'
+
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(GroovyCompile) {
+    options.compilerArgs += ['-proc:none']
+}
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.gradle.org/gradle/libs-releases' }
+}
+
+sourceSets {
+    main {
+        java { srcDirs = [] }    // no source dirs for the java compiler
+        groovy { srcDirs = ["src/main/java", "src/main/groovy"] }  // compile   everything in src/ with groovy
+    }
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+dependencies {
+    implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.16', ext: 'pom'
+    implementation 'org.apache.groovy:groovy:4.0.10'
+    implementation 'commons-cli:commons-cli:1.5.0'
+    implementation 'commons-io:commons-io:2.12.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+
+    // https://central.sonatype.dev/artifact/org.eclipse.jgit/org.eclipse.jgit/
+    implementation 'org.eclipse.jgit:org.eclipse.jgit:6.5.0.202303070854-r'
+    // SSH support for JGit based on Apache MINA sshd
+    implementation 'org.eclipse.jgit:org.eclipse.jgit.ssh.apache:6.5.0.202303070854-r'
+    // GPG support for JGit based on BouncyCastle (commit signing)
+    implementation 'org.eclipse.jgit:org.eclipse.jgit.gpg.bc:6.5.0.202303070854-r'
+    implementation 'org.gradle:gradle-tooling-api:5.2.1'
+
+    // Logging
+    implementation 'org.slf4j:slf4j-api:2.0.5'
+    implementation 'ch.qos.logback:logback-classic:1.4.6'
+
+    implementation 'org.projectlombok:lombok:1.18.26'
+    compileOnly('org.projectlombok:lombok:1.18.26')
+    annotationProcessor("org.projectlombok:lombok:1.18.26")
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}
